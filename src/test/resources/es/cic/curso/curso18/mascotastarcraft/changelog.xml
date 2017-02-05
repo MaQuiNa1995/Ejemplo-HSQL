@@ -41,7 +41,7 @@
             referencedColumnNames="idBase"/>       			
     </changeSet>
     
-    <changeSet author="usuario (generated)" id="1400847488682-1">
+    <changeSet author="usuario (generated)" id="1400847488683-1">
         <addForeignKeyConstraint 
             constraintName="fk_idTrabajador" 
             referencedTableName="Trabajador" 
@@ -64,6 +64,6 @@
     referencedTableName="sala" 
     baseColumnNames="sala_id" 
     baseTableName="venta" 
-    referencedColumnNames="id"/> -->      			
-</changeSet>
+    referencedColumnNames="id"/>     			
+</changeSet> -->  
 </databaseChangeLog>

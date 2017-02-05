@@ -36,6 +36,9 @@ public class Mapa implements Identificable<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     private Base base;
 
+    public Mapa() {
+    }
+
     public Mapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, Base base) {
         this.nombreMapa = nombreMapa;
         this.basesMaximo = basesMaximo;
