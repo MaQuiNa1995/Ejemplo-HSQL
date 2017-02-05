@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.cic.curso.curso18.mascotastarcraft.fortaleza.Sitio;
+package es.cic.curso.curso18.mascotastarcraft.Sitio.Service;
 
 import es.cic.curso.curso18.mascotastarcraft.Sitio.Mapa;
 import es.cic.curso.curso18.mascotastarcraft.Sitio.MapaRepository;

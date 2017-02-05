@@ -1,4 +1,4 @@
-package es.cic.curso.curso18.mascotastarcraft.Sitio.Service;
+package es.cic.curso.curso18.mascotastarcraft.fortaleza.Sitio;
 
 import es.cic.curso.curso18.mascotastarcraft.obrero.*;
 import org.junit.Before;
