@@ -42,8 +42,6 @@ public class MapaRepositoryTest extends AbstractRepositoryImplTest<Long, Mapa> {
     public Mapa getInstanceDeTParaLectura() {
         Mapa mapaTest = new Mapa();
         mapaTest.setNombreMapa("Ocean");
-//        mapaTest.setBasesMaximo(5);
-//        mapaTest.setJugadoresMaximo(5);
         return mapaTest;
     }
 
