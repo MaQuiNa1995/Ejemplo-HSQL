@@ -8,13 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BaseRepositoryImpl extends AbstractRepositoryImpl<Long, Base> implements BaseRepository {
 
-	@Override
-	public Class<Base> getClassDeT() {
-		return Base.class;
-	}
+    @Override
+    public Class<Base> getClassDeT() {
+        return Base.class;
+    }
 
-	@Override
-	public String getNombreTabla() {
-		return "Base";
-	}
+    @Override
+    public String getNombreTabla() {
+        return "Base";
+    }
 }

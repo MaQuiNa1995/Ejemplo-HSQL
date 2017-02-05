@@ -1,4 +1,4 @@
-package es.cic.curso.curso18.mascotastarcraft.Sitio;
+package es.cic.curso.curso18.mascotastarcraft.Sitio.Service;
 
 import es.cic.curso.curso18.mascotastarcraft.obrero.*;
 import org.junit.Before;
@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import es.cic.curso.curso18.mascotastarcraft.AbstractRepositoryImplTest;
+import es.cic.curso.curso18.mascotastarcraft.Sitio.Mapa;
+import es.cic.curso.curso18.mascotastarcraft.Sitio.MapaRepository;
 import es.cic.curso.curso18.mascotastarcraft.dominio.IRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)

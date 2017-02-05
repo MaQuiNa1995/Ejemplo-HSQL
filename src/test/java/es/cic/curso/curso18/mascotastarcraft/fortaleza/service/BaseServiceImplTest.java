@@ -7,9 +7,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,15 +45,6 @@ public class BaseServiceImplTest {
         this.sut = sut;
     }
 
-    public BaseRepository getBaseRepository() {
-        return baseRepository;
-    }
-
-    public void setBaseRepository(BaseRepository baseRepository) {
-        this.baseRepository = baseRepository;
-    }
-    
-    
 
     @Before
     public void setUp() throws Exception {

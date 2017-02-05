@@ -1,6 +1,5 @@
 package es.cic.curso.curso18.mascotastarcraft.fortaleza;
 
-import es.cic.curso.curso18.mascotastarcraft.Sitio.*;
 import es.cic.curso.curso18.mascotastarcraft.obrero.*;
 import org.junit.Before;
 import org.junit.runner.RunWith;

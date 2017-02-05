@@ -23,9 +23,11 @@ public class BaseServiceImpl implements BaseService {
 
     @Override
     public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador) {
+
         Base base = new Base();
         base.setCantidadMineral(cantidadMineral);
         base.setTipoMineral(tipoMineral);
+        base.setTrabajadoresMaximo(TrabajadoresMaximo);
         Trabajador trabajador = trabajadorRepository.read(idTrabajador);
         base.setTrabajador(trabajador);
         Base aniadida = aniadirBase(base);
