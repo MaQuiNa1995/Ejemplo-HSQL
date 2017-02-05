@@ -1,7 +1,7 @@
 package es.cic.curso.curso18.mascotastarcraft.Sitio;
 
 import es.cic.curso.curso18.mascotastarcraft.dominio.Identificable;
-import java.util.Objects;
+import es.cic.curso.curso18.mascotastarcraft.fortaleza.Base;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,17 +34,25 @@ public class Mapa implements Identificable<Long> {
 
     @JoinColumn(name = "idBase")
     @ManyToOne(fetch = FetchType.LAZY)
-    private String idBase;
+    private Base base;
 
-    public Mapa(String nombreMapa, int basesMaximo, String idBase) {
+    public Mapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, Base base) {
         this.nombreMapa = nombreMapa;
         this.basesMaximo = basesMaximo;
-        this.idBase = idBase;
+        this.jugadoresMaximo = jugadoresMaximo;
+        this.base = base;
     }
 
-    public Mapa() {
+    @Override
+    public Long getId() {
+        return idMapa;
     }
-    
+
+    @Override
+    public void setId(Long idMapa) {
+        this.idMapa = idMapa;
+    }
+
     public String getNombreMapa() {
         return nombreMapa;
     }
@@ -61,16 +69,6 @@ public class Mapa implements Identificable<Long> {
         this.basesMaximo = basesMaximo;
     }
 
-    @Override
-    public Long getId() {
-        return this.idMapa;
-    }
-
-    @Override
-    public void setId(Long idMapa) {
-        this.idMapa=idMapa;
-    }
-
     public int getJugadoresMaximo() {
         return jugadoresMaximo;
     }
@@ -79,56 +77,13 @@ public class Mapa implements Identificable<Long> {
         this.jugadoresMaximo = jugadoresMaximo;
     }
 
-    public String getIdBase() {
-        return idBase;
+    public Base getBase() {
+        return base;
     }
 
-    public void setIdBase(String idBase) {
-        this.idBase = idBase;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.idMapa);
-        hash = 19 * hash + Objects.hashCode(this.nombreMapa);
-        hash = 19 * hash + this.basesMaximo;
-        hash = 19 * hash + this.jugadoresMaximo;
-        hash = 19 * hash + Objects.hashCode(this.idBase);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Mapa other = (Mapa) obj;
-        if (this.basesMaximo != other.basesMaximo) {
-            return false;
-        }
-        if (this.jugadoresMaximo != other.jugadoresMaximo) {
-            return false;
-        }
-        if (!Objects.equals(this.nombreMapa, other.nombreMapa)) {
-            return false;
-        }
-        if (!Objects.equals(this.idBase, other.idBase)) {
-            return false;
-        }
-        if (!Objects.equals(this.idMapa, other.idMapa)) {
-            return false;
-        }
-        return true;
+    public void setBase(Base base) {
+        this.base = base;
     }
 
     
-    
-
 }
