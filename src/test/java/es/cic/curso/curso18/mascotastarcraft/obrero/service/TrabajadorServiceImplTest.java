@@ -7,7 +7,7 @@ package es.cic.curso.curso18.mascotastarcraft.obrero.service;
 
 import es.cic.curso.curso18.mascotastarcraft.obrero.Trabajador;
 import es.cic.curso.curso18.mascotastarcraft.obrero.TrabajadorRepository;
-import es.cic.curso.curso18.mascotastarcraft.service.trabajador.TrabajadorService;
+import es.cic.curso.curso18.mascotastarcraft.service.obrero.TrabajadorService;
 import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

@@ -18,7 +18,7 @@
     <context:component-scan base-package="es.cic.curso.curso18.mascotastarcraft.Sitio"/>
     <context:component-scan base-package="es.cic.curso.curso18.mascotastarcraft.service.base"/>
     <context:component-scan base-package="es.cic.curso.curso18.mascotastarcraft.service.mapa"/>
-    
+    <context:component-scan base-package="es.cic.curso.curso18.mascotastarcraft.service."/>
     
     <tx:annotation-driven mode="proxy" transaction-manager="transactionManager"/>
  	     

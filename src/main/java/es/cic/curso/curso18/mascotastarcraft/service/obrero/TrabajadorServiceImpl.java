@@ -1,4 +1,4 @@
-package es.cic.curso.curso18.mascotastarcraft.service.trabajador;
+package es.cic.curso.curso18.mascotastarcraft.service.obrero;
 
 import java.util.List;
 
