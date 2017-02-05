@@ -11,6 +11,7 @@
             <column name="nombreMapa" type="VARCHAR(20)"/>
             <column name="basesMaximo" type="INT(1)"/>
             <column name="jugadoresMaximo" type="INT(1)"/>
+            <column name="jugado" type="BOOLEAN"/>
             <column name="idBase" type="INT(10)"/>
         </createTable>
         
