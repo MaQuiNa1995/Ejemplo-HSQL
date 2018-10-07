@@ -1,6 +1,5 @@
 package es.cic.curso.curso18.mascotastarcraft.dominio;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,17 +40,6 @@ public class Mapa implements Identificable<Long> {
     @JoinColumn(name = "idBase")
     @ManyToOne(fetch = FetchType.LAZY)
     private Base base;
-
-    public Mapa() {
-    }
-
-    public Mapa(String nombreMapa, int basesMaximo, int jugadoresMaximo,boolean jugado, Base base) {
-        this.nombreMapa = nombreMapa;
-        this.basesMaximo = basesMaximo;
-        this.jugadoresMaximo = jugadoresMaximo;
-        this.base = base;
-        this.jugado=jugado;
-    }
 
     @Override
     public Long getId() {
@@ -103,49 +91,4 @@ public class Mapa implements Identificable<Long> {
         this.jugado = jugado;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.idMapa);
-        hash = 41 * hash + Objects.hashCode(this.nombreMapa);
-        hash = 41 * hash + this.basesMaximo;
-        hash = 41 * hash + this.jugadoresMaximo;
-        hash = 41 * hash + (this.jugado ? 1 : 0);
-        hash = 41 * hash + Objects.hashCode(this.base);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Mapa other = (Mapa) obj;
-        if (this.basesMaximo != other.basesMaximo) {
-            return false;
-        }
-        if (this.jugadoresMaximo != other.jugadoresMaximo) {
-            return false;
-        }
-        if (this.jugado != other.jugado) {
-            return false;
-        }
-        if (!Objects.equals(this.nombreMapa, other.nombreMapa)) {
-            return false;
-        }
-        if (!Objects.equals(this.idMapa, other.idMapa)) {
-            return false;
-        }
-        if (!Objects.equals(this.base, other.base)) {
-            return false;
-        }
-        return true;
-    }
-    
 }

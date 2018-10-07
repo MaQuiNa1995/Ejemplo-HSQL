@@ -1,6 +1,5 @@
 package es.cic.curso.curso18.mascotastarcraft.dominio;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,15 +38,6 @@ public class Base implements Identificable<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     private Trabajador trabajador;
 
-    public Base() {
-    }
-
-    public Base(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, Trabajador trabajador) {
-        this.cantidadMineral = cantidadMineral;
-        this.tipoMineral = tipoMineral;
-        this.TrabajadoresMaximo = TrabajadoresMaximo;
-        this.trabajador = trabajador;
-    }
 
     @Override
     public Long getId() {
@@ -90,49 +80,5 @@ public class Base implements Identificable<Long> {
     public void setTrabajador(Trabajador trabajador) {
         this.trabajador = trabajador;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.idBase);
-        hash = 97 * hash + this.cantidadMineral;
-        hash = 97 * hash + Objects.hashCode(this.tipoMineral);
-        hash = 97 * hash + this.TrabajadoresMaximo;
-        hash = 97 * hash + Objects.hashCode(this.trabajador);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Base other = (Base) obj;
-        if (this.cantidadMineral != other.cantidadMineral) {
-            return false;
-        }
-        if (this.TrabajadoresMaximo != other.TrabajadoresMaximo) {
-            return false;
-        }
-        if (!Objects.equals(this.tipoMineral, other.tipoMineral)) {
-            return false;
-        }
-        if (!Objects.equals(this.idBase, other.idBase)) {
-            return false;
-        }
-        if (!Objects.equals(this.trabajador, other.trabajador)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
 
 }
