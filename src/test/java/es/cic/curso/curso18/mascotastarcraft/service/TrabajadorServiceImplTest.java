@@ -33,15 +33,19 @@ import es.cic.curso.curso18.mascotastarcraft.repository.TrabajadorRepository;
 @Transactional
 public class TrabajadorServiceImplTest {
 
-    @Autowired
     private TrabajadorService sut;
-
-    @Autowired
     private TrabajadorRepository trabajadorRepository;
+    
+	@Autowired
+	public void setMapaService(TrabajadorService sut) {
+		this.sut = sut;
+	}
+	
+	@Autowired
+	public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
+		this.trabajadorRepository = trabajadorRepository;
+	}
 
-    public TrabajadorService getSut() {
-        return sut;
-    }
 
     public void setSut(TrabajadorService sut) {
         this.sut = sut;

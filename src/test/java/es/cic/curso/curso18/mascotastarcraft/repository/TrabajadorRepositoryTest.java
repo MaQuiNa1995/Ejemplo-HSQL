@@ -16,9 +16,14 @@ import es.cic.curso.curso18.mascotastarcraft.repository.TrabajadorRepository;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class TrabajadorRepositoryTest extends AbstractRepositoryImplTest<Long, Trabajador> {
 
-    @Autowired
-    private TrabajadorRepository sut;
 
+    private TrabajadorRepository sut;
+    
+	@Autowired
+	public void setTrabajadorRepository(TrabajadorRepository sut) {
+		this.sut = sut;
+	}
+    
     @Before
     @Override
     public void setUp() {

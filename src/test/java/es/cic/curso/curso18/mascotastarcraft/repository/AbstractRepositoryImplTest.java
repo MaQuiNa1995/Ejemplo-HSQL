@@ -28,9 +28,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 	@PersistenceContext
 	protected EntityManager em;
         
-	public AbstractRepositoryImplTest() {
-		super();
-	}
+
 	
 	@Before
 	public void setUp() {

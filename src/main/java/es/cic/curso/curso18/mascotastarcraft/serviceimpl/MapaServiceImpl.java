@@ -1,64 +1,70 @@
 package es.cic.curso.curso18.mascotastarcraft.serviceimpl;
 
-import es.cic.curso.curso18.mascotastarcraft.dominio.Base;
-import es.cic.curso.curso18.mascotastarcraft.dominio.Mapa;
-import es.cic.curso.curso18.mascotastarcraft.dominio.Trabajador;
-import es.cic.curso.curso18.mascotastarcraft.repository.BaseRepository;
-import es.cic.curso.curso18.mascotastarcraft.repository.MapaRepository;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.cic.curso.curso18.mascotastarcraft.dominio.Base;
+import es.cic.curso.curso18.mascotastarcraft.dominio.Mapa;
+import es.cic.curso.curso18.mascotastarcraft.repository.BaseRepository;
+import es.cic.curso.curso18.mascotastarcraft.repository.MapaRepository;
 import es.cic.curso.curso18.mascotastarcraft.service.MapaService;
 
 @Service
 public class MapaServiceImpl implements MapaService {
 
-    @Autowired
-    private MapaRepository mapaRepository;
+	private MapaRepository mapaRepository;
+	private BaseRepository baseRepository;
 
-    @Autowired
-    private BaseRepository baseRepository;
-    @Override
-    public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
+	@Autowired
+	public void setBaseRepository(BaseRepository baseRepository) {
+		this.baseRepository = baseRepository;
+	}
 
-        Mapa mapa = new Mapa();
-        mapa.setNombreMapa(nombreMapa);
-        mapa.setBasesMaximo(basesMaximo);
-        mapa.setJugadoresMaximo(jugadoresMaximo);
-        mapa.setJugado(jugado);
-        Base base = baseRepository.read(idBase);
-        mapa.setBase(base);
-        Mapa aniadida = aniadirMapa(mapa);
+	@Autowired
+	public void setMapaRepository(MapaRepository mapaRepository) {
+		this.mapaRepository = mapaRepository;
+	}
 
-        return aniadida.getId();
+	@Override
+	public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
 
-    }
-    
-    private Mapa aniadirMapa(Mapa nueva) {
-        return mapaRepository.add(nueva);
-    }
-    
-        @Override
-    public Mapa actualizarMapa(Mapa modificada) {
-        return mapaRepository.update(modificada);
-    }
+		Mapa mapa = new Mapa();
+		mapa.setNombreMapa(nombreMapa);
+		mapa.setBasesMaximo(basesMaximo);
+		mapa.setJugadoresMaximo(jugadoresMaximo);
+		mapa.setJugado(jugado);
+		Base base = baseRepository.read(idBase);
+		mapa.setBase(base);
+		Mapa aniadida = aniadirMapa(mapa);
 
-    @Override
-    public void borrarMapa(Long id) {
-        Mapa aBorrar = obtenerMapa(id);
-        mapaRepository.delete(aBorrar);
-    }
+		return aniadida.getId();
 
-    @Override
-    public Mapa obtenerMapa(Long id) {
-        return mapaRepository.read(id);
-    }
+	}
 
-    @Override
-    public List<Mapa> obtenerMapas() {
-        return mapaRepository.list();
-    }
+	private Mapa aniadirMapa(Mapa nueva) {
+		return mapaRepository.add(nueva);
+	}
+
+	@Override
+	public Mapa actualizarMapa(Mapa modificada) {
+		return mapaRepository.update(modificada);
+	}
+
+	@Override
+	public void borrarMapa(Long id) {
+		Mapa aBorrar = obtenerMapa(id);
+		mapaRepository.delete(aBorrar);
+	}
+
+	@Override
+	public Mapa obtenerMapa(Long id) {
+		return mapaRepository.read(id);
+	}
+
+	@Override
+	public List<Mapa> obtenerMapas() {
+		return mapaRepository.list();
+	}
 }

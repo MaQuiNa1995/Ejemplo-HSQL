@@ -1,27 +1,31 @@
 package es.cic.curso.curso18.mascotastarcraft.serviceimpl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import es.cic.curso.curso18.mascotastarcraft.dominio.Base;
 import es.cic.curso.curso18.mascotastarcraft.dominio.Trabajador;
 import es.cic.curso.curso18.mascotastarcraft.repository.BaseRepository;
 import es.cic.curso.curso18.mascotastarcraft.repository.TrabajadorRepository;
 import es.cic.curso.curso18.mascotastarcraft.service.BaseService;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class BaseServiceImpl implements BaseService {
 
-    @Autowired
     private BaseRepository baseRepository;
-
-    @Autowired
     private TrabajadorRepository trabajadorRepository;
+    
+	@Autowired
+	public void setBaseRepository(BaseRepository baseRepository) {
+		this.baseRepository = baseRepository;
+	}
 
-    public BaseServiceImpl() {
-    }
+	@Autowired
+	public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
+		this.trabajadorRepository = trabajadorRepository;
+	}
 
     @Override
     public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador) {

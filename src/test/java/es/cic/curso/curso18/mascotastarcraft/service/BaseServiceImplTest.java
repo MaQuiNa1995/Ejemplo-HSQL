@@ -23,88 +23,82 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
-    TransactionalTestExecutionListener.class})
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 @Transactional
 public class BaseServiceImplTest {
 
-    @Autowired
-    BaseService sut;
+	private BaseService sut;
+	private BaseRepository baseRepository;
 
-    @Autowired
-    BaseRepository baseRepository;
+	@Autowired
+	public void setBaseRepository(BaseRepository baseRepository) {
+		this.baseRepository = baseRepository;
+	}
 
-    public BaseServiceImplTest() {
-    }
+	@Autowired
+	public void setBaseService(BaseService sut) {
+		this.sut = sut;
+	}
 
-    public BaseService getSut() {
-        return sut;
-    }
+	@Test
+	public void testAniadirBase() {
+		Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
 
-    public void setSut(BaseService sut) {
-        this.sut = sut;
-    }
+		assertNotNull(idBase);
+	}
 
+	@Test
+	public void testObtenerBase() {
+		Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
 
-    @Before
-    public void setUp() throws Exception {
-        limpiarBases();
-    }
+		Base base = sut.obtenerBase(idBase);
 
-    @Test
-    public void testAniadirBase() {
-        Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+		assertNotNull(base.getId());
+		assertTrue(base.getTipoMineral().equalsIgnoreCase("Vespeno"));
+		assertTrue(base.getCantidadMineral() == 10);
+		assertTrue(base.getTrabajadoresMaximo() == 5);
+	}
 
-        assertNotNull(idBase);
-    }
+	@Test
+	public void testObtenerBases() {
+		List<Base> bases = sut.obtenerBases();
+		bases.forEach((base) -> {
+			assertNotNull(base.getId());
+		});
+	}
 
-    @Test
-    public void testObtenerBase() {
-        Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	@Test
+	public void testActualizarBase() {
+		Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
 
-        Base base = sut.obtenerBase(idBase);
+		Base base = sut.obtenerBase(idBase);
+		base.setTipoMineral("Cristal");
 
-        assertNotNull(base.getId());
-        assertTrue(base.getTipoMineral().equalsIgnoreCase("Vespeno"));
-        assertTrue(base.getCantidadMineral() == 10);
-        assertTrue(base.getTrabajadoresMaximo() == 5);
-    }
+		Base baseMod = sut.obtenerBase(idBase);
 
-    @Test
-    public void testObtenerBases() {
-        List<Base> bases = sut.obtenerBases();
-        bases.forEach((base) -> {
-            assertNotNull(base.getId());
-        });
-    }
+		assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
+	}
 
-    @Test
-    public void testActualizarBase() {
-        Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	@Test
+	public void testBorrarBase() {
+		Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
 
-        Base base = sut.obtenerBase(idBase);
-        base.setTipoMineral("Cristal");
+		sut.borrarBase(idBase);
 
-        Base baseMod = sut.obtenerBase(idBase);
+		List<Base> bases = sut.obtenerBases();
 
-        assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
-    }
+		assertTrue(bases.isEmpty());
+	}
 
-    @Test
-    public void testBorrarBase() {
-        Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	@Before
+	public void setUp() throws Exception {
+		limpiarBases();
+	}
 
-        sut.borrarBase(idBase);
-
-        List<Base> bases = sut.obtenerBases();
-
-        assertTrue(bases.isEmpty());
-    }
-
-    private void limpiarBases() {
-        List<Base> bases = sut.obtenerBases();
-        bases.forEach((base) -> {
-            baseRepository.delete(base);
-        });
-    }
+	private void limpiarBases() {
+		List<Base> bases = sut.obtenerBases();
+		bases.forEach((base) -> {
+			baseRepository.delete(base);
+		});
+	}
 }

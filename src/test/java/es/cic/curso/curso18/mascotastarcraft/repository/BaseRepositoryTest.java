@@ -18,60 +18,64 @@ import es.cic.curso.curso18.mascotastarcraft.dominio.Base;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class BaseRepositoryTest extends AbstractRepositoryImplTest<Long, Base> {
 
-    @Autowired
-    private BaseRepository sut;
+	private BaseRepository sut;
 
-    @Before
-    @Override
-    public void setUp() {
-        super.setUp();
-    }
+	@Autowired
+	public void setBaseRepository(BaseRepository sut) {
+		this.sut = sut;
+	}
 
-    @Override
-    public IRepository<Long, Base> getRepository() {
-        return sut;
-    }
+	@Override
+	public IRepository<Long, Base> getRepository() {
+		return sut;
+	}
 
-    @Override
-    public Base getInstanceDeTParaNuevo() {
-        Base baseTest = new Base();
-        baseTest.setTipoMineral("Vespeno");
-        return baseTest;
-    }
+	@Override
+	public Base getInstanceDeTParaNuevo() {
+		Base baseTest = new Base();
+		baseTest.setTipoMineral("Vespeno");
+		return baseTest;
+	}
 
-    @Override
-    public Base getInstanceDeTParaLectura() {
-        Base baseTest = new Base();
-        baseTest.setTipoMineral("Vespeno");
-        return baseTest;
-    }
+	@Override
+	public Base getInstanceDeTParaLectura() {
+		Base baseTest = new Base();
+		baseTest.setTipoMineral("Vespeno");
+		return baseTest;
+	}
 
-    @Override
-    public boolean sonDatosIguales(Base t1, Base t2) {
-        if (t1 == null || t2 == null) {
-            throw new UnsupportedOperationException("No puedo comparar nulos");
-        }
+	@Override
+	public boolean sonDatosIguales(Base t1, Base t2) {
+		if (t1 == null || t2 == null) {
+			throw new UnsupportedOperationException("No puedo comparar nulos");
+		}
 
-        if (!t1.getTipoMineral().equals(t2.getTipoMineral())) {
-            return false;
-        }
+		if (!t1.getTipoMineral().equals(t2.getTipoMineral())) {
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public Long getClavePrimariaNoExistente() {
+	@Override
+	public Long getClavePrimariaNoExistente() {
 
-        return Long.MAX_VALUE;
+		return Long.MAX_VALUE;
 
-    }
+	}
 
-    @Override
-    public Base getInstanceDeTParaModificar(Long clave) {
-        Base trabajador = getInstanceDeTParaLectura();
-        trabajador.setId(clave);
-        trabajador.setTipoMineral("Vespeno");
-        return trabajador;
-    }
+	@Override
+	public Base getInstanceDeTParaModificar(Long clave) {
+		Base trabajador = getInstanceDeTParaLectura();
+		trabajador.setId(clave);
+		trabajador.setTipoMineral("Vespeno");
+		return trabajador;
+	}
+
+	@Before
+	@Override
+	public void setUp() {
+		super.setUp();
+	}
 
 }

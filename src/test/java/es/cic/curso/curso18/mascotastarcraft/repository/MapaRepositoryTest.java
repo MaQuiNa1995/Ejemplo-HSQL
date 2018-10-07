@@ -17,9 +17,14 @@ import es.cic.curso.curso18.mascotastarcraft.repositoryImpl.*;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class MapaRepositoryTest extends AbstractRepositoryImplTest<Long, Mapa> {
 
-    @Autowired
+
     private MapaRepository sut;
 
+	@Autowired
+	public void setMapaRepository(MapaRepository sut) {
+		this.sut = sut;
+	}
+    
     @Before
     @Override
     public void setUp() {

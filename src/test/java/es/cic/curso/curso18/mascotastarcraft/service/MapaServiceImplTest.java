@@ -8,6 +8,7 @@ package es.cic.curso.curso18.mascotastarcraft.service;
 import es.cic.curso.curso18.mascotastarcraft.configuration.ConfigurationSpring;
 import es.cic.curso.curso18.mascotastarcraft.configuration.LiquibaseConfig;
 import es.cic.curso.curso18.mascotastarcraft.dominio.Mapa;
+import es.cic.curso.curso18.mascotastarcraft.repository.BaseRepository;
 import es.cic.curso.curso18.mascotastarcraft.repository.MapaRepository;
 import es.cic.curso.curso18.mascotastarcraft.service.MapaService;
 
@@ -32,22 +33,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MapaServiceImplTest {
 
-    @Autowired
-    MapaService sut;
+    private MapaService sut;
+    private MapaRepository mapaRepository;
 
-    @Autowired
-    MapaRepository mapaRepository;
-
-    public MapaServiceImplTest() {
-    }
-
-    public MapaService getSut() {
-        return sut;
-    }
-
-    public void setSut(MapaService sut) {
-        this.sut = sut;
-    }
+	@Autowired
+	public void setMapaService(MapaService sut) {
+		this.sut = sut;
+	}
+	
+	@Autowired
+	public void setMapaRepository(MapaRepository mapaRepository) {
+		this.mapaRepository = mapaRepository;
+	}
 
     @Before
     public void setUp() throws Exception {
