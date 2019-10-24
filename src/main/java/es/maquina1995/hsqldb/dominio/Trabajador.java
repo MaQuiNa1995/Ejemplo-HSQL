@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import es.maquina1995.hsqldb.repository.Identificable;
 
 @Entity
-@Table(name = "Trabajador")
+@Table(name = "TRABAJADOR")
 public class Trabajador implements Identificable<Long> {
 
     /**
@@ -20,27 +20,27 @@ public class Trabajador implements Identificable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTrabajador;
+    private Long id;
 
     @Column(name = "tipoTrabajador")
     private String tipoTrabajador;
 
     @Override
     public Long getId() {
-        return this.idTrabajador;
+	return this.id;
     }
 
     @Override
-    public void setId(Long idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setId(Long id) {
+	this.id = id;
     }
 
     public String getTipoTrabajador() {
-        return tipoTrabajador;
+	return tipoTrabajador;
     }
 
     public void setTipoTrabajador(String tipoTrabajador) {
-        this.tipoTrabajador = tipoTrabajador;
+	this.tipoTrabajador = tipoTrabajador;
     }
 
 }

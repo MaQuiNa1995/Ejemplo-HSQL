@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 			http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
-						
+
 	<changeSet author="usuario (generated)" id="1400847488681-1">
-		<createTable catalogName="usuario" tableName="Mapa">
-			<column autoIncrement="true" name="idMapa" type="INT(10)">
+
+		<createTable catalogName="maquina1995" tableName="MAPA"
+			remarks="A table to contain all the authors">
+			>
+			<column autoIncrement="true" name="id" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
 			<column name="nombreMapa" type="VARCHAR(20)" />
@@ -16,7 +20,8 @@
 			<column name="idBase" type="INT(10)" />
 		</createTable>
 
-		<createTable catalogName="usuario" tableName="Base">
+		<createTable catalogName="maquina1995" tableName="BASE"
+			remarks="A table to contain all the authors">
 			<column autoIncrement="true" name="idBase" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
@@ -26,27 +31,31 @@
 			<column name="idTrabajador" type="INT(10)" />
 		</createTable>
 
-		<createTable catalogName="usuario" tableName="Trabajador">
+		<createTable catalogName="maquina1995"
+			tableName="TRABAJADOR" remarks="A table to contain all the authors">
+
 			<column autoIncrement="true" name="idTrabajador"
 				type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="tipoTrabajador" type="VARCHAR(20)" />
+			<column name="tipoTrabajador" type="VARCHAR(12)" />
 		</createTable>
 	</changeSet>
 
-	<changeSet author="usuario (generated)" id="1400847488682-1">
+	<changeSet author="maquina1995 (generated)"
+		id="1400847488682-1">
 		<addForeignKeyConstraint
-			constraintName="fk_idBase" referencedTableName="Base"
-			baseColumnNames="idBase" baseTableName="Mapa"
-			referencedColumnNames="idBase" />
+			constraintName="idBase" referencedTableName="BASE"
+			baseColumnNames="idBase" baseTableName="MAPA"
+			referencedColumnNames="id" />
 	</changeSet>
 
-	<changeSet author="usuario (generated)" id="1400847488683-1">
+	<changeSet author="maquina1995 (generated)"
+		id="1400847488683-1">
 		<addForeignKeyConstraint
-			constraintName="fk_idTrabajador" referencedTableName="Trabajador"
-			baseColumnNames="idTrabajador" baseTableName="Base"
-			referencedColumnNames="idTrabajador" />
+			constraintName="idTrabajador" referencedTableName="TRABAJADOR"
+			baseColumnNames="idMapa" baseTableName="BASE"
+			referencedColumnNames="idBase" />
 	</changeSet>
 
 </databaseChangeLog>

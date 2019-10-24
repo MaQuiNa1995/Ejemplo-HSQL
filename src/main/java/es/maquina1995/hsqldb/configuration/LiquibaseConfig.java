@@ -13,20 +13,20 @@ import liquibase.integration.spring.SpringLiquibase;
 @Configuration
 public class LiquibaseConfig {
 
-	@Bean
-	public SpringLiquibase liquibase(DataSource dataSource) {
+    @Bean
+    public SpringLiquibase liquibase(DataSource dataSource) {
 
-		SpringLiquibase liquibase = new SpringLiquibase();
-		liquibase.setChangeLog("classpath:/es/maquina1995/hsqldb/changelog.xml");
-		liquibase.setContexts("test,dev,prod");
-		liquibase.setDataSource(dataSource);
-		liquibase.setDropFirst(false);
-		liquibase.setShouldRun(true);
-		
-		Map<String, String> parametrosLiquibase = new HashMap<>();
-		parametrosLiquibase.put("verbose", "false");
-		liquibase.setChangeLogParameters(parametrosLiquibase);
+	SpringLiquibase liquibase = new SpringLiquibase();
+	liquibase.setChangeLog("classpath:/es/maquina1995/hsqldb/changelog.xml");
+	liquibase.setContexts("test,dev,prod");
+	liquibase.setDataSource(dataSource);
+	liquibase.setDropFirst(false);
+	liquibase.setShouldRun(true);
 
-		return liquibase;
-	}
+	Map<String, String> parametrosLiquibase = new HashMap<>();
+	parametrosLiquibase.put("verbose", "false");
+	liquibase.setChangeLogParameters(parametrosLiquibase);
+
+	return liquibase;
+    }
 }
