@@ -7,9 +7,9 @@
     <persistence-unit name="persistenceUnitHSQL" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         
-		<class>es.cic.curso.curso18.mascotastarcraft.dominio.Base</class>
-        <class>es.cic.curso.curso18.mascotastarcraft.dominio.Mapa</class>
-        <class>es.cic.curso.curso18.mascotastarcraft.dominio.Trabajador</class>
+		<class>es.maquina1995.hsqldb.dominio.Base</class>
+        <class>es.maquina1995.hsqldb.dominio.Mapa</class>
+        <class>es.maquina1995.hsqldb.dominio.Trabajador</class>
  
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
