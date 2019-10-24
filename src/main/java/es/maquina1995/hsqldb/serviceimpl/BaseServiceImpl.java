@@ -9,7 +9,6 @@ import es.maquina1995.hsqldb.dominio.Base;
 import es.maquina1995.hsqldb.dominio.Trabajador;
 import es.maquina1995.hsqldb.repository.BaseRepository;
 import es.maquina1995.hsqldb.repository.TrabajadorRepository;
-import es.maquina1995.hsqldb.service.BaseService;
 
 @Service
 public class BaseServiceImpl implements BaseService {

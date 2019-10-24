@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import es.maquina1995.hsqldb.dominio.Trabajador;
 import es.maquina1995.hsqldb.repository.TrabajadorRepository;
-import es.maquina1995.hsqldb.service.TrabajadorService;
 
 @Service
 public class TrabajadorServiceImpl implements TrabajadorService {

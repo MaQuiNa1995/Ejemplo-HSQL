@@ -1,10 +1,9 @@
-package es.maquina1995.hsqldb.repositoryImpl;
+package es.maquina1995.hsqldb.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.dominio.Base;
-import es.maquina1995.hsqldb.repository.BaseRepository;
 
 @Repository
 @Transactional

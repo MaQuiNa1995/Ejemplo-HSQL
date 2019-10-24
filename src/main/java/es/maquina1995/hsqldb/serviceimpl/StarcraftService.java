@@ -1,4 +1,4 @@
-package es.maquina1995.hsqldb.service;
+package es.maquina1995.hsqldb.serviceimpl;
 
 public interface StarcraftService {
 

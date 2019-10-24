@@ -7,23 +7,12 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import es.maquina1995.hsqldb.repository.BaseRepository;
-import es.maquina1995.hsqldb.repository.MapaRepository;
-import es.maquina1995.hsqldb.repository.TrabajadorRepository;
-import es.maquina1995.hsqldb.repositoryImpl.BaseRepositoryImpl;
-import es.maquina1995.hsqldb.repositoryImpl.MapaRepositoryImpl;
-import es.maquina1995.hsqldb.repositoryImpl.TrabajadorRepositoryImpl;
-import es.maquina1995.hsqldb.service.BaseService;
-import es.maquina1995.hsqldb.service.MapaService;
-import es.maquina1995.hsqldb.service.TrabajadorService;
-import es.maquina1995.hsqldb.serviceimpl.BaseServiceImpl;
-import es.maquina1995.hsqldb.serviceimpl.MapaServiceImpl;
-import es.maquina1995.hsqldb.serviceimpl.TrabajadorServiceImpl;
-
+@ComponentScan({"es.maquina1995.hsqldb.service","es.maquina1995.hsqldb.repository"})
 public class ConfigurationSpring {
 	private static final String PROPERTY_NAME_HIBERNATE_MAX_FETCH_DEPTH = "hibernate.max_fetch_depth";
 	private static final String PROPERTY_NAME_HIBERNATE_JDBC_FETCH_SIZE = "hibernate.jdbc.fetch_size";
@@ -64,54 +53,6 @@ public class ConfigurationSpring {
 		entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
 
 		return entityManagerFactoryBean;
-	}
-	
-	@Bean
-	public BaseRepository baseRepository() {
-
-		BaseRepository baseRepository = new BaseRepositoryImpl();
-		return baseRepository;
-
-	}	
-
-	@Bean
-	public MapaRepository mapaRepository() {
-
-		MapaRepository mapaRepository = new MapaRepositoryImpl();
-		return mapaRepository;
-
-	}
-
-	@Bean
-	public TrabajadorRepository trabajadorRepository() {
-
-		TrabajadorRepository trabajadorRepository = new TrabajadorRepositoryImpl();
-		return trabajadorRepository;
-
-	}
-
-	@Bean
-	public BaseService baseService() {
-
-		BaseService baseService = new BaseServiceImpl();
-		return baseService;
-
-	}
-
-	@Bean
-	public MapaService mapaService() {
-
-		MapaService mapaService = new MapaServiceImpl();
-		return mapaService;
-
-	}
-
-	@Bean
-	public TrabajadorService trabajadorService() {
-
-		TrabajadorService trabajadorService = new TrabajadorServiceImpl();
-		return trabajadorService;
-
 	}
 
 	private HibernateJpaVendorAdapter vendorAdaptor() {

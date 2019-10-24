@@ -1,12 +1,9 @@
-package es.maquina1995.hsqldb.repositoryImpl;
+package es.maquina1995.hsqldb.repository;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import es.maquina1995.hsqldb.repository.IRepository;
-import es.maquina1995.hsqldb.repository.Identificable;
 
 public abstract class AbstractRepositoryImpl<K extends Number, T extends Identificable<K>> implements IRepository<K, T>  {
 

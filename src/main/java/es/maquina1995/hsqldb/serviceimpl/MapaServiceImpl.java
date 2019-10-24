@@ -9,7 +9,6 @@ import es.maquina1995.hsqldb.dominio.Base;
 import es.maquina1995.hsqldb.dominio.Mapa;
 import es.maquina1995.hsqldb.repository.BaseRepository;
 import es.maquina1995.hsqldb.repository.MapaRepository;
-import es.maquina1995.hsqldb.service.MapaService;
 
 @Service
 public class MapaServiceImpl implements MapaService {
