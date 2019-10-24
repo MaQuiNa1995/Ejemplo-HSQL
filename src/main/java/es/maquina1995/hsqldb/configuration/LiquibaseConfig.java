@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,13 +13,10 @@ import liquibase.integration.spring.SpringLiquibase;
 @Configuration
 public class LiquibaseConfig {
 
-	@Autowired
-	private DataSource dataSource;
-
 	@Bean
-	public SpringLiquibase liquibase() {
+	public SpringLiquibase liquibase(DataSource dataSource) {
 
-		String changelogFile = "classpath:/es/cic/curso/curso18/mascotastarcraft/changelog.xml";
+		String changelogFile = "classpath:/es/maquina1995/hsqldb/changelog.xml";
 		
 		SpringLiquibase liquibase = new SpringLiquibase();
 		liquibase.setChangeLog(changelogFile);
@@ -31,7 +27,7 @@ public class LiquibaseConfig {
 
 		
 		Map<String, String> params = new HashMap<>();
-		params.put("verbose", "true");
+		params.put("verbose", "false");
 		liquibase.setChangeLogParameters(params);
 
 		return liquibase;
