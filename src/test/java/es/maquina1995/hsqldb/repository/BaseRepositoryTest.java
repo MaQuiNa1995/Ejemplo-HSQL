@@ -10,7 +10,7 @@ import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Base;
 import es.maquina1995.hsqldb.repository.BaseRepository;
-import es.maquina1995.hsqldb.repository.IRepository;
+import es.maquina1995.hsqldb.repository.CrudRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
@@ -24,7 +24,7 @@ public class BaseRepositoryTest extends AbstractRepositoryImplTest<Long, Base> {
 	}
 
 	@Override
-	public IRepository<Long, Base> getRepository() {
+	public CrudRepository<Long, Base> getRepository() {
 		return sut;
 	}
 

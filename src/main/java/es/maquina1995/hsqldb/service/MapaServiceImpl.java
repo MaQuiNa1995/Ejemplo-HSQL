@@ -1,4 +1,4 @@
-package es.maquina1995.hsqldb.serviceimpl;
+package es.maquina1995.hsqldb.service;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class MapaServiceImpl implements MapaService {
 		mapa.setBasesMaximo(basesMaximo);
 		mapa.setJugadoresMaximo(jugadoresMaximo);
 		mapa.setJugado(jugado);
-		Base base = baseRepository.read(idBase);
+		Base base = baseRepository.readByPk(idBase);
 		mapa.setBase(base);
 		Mapa aniadida = aniadirMapa(mapa);
 
@@ -43,12 +43,12 @@ public class MapaServiceImpl implements MapaService {
 	}
 
 	private Mapa aniadirMapa(Mapa nueva) {
-		return mapaRepository.add(nueva);
+		return mapaRepository.persist(nueva);
 	}
 
 	@Override
 	public Mapa actualizarMapa(Mapa modificada) {
-		return mapaRepository.update(modificada);
+		return mapaRepository.merge(modificada);
 	}
 
 	@Override
@@ -59,11 +59,11 @@ public class MapaServiceImpl implements MapaService {
 
 	@Override
 	public Mapa obtenerMapa(Long id) {
-		return mapaRepository.read(id);
+		return mapaRepository.readByPk(id);
 	}
 
 	@Override
 	public List<Mapa> obtenerMapas() {
-		return mapaRepository.list();
+		return mapaRepository.findAll();
 	}
 }

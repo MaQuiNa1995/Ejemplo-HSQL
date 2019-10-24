@@ -1,4 +1,4 @@
-package es.maquina1995.hsqldb.serviceimpl;
+package es.maquina1995.hsqldb.service;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class BaseServiceImpl implements BaseService {
         base.setCantidadMineral(cantidadMineral);
         base.setTipoMineral(tipoMineral);
         base.setTrabajadoresMaximo(TrabajadoresMaximo);
-        Trabajador trabajador = trabajadorRepository.read(idTrabajador);
+        Trabajador trabajador = trabajadorRepository.readByPk(idTrabajador);
         base.setTrabajador(trabajador);
         Base aniadida = aniadirBase(base);
 
@@ -41,22 +41,22 @@ public class BaseServiceImpl implements BaseService {
     }
 
     private Base aniadirBase(Base nueva) {
-        return baseRepository.add(nueva);
+        return baseRepository.persist(nueva);
     }
 
     @Override
     public Base obtenerBase(Long id) {
-        return baseRepository.read(id);
+        return baseRepository.readByPk(id);
     }
 
     @Override
     public List<Base> obtenerBases() {
-        return baseRepository.list();
+        return baseRepository.findAll();
     }
 
     @Override
     public Base actualizarBase(Base modificada) {
-        return baseRepository.update(modificada);
+        return baseRepository.merge(modificada);
     }
 
     @Override

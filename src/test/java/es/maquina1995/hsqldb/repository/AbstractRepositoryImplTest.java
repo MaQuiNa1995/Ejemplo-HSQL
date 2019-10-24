@@ -17,7 +17,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.maquina1995.hsqldb.repository.IRepository;
+import es.maquina1995.hsqldb.repository.CrudRepository;
 import es.maquina1995.hsqldb.repository.Identificable;
 
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
@@ -34,7 +34,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 	public void setUp() {
 	}
 	
-	public abstract IRepository<K, T> getRepository();
+	public abstract CrudRepository<K, T> getRepository();
 	public abstract T getInstanceDeTParaNuevo();
 	public abstract T getInstanceDeTParaLectura();
 	public abstract boolean sonDatosIguales(T t1, T t2);
@@ -46,7 +46,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 		T instancia = getInstanceDeTParaNuevo();
 		assertNull(instancia.getId());
 		
-		instancia = getRepository().add(instancia);
+		instancia = getRepository().persist(instancia);
 		
 		assertNotNull(instancia.getId());
 	}
@@ -55,7 +55,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 	public void testRead() {
 		K clavePrimaria = generaDatoLectura();
 		
-		T resultado = getRepository().read(clavePrimaria);
+		T resultado = getRepository().readByPk(clavePrimaria);
 		
 		assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
 	}
@@ -64,7 +64,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 	public void testRead_NoExiste() {
 		K clavePrimaria = getClavePrimariaNoExistente();
 		
-		T resultado = getRepository().read(clavePrimaria);
+		T resultado = getRepository().readByPk(clavePrimaria);
 	}
 
 
@@ -74,7 +74,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 		generaDatoLectura();
 		generaDatoLectura();
 		
-		List<T> resultado = getRepository().list();
+		List<T> resultado = getRepository().findAll();
 		
 		assertTrue(resultado.size() >= 3);
 	}
@@ -85,7 +85,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 		
 		T sala2 = getInstanceDeTParaModificar(clavePrimaria);
 		
-		T resultado = getRepository().update(sala2);
+		T resultado = getRepository().merge(sala2);
 	
 		T enBBDD = em.find(getRepository().getClassDeT(), clavePrimaria);		
 		
@@ -96,7 +96,7 @@ public abstract class AbstractRepositoryImplTest <K extends Number, T extends Id
 	public void testDelete() {
 		K clavePrimaria = generaDatoLectura();
 		
-		getRepository().delete(clavePrimaria);
+		getRepository().deleteByPk(clavePrimaria);
 		Identificable c;
 		try {
 			c = em.find(getRepository().getClassDeT(), clavePrimaria);

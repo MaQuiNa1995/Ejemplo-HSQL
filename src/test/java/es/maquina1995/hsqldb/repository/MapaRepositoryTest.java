@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mapa;
-import es.maquina1995.hsqldb.repository.IRepository;
+import es.maquina1995.hsqldb.repository.CrudRepository;
 import es.maquina1995.hsqldb.repository.MapaRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,7 +31,7 @@ public class MapaRepositoryTest extends AbstractRepositoryImplTest<Long, Mapa> {
     }
 
     @Override
-    public IRepository<Long, Mapa> getRepository() {
+    public CrudRepository<Long, Mapa> getRepository() {
         return sut;
     }
 

@@ -7,7 +7,7 @@ import es.maquina1995.hsqldb.dominio.Base;
 
 @Repository
 @Transactional
-public class BaseRepositoryImpl extends AbstractRepositoryImpl<Long, Base> implements BaseRepository {
+public class BaseRepositoryImpl extends GenericCrudRepositoryImpl<Long, Base> implements BaseRepository {
 
     @Override
     public Class<Base> getClassDeT() {

@@ -25,7 +25,7 @@ import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mapa;
 import es.maquina1995.hsqldb.repository.MapaRepository;
-import es.maquina1995.hsqldb.serviceimpl.MapaService;
+import es.maquina1995.hsqldb.service.MapaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })

@@ -7,7 +7,7 @@ import es.maquina1995.hsqldb.dominio.Mapa;
 
 @Repository
 @Transactional
-public class MapaRepositoryImpl extends AbstractRepositoryImpl<Long, Mapa> implements MapaRepository {
+public class MapaRepositoryImpl extends GenericCrudRepositoryImpl<Long, Mapa> implements MapaRepository {
 
 	@Override
 	public Class<Mapa> getClassDeT() {

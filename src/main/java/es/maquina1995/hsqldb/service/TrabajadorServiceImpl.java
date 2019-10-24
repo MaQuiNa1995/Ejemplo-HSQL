@@ -1,4 +1,4 @@
-package es.maquina1995.hsqldb.serviceimpl;
+package es.maquina1995.hsqldb.service;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 	
 	@Override
 	public Trabajador actualizarTrabajador(Trabajador modificada) {
-		return trabajadorRepository.update(modificada);
+		return trabajadorRepository.merge(modificada);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 	}
 
 	private Trabajador aniadirTrabajador(Trabajador nueva) {
-		return trabajadorRepository.add(nueva);
+		return trabajadorRepository.persist(nueva);
 	}
 
 	@Override
@@ -45,11 +45,11 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 
 	@Override
 	public Trabajador obtenerTrabajador(Long id) {
-		return trabajadorRepository.read(id);
+		return trabajadorRepository.readByPk(id);
 	}
 
 	@Override
 	public List<Trabajador> obtenerTrabajadors() {
-		return trabajadorRepository.list();
+		return trabajadorRepository.findAll();
 	}
 }

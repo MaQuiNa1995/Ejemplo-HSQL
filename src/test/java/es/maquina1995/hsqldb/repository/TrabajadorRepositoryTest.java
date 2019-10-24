@@ -28,7 +28,7 @@ public class TrabajadorRepositoryTest extends AbstractRepositoryImplTest<Long, T
     }
 
     @Override
-    public IRepository<Long, Trabajador> getRepository() {
+    public CrudRepository<Long, Trabajador> getRepository() {
 	return sut;
     }
 

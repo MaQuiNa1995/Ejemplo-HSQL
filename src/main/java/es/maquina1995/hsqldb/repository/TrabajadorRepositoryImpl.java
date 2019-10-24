@@ -7,7 +7,7 @@ import es.maquina1995.hsqldb.dominio.Trabajador;
 
 @Repository
 @Transactional
-public class TrabajadorRepositoryImpl extends AbstractRepositoryImpl<Long, Trabajador> implements TrabajadorRepository {
+public class TrabajadorRepositoryImpl extends GenericCrudRepositoryImpl<Long, Trabajador> implements TrabajadorRepository {
 
 	@Override
 	public Class<Trabajador> getClassDeT() {
