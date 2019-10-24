@@ -1,31 +1,19 @@
 package es.maquina1995.hsqldb.repository;
 
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Trabajador;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class TrabajadorRepositoryTest extends AbstractRepositoryImplTest<Long, Trabajador> {
 
     private TrabajadorRepository sut;
-
-    @Autowired
-    public void setTrabajadorRepository(TrabajadorRepository sut) {
-	this.sut = sut;
-    }
-
-    @Before
-    @Override
-    public void setUp() {
-	super.setUp();
-    }
 
     @Override
     public CrudRepository<Long, Trabajador> getRepository() {
@@ -72,6 +60,11 @@ public class TrabajadorRepositoryTest extends AbstractRepositoryImplTest<Long, T
 	trabajador.setId(clave);
 	trabajador.setTipoTrabajador("Zangano");
 	return trabajador;
+    }
+
+    @Autowired
+    public void setTrabajadorRepository(TrabajadorRepository sut) {
+	this.sut = sut;
     }
 
 }
