@@ -84,9 +84,9 @@ public abstract class AbstractRepositoryImplTest<K extends Number, T extends Ide
 
 	getRepository().merge(objetoUpdate);
 
-	T objetoBd = entityManager.find(getRepository().getClassDeT(), id);
+	T enBBDD = entityManager.find(getRepository().getClassDeT(), id);
 
-	Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaModificar(id), objetoBd));
+	Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaModificar(id), enBBDD));
     }
 
     @Test
