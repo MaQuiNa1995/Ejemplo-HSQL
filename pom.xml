@@ -3,11 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>es.cic.curso.curso18</groupId>
-	<artifactId>MascotaStarcraft</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<groupId>es.maquina1995</groupId>
+	<artifactId>hsqldb</artifactId>
+	<version>2.0.0-RELEASE</version>
 	<packaging>jar</packaging>
-	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,7 +14,6 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring.version>5.1.0.RELEASE</spring.version>
 		<hibernate.version>5.3.6.Final</hibernate.version>
-		<junit.version>4.12</junit.version>
 		<commonsdbcp.version>1.4</commonsdbcp.version>
 		<liquibase.version>3.6.2</liquibase.version>
 		<hsqldb.version>1.8.0.10</hsqldb.version>
@@ -23,9 +21,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
