@@ -29,7 +29,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     @Override
     @Transactional
     public List<T> findAll() {
-	return entityManager.createNativeQuery("select * from " + getNombreTabla(), getClassDeT()).getResultList();
+	return entityManager.createNativeQuery("SELECT * FROM " + getNombreTabla(), getClassDeT()).getResultList();
     }
 
     @Override

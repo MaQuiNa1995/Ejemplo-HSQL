@@ -32,7 +32,7 @@ public class TrabajadorServiceImplTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-	limpiarTrabajadors();
+	limpiarTrabajadores();
     }
 
     @Test
@@ -83,7 +83,7 @@ public class TrabajadorServiceImplTest {
 	Assertions.assertTrue(trabajadors.isEmpty());
     }
 
-    private void limpiarTrabajadors() {
+    private void limpiarTrabajadores() {
 	sut.obtenerTrabajadors().forEach((base) -> trabajadorRepository.delete(base));
     }
 
