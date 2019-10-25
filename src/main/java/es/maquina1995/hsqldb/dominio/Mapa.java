@@ -12,6 +12,12 @@ import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.Identificable;
 
+/**
+ * Entidad que tiene la información referente a los Mapas
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "MAPA")
 public class Mapa implements Identificable<Long> {
@@ -21,6 +27,9 @@ public class Mapa implements Identificable<Long> {
      */
     private static final long serialVersionUID = 8315207157111876609L;
 
+    /**
+     * Id de la tabla autogenerado {@link GenerationType#IDENTITY}
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMapa;
@@ -37,7 +46,14 @@ public class Mapa implements Identificable<Long> {
     @Column(name = "jugado")
     private boolean jugado;
 
-    @JoinColumn(name = "idMapaBase")
+    /**
+     * Columna que referencia a las bases que posee un mapa
+     * <p>
+     * <a href=
+     * "https://stackoverflow.com/questions/199498/foreign-key-naming-scheme">Convención
+     * de nombres FK_ForeignKeyTable_PrimaryKeyTable</a>
+     */
+    @JoinColumn(name = "FK_BASE_IDBASE")
     @ManyToOne(fetch = FetchType.LAZY)
     private Base base;
 
