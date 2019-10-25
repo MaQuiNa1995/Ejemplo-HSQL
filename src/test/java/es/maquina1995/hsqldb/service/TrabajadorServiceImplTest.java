@@ -23,30 +23,26 @@ import es.maquina1995.hsqldb.repository.TrabajadorRepository;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class TrabajadorServiceImplTest {
 
-    private TrabajadorService sut;
+    private TrabajadorService cut;
     private TrabajadorRepository trabajadorRepository;
 
-    public void setSut(TrabajadorService sut) {
-	this.sut = sut;
-    }
-
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
 	limpiarTrabajadores();
     }
 
     @Test
     public void testAniadirTrabajador() {
-	Long idTrabajador = sut.aniadirTrabajador("Sonda");
+	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
 	Assertions.assertNotNull(idTrabajador);
     }
 
     @Test
     public void testObtenerTrabajador() {
-	Long idTrabajador = sut.aniadirTrabajador("Sonda");
+	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
-	Trabajador trabajador = sut.obtenerTrabajador(idTrabajador);
+	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
 
 	Assertions.assertNotNull(trabajador.getId());
 	Assertions.assertTrue(trabajador.getTipoTrabajador().equalsIgnoreCase("Sonda"));
@@ -54,7 +50,7 @@ public class TrabajadorServiceImplTest {
 
     @Test
     public void testObtenerTrabajadors() {
-	List<Trabajador> listaTrabajadores = sut.obtenerTrabajadores();
+	List<Trabajador> listaTrabajadores = cut.obtenerTrabajadores();
 
 	Assertions.assertFalse(listaTrabajadores.isEmpty());
 	listaTrabajadores.forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
@@ -62,34 +58,34 @@ public class TrabajadorServiceImplTest {
 
     @Test
     public void testActualizarTrabajador() {
-	Long idTrabajador = sut.aniadirTrabajador("Sonda");
+	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
-	Trabajador trabajador = sut.obtenerTrabajador(idTrabajador);
+	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
 	trabajador.setTipoTrabajador("Sonda");
 
-	Trabajador trabajadorMod = sut.obtenerTrabajador(idTrabajador);
+	Trabajador trabajadorMod = cut.obtenerTrabajador(idTrabajador);
 
 	Assertions.assertTrue(trabajadorMod.getTipoTrabajador().equalsIgnoreCase("Sonda"));
     }
 
     @Test
     public void testBorrarTrabajador() {
-	Long idTrabajador = sut.aniadirTrabajador("Sonda");
+	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
-	sut.borrarTrabajador(idTrabajador);
+	cut.borrarTrabajador(idTrabajador);
 
-	List<Trabajador> trabajadors = sut.obtenerTrabajadores();
+	List<Trabajador> trabajadors = cut.obtenerTrabajadores();
 
 	Assertions.assertTrue(trabajadors.isEmpty());
     }
 
     private void limpiarTrabajadores() {
-	sut.obtenerTrabajadores().forEach((base) -> trabajadorRepository.delete(base));
+	cut.obtenerTrabajadores().forEach((base) -> trabajadorRepository.delete(base));
     }
 
     @Autowired
-    public void setMapaService(TrabajadorService sut) {
-	this.sut = sut;
+    public void setTrabajadorService(TrabajadorService trabajadorService) {
+	this.cut = trabajadorService;
     }
 
     @Autowired

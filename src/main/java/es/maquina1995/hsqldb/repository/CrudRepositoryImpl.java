@@ -16,6 +16,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     @Transactional
     public T persist(T nuevo) {
 	entityManager.persist(nuevo);
+	entityManager.flush();
 	return nuevo;
     }
 
@@ -43,12 +44,15 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     @Transactional
     public void delete(T aBorrar) {
 	entityManager.remove(aBorrar);
+	entityManager.flush();
     }
 
     @Override
     @Transactional
     public T merge(T modificado) {
-	return entityManager.merge(modificado);
+	T modificadoBd = entityManager.merge(modificado);
+	entityManager.flush();
+	return modificadoBd;
     }
 
     public EntityManager getEntityManager() {

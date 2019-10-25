@@ -23,26 +23,26 @@ import es.maquina1995.hsqldb.repository.MapaRepository;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class MapaServiceImplTest {
 
-    private MapaService sut;
+    private MapaService cut;
     private MapaRepository mapaRepository;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
 	limpiarMapas();
     }
 
     @Test
     public void testAniadirMapa() {
-	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
 	Assertions.assertNotNull(idMapa);
     }
 
     @Test
     public void testObtenerMapa() {
-	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
-	Mapa mapa = sut.obtenerMapa(idMapa);
+	Mapa mapa = cut.obtenerMapa(idMapa);
 
 	Assertions.assertNotNull(mapa.getId());
 	Assertions.assertTrue(mapa.getNombreMapa().equalsIgnoreCase("Desert"));
@@ -54,7 +54,7 @@ public class MapaServiceImplTest {
     @Test
     public void testObtenerMapas() {
 
-	List<Mapa> listaMapas = sut.obtenerMapas();
+	List<Mapa> listaMapas = cut.obtenerMapas();
 
 	Assertions.assertFalse(listaMapas.isEmpty());
 	listaMapas.forEach((mapa) -> Assertions.assertNotNull(mapa.getId()));
@@ -62,34 +62,34 @@ public class MapaServiceImplTest {
 
     @Test
     public void testActualizarMapa() {
-	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
-	Mapa mapa = sut.obtenerMapa(idMapa);
+	Mapa mapa = cut.obtenerMapa(idMapa);
 	mapa.setNombreMapa("Oceanic");
 
-	Mapa mapaMod = sut.obtenerMapa(idMapa);
+	Mapa mapaMod = cut.obtenerMapa(idMapa);
 
 	Assertions.assertTrue(mapaMod.getNombreMapa().equalsIgnoreCase("Oceanic"));
     }
 
     @Test
     public void testBorrarMapa() {
-	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
-	sut.borrarMapa(idMapa);
+	cut.borrarMapa(idMapa);
 
-	List<Mapa> mapas = sut.obtenerMapas();
+	List<Mapa> mapas = cut.obtenerMapas();
 
 	Assertions.assertTrue(mapas.isEmpty());
     }
 
     private void limpiarMapas() {
-	sut.obtenerMapas().forEach((base) -> mapaRepository.delete(base));
+	cut.obtenerMapas().forEach((base) -> mapaRepository.delete(base));
     }
 
     @Autowired
-    public void setMapaService(MapaService sut) {
-	this.sut = sut;
+    public void setMapaService(MapaService mapaService) {
+	this.cut = mapaService;
     }
 
     @Autowired

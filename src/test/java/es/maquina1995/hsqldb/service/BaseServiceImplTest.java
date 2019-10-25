@@ -23,26 +23,26 @@ import es.maquina1995.hsqldb.repository.BaseRepository;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class BaseServiceImplTest {
 
-    private BaseService sut;
+    private BaseService cut;
     private BaseRepository baseRepository;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
 	limpiarBases();
     }
 
     @Test
     public void testAniadirBase() {
-	Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
 	Assertions.assertNotNull(idBase);
     }
 
     @Test
     public void testObtenerBase() {
-	Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
-	Base base = sut.obtenerBase(idBase);
+	Base base = cut.obtenerBase(idBase);
 
 	Assertions.assertNotNull(base.getId());
 	Assertions.assertTrue(base.getTipoMineral().equalsIgnoreCase("Vespeno"));
@@ -52,7 +52,7 @@ public class BaseServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	List<Base> listaBases = sut.obtenerBases();
+	List<Base> listaBases = cut.obtenerBases();
 
 	Assertions.assertFalse(listaBases.isEmpty());
 	listaBases.forEach((base) -> Assertions.assertNotNull(base.getId()));
@@ -60,29 +60,29 @@ public class BaseServiceImplTest {
 
     @Test
     public void testActualizarBase() {
-	Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
-	Base base = sut.obtenerBase(idBase);
+	Base base = cut.obtenerBase(idBase);
 	base.setTipoMineral("Cristal");
 
-	Base baseMod = sut.obtenerBase(idBase);
+	Base baseMod = cut.obtenerBase(idBase);
 
 	Assertions.assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
     }
 
     @Test
     public void testBorrarBase() {
-	Long idBase = sut.aniadirBase(10, "Vespeno", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
-	sut.borrarBase(idBase);
+	cut.borrarBase(idBase);
 
-	List<Base> bases = sut.obtenerBases();
+	List<Base> bases = cut.obtenerBases();
 
 	Assertions.assertTrue(bases.isEmpty());
     }
 
     private void limpiarBases() {
-	sut.obtenerBases().forEach((base) -> baseRepository.delete(base));
+	cut.obtenerBases().forEach((base) -> baseRepository.delete(base));
     }
 
     @Autowired
@@ -91,7 +91,7 @@ public class BaseServiceImplTest {
     }
 
     @Autowired
-    public void setBaseService(BaseService sut) {
-	this.sut = sut;
+    public void setBaseService(BaseService baseService) {
+	this.cut = baseService;
     }
 }
