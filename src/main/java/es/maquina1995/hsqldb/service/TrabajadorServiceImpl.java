@@ -49,7 +49,7 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 	}
 
 	@Override
-	public List<Trabajador> obtenerTrabajadors() {
+	public List<Trabajador> obtenerTrabajadores() {
 		return trabajadorRepository.findAll();
 	}
 }

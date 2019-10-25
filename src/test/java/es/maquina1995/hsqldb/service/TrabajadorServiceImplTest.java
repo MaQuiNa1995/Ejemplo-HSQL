@@ -54,7 +54,7 @@ public class TrabajadorServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	List<Trabajador> listaTrabajadores = sut.obtenerTrabajadors();
+	List<Trabajador> listaTrabajadores = sut.obtenerTrabajadores();
 
 	Assertions.assertFalse(listaTrabajadores.isEmpty());
 	listaTrabajadores.forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
@@ -78,13 +78,13 @@ public class TrabajadorServiceImplTest {
 
 	sut.borrarTrabajador(idTrabajador);
 
-	List<Trabajador> trabajadors = sut.obtenerTrabajadors();
+	List<Trabajador> trabajadors = sut.obtenerTrabajadores();
 
 	Assertions.assertTrue(trabajadors.isEmpty());
     }
 
     private void limpiarTrabajadores() {
-	sut.obtenerTrabajadors().forEach((base) -> trabajadorRepository.delete(base));
+	sut.obtenerTrabajadores().forEach((base) -> trabajadorRepository.delete(base));
     }
 
     @Autowired

@@ -14,6 +14,6 @@ public interface TrabajadorService {
 
 	public Trabajador obtenerTrabajador(Long id);
 
-	public List<Trabajador> obtenerTrabajadors();
+	public List<Trabajador> obtenerTrabajadores();
     
 }
