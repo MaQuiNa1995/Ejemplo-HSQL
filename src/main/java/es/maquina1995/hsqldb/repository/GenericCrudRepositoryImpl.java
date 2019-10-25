@@ -27,6 +27,7 @@ public abstract class GenericCrudRepositoryImpl<K extends Number, T extends Iden
 	return entityManager.find(getClassDeT(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     @Transactional
     public List<T> findAll() {
