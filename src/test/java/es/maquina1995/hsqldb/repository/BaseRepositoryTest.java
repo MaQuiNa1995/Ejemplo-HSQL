@@ -13,11 +13,11 @@ import es.maquina1995.hsqldb.dominio.Base;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class BaseRepositoryTest extends CrudRepositoryImplTest<Long, Base> {
 
-    private BaseRepository sut;
+    private BaseRepository cut;
 
     @Override
     public CrudRepository<Long, Base> getRepository() {
-	return sut;
+	return cut;
     }
 
     @Override
@@ -63,6 +63,6 @@ public class BaseRepositoryTest extends CrudRepositoryImplTest<Long, Base> {
 
     @Autowired
     public void setBaseRepository(BaseRepository sut) {
-	this.sut = sut;
+	this.cut = sut;
     }
 }

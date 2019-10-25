@@ -15,54 +15,54 @@ public class BaseServiceImpl implements BaseService {
 
     private BaseRepository baseRepository;
     private TrabajadorRepository trabajadorRepository;
-    
-	@Autowired
-	public void setBaseRepository(BaseRepository baseRepository) {
-		this.baseRepository = baseRepository;
-	}
-
-	@Autowired
-	public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
-		this.trabajadorRepository = trabajadorRepository;
-	}
 
     @Override
-    public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador) {
+    public Long aniadirBase(int cantidadMineral, String tipoMineral, int trabajadoresMaximo, long idTrabajador) {
 
-        Base base = new Base();
-        base.setCantidadMineral(cantidadMineral);
-        base.setTipoMineral(tipoMineral);
-        base.setTrabajadoresMaximo(TrabajadoresMaximo);
-        Trabajador trabajador = trabajadorRepository.readByPk(idTrabajador);
-        base.setTrabajador(trabajador);
-        Base aniadida = aniadirBase(base);
+	Base base = new Base();
+	base.setCantidadMineral(cantidadMineral);
+	base.setTipoMineral(tipoMineral);
+	base.setTrabajadoresMaximo(trabajadoresMaximo);
+	Trabajador trabajador = trabajadorRepository.readByPk(idTrabajador);
+	base.setTrabajador(trabajador);
+	Base aniadida = aniadirBase(base);
 
-        return aniadida.getId();
+	return aniadida.getId();
     }
 
     private Base aniadirBase(Base nueva) {
-        return baseRepository.persist(nueva);
+	return baseRepository.persist(nueva);
     }
 
     @Override
     public Base obtenerBase(Long id) {
-        return baseRepository.readByPk(id);
+	return baseRepository.readByPk(id);
     }
 
     @Override
     public List<Base> obtenerBases() {
-        return baseRepository.findAll();
+	return baseRepository.findAll();
     }
 
     @Override
     public Base actualizarBase(Base modificada) {
-        return baseRepository.merge(modificada);
+	return baseRepository.merge(modificada);
     }
 
     @Override
     public void borrarBase(Long id) {
-        Base aBorrar = obtenerBase(id);
-        baseRepository.delete(aBorrar);
+	Base aBorrar = obtenerBase(id);
+	baseRepository.delete(aBorrar);
+    }
+
+    @Autowired
+    public void setBaseRepository(BaseRepository baseRepository) {
+	this.baseRepository = baseRepository;
+    }
+
+    @Autowired
+    public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
+	this.trabajadorRepository = trabajadorRepository;
     }
 
 }

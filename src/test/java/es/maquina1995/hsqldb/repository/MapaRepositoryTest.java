@@ -13,11 +13,11 @@ import es.maquina1995.hsqldb.dominio.Mapa;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class MapaRepositoryTest extends CrudRepositoryImplTest<Long, Mapa> {
 
-    private MapaRepository sut;
+    private MapaRepository cut;
 
     @Override
     public CrudRepository<Long, Mapa> getRepository() {
-	return sut;
+	return cut;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MapaRepositoryTest extends CrudRepositoryImplTest<Long, Mapa> {
 
     @Autowired
     public void setMapaRepository(MapaRepository sut) {
-	this.sut = sut;
+	this.cut = sut;
     }
 
 }

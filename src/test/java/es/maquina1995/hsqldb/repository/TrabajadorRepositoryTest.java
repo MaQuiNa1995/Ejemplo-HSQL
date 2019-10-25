@@ -13,11 +13,11 @@ import es.maquina1995.hsqldb.dominio.Trabajador;
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 public class TrabajadorRepositoryTest extends CrudRepositoryImplTest<Long, Trabajador> {
 
-    private TrabajadorRepository sut;
+    private TrabajadorRepository cut;
 
     @Override
     public CrudRepository<Long, Trabajador> getRepository() {
-	return sut;
+	return cut;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class TrabajadorRepositoryTest extends CrudRepositoryImplTest<Long, Traba
 
     @Autowired
     public void setTrabajadorRepository(TrabajadorRepository sut) {
-	this.sut = sut;
+	this.cut = sut;
     }
 
 }
