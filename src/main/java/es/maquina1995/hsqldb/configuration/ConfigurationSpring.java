@@ -8,11 +8,13 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-@ComponentScan({ "es.maquina1995.hsqldb.service", "es.maquina1995.hsqldb.repository" })
+@ComponentScan(basePackages = "es.maquina1995.hsqldb.", useDefaultFilters = true, includeFilters = @Filter(type = FilterType.REGEX, pattern = "(repository|service)$"))
 public class ConfigurationSpring {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.HSQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_MAX_FETCH_DEPTH = "hibernate.max_fetch_depth";
