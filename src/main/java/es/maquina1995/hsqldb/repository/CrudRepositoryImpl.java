@@ -7,8 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class GenericCrudRepositoryImpl<K extends Number, T extends Identificable<K>>
-	implements CrudRepository<K, T> {
+public abstract class CrudRepositoryImpl<K extends Number, T extends Identificable<K>> implements CrudRepository<K, T> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -17,7 +16,6 @@ public abstract class GenericCrudRepositoryImpl<K extends Number, T extends Iden
     @Transactional
     public T persist(T nuevo) {
 	entityManager.persist(nuevo);
-	entityManager.flush();
 	return nuevo;
     }
 

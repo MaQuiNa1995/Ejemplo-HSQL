@@ -53,7 +53,11 @@ public class MapaServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	sut.obtenerMapas().forEach((mapa) -> Assertions.assertNotNull(mapa.getId()));
+
+	List<Mapa> listaMapas = sut.obtenerMapas();
+
+	Assertions.assertFalse(listaMapas.isEmpty());
+	listaMapas.forEach((mapa) -> Assertions.assertNotNull(mapa.getId()));
     }
 
     @Test

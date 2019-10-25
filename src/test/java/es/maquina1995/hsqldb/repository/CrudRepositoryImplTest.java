@@ -12,10 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 @ExtendWith(SpringExtension.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
 public abstract class CrudRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
     @PersistenceContext
@@ -98,9 +97,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
 
     private K generaDatoLectura() {
 	T instancia = getInstanceDeTParaLectura();
-
 	entityManager.persist(instancia);
-
 	return instancia.getId();
     }
 

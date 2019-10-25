@@ -53,7 +53,7 @@ public class ConfigurationSpring {
 	dataSource.setInitialSize(5);
 	// Número de conexiones activas simultáneas
 	dataSource.setMaxActive(10);
-	// Se usa para precompilar las sentencais SQL y verificar su sintaxis
+	// Se usa para precompilar las sentencias SQL y verificar su sintaxis
 	dataSource.setPoolPreparedStatements(Boolean.TRUE);
 	// Número máximo de PreparedStatements activas simultáneas
 	dataSource.setMaxOpenPreparedStatements(10);
@@ -87,6 +87,7 @@ public class ConfigurationSpring {
 	LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 	entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());
 	entityManagerFactoryBean.setDataSource(dataSource());
+	entityManagerFactoryBean.setPersistenceUnitName("MaQuiNaPersistenceUnit");
 	// Clase encargada de la persistencia
 	entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 	// Paquetes donde se van a buscar las entidades

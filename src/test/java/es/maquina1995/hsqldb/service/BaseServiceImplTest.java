@@ -52,7 +52,10 @@ public class BaseServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	sut.obtenerBases().forEach((base) -> Assertions.assertNotNull(base.getId()));
+	List<Base> listaBases = sut.obtenerBases();
+
+	Assertions.assertFalse(listaBases.isEmpty());
+	listaBases.forEach((base) -> Assertions.assertNotNull(base.getId()));
     }
 
     @Test

@@ -54,7 +54,10 @@ public class TrabajadorServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	sut.obtenerTrabajadors().forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
+	List<Trabajador> listaTrabajadores = sut.obtenerTrabajadors();
+
+	Assertions.assertFalse(listaTrabajadores.isEmpty());
+	listaTrabajadores.forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
     }
 
     @Test
