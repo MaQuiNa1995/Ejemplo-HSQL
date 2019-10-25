@@ -12,8 +12,14 @@ import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.Identificable;
 
+/**
+ * Entidad que tiene la información referente a los Mapas
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
-@Table(name = "Mapa")
+@Table(name = "MAPA")
 public class Mapa implements Identificable<Long> {
 
     /**
@@ -21,6 +27,9 @@ public class Mapa implements Identificable<Long> {
      */
     private static final long serialVersionUID = 8315207157111876609L;
 
+    /**
+     * Id de la tabla autogenerado {@link GenerationType#IDENTITY}
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMapa;
@@ -30,65 +39,72 @@ public class Mapa implements Identificable<Long> {
 
     @Column(name = "basesMaximo")
     private int basesMaximo;
-    
+
     @Column(name = "jugadoresMaximo")
     private int jugadoresMaximo;
-    
+
     @Column(name = "jugado")
     private boolean jugado;
 
-    @JoinColumn(name = "idBase")
+    /**
+     * Columna que referencia a las bases que posee un mapa
+     * <p>
+     * <a href=
+     * "https://stackoverflow.com/questions/199498/foreign-key-naming-scheme">Convención
+     * de nombres FK_ForeignKeyTable_PrimaryKeyTable</a>
+     */
+    @JoinColumn(name = "FK_BASE_IDBASE")
     @ManyToOne(fetch = FetchType.LAZY)
     private Base base;
 
     @Override
     public Long getId() {
-        return idMapa;
+	return idMapa;
     }
 
     @Override
     public void setId(Long idMapa) {
-        this.idMapa = idMapa;
+	this.idMapa = idMapa;
     }
 
     public String getNombreMapa() {
-        return nombreMapa;
+	return nombreMapa;
     }
 
     public void setNombreMapa(String nombreMapa) {
-        this.nombreMapa = nombreMapa;
+	this.nombreMapa = nombreMapa;
     }
 
     public int getBasesMaximo() {
-        return basesMaximo;
+	return basesMaximo;
     }
 
     public void setBasesMaximo(int basesMaximo) {
-        this.basesMaximo = basesMaximo;
+	this.basesMaximo = basesMaximo;
     }
 
     public int getJugadoresMaximo() {
-        return jugadoresMaximo;
+	return jugadoresMaximo;
     }
 
     public void setJugadoresMaximo(int jugadoresMaximo) {
-        this.jugadoresMaximo = jugadoresMaximo;
+	this.jugadoresMaximo = jugadoresMaximo;
     }
 
     public Base getBase() {
-        return base;
+	return base;
     }
 
     public void setBase(Base base) {
-        this.base = base;
+	this.base = base;
     }
 
     public boolean isJugado() {
-        return jugado;
+	return jugado;
     }
 
     public void setJugado(boolean jugado) {
-        this.jugado = jugado;
+	this.jugado = jugado;
     }
 
 }

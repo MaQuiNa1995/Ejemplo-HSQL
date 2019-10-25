@@ -28,14 +28,9 @@ public class BaseServiceImplTest {
     private BaseService sut;
     private BaseRepository baseRepository;
 
-    @Autowired
-    public void setBaseRepository(BaseRepository baseRepository) {
-	this.baseRepository = baseRepository;
-    }
-
-    @Autowired
-    public void setBaseService(BaseService sut) {
-	this.sut = sut;
+    @BeforeEach
+    public void setUp() throws Exception {
+	limpiarBases();
     }
 
     @Test
@@ -85,12 +80,17 @@ public class BaseServiceImplTest {
 	Assertions.assertTrue(bases.isEmpty());
     }
 
-    @BeforeEach
-    public void setUp() throws Exception {
-	limpiarBases();
-    }
-
     private void limpiarBases() {
 	sut.obtenerBases().forEach((base) -> baseRepository.delete(base));
+    }
+
+    @Autowired
+    public void setBaseRepository(BaseRepository baseRepository) {
+	this.baseRepository = baseRepository;
+    }
+
+    @Autowired
+    public void setBaseService(BaseService sut) {
+	this.sut = sut;
     }
 }

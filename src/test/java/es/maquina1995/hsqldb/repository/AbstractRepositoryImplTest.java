@@ -58,15 +58,13 @@ public abstract class AbstractRepositoryImplTest<K extends Number, T extends Ide
     public void testRead_NoExiste() {
 	K clavePrimaria = getClavePrimariaNoExistente();
 
-	Assertions.assertThrows(PersistenceException.class, () -> {
-	    getRepository().readByPk(clavePrimaria);
-	});
+	Assertions.assertThrows(PersistenceException.class, () -> getRepository().readByPk(clavePrimaria));
 
     }
 
     @Test
     public void testList() {
-	
+
 	for (int i = 0; i < 3; i++) {
 	    generaDatoLectura();
 	}

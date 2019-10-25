@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 			http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
-						
+
 	<changeSet author="usuario (generated)" id="1400847488681-1">
-		<createTable catalogName="usuario" tableName="Mapa">
+
+		<createTable catalogName="maquina1995" tableName="MAPA"
+			remarks="Contiene todos los mapas del juego">
 			<column autoIncrement="true" name="idMapa" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
@@ -13,39 +16,43 @@
 			<column name="basesMaximo" type="INT(1)" />
 			<column name="jugadoresMaximo" type="INT(1)" />
 			<column name="jugado" type="BOOLEAN" />
-			<column name="idBase" type="INT(10)" />
+			<column name="FK_BASE_IDBASE" type="INT(10)" />
 		</createTable>
 
-		<createTable catalogName="usuario" tableName="Base">
+		<createTable catalogName="maquina1995" tableName="BASE"
+			remarks="Contiene las bases creadas que tiene cada mapa del juego">
 			<column autoIncrement="true" name="idBase" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
 			<column name="cantidadMineral" type="VARCHAR(20)" />
 			<column name="tipoMineral" type="VARCHAR(20)" />
 			<column name="TrabajadoresMaximo" type="INT(2)" />
-			<column name="idTrabajador" type="INT(10)" />
+			<column name="FK_TRABAJADOR_IDTRABAJADOR" type="INT(10)" />
 		</createTable>
 
-		<createTable catalogName="usuario" tableName="Trabajador">
+		<createTable catalogName="maquina1995"
+			tableName="TRABAJADOR"
+			remarks="Contiene todos los trabajadores que tienen las bases">
+
 			<column autoIncrement="true" name="idTrabajador"
 				type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="tipoTrabajador" type="VARCHAR(20)" />
+			<column name="tipoTrabajador" type="VARCHAR(12)" />
 		</createTable>
 	</changeSet>
 
 	<changeSet author="usuario (generated)" id="1400847488682-1">
 		<addForeignKeyConstraint
 			constraintName="fk_idBase" referencedTableName="Base"
-			baseColumnNames="idBase" baseTableName="Mapa"
+			baseColumnNames="FK_BASE_IDBASE" baseTableName="Mapa"
 			referencedColumnNames="idBase" />
 	</changeSet>
 
 	<changeSet author="usuario (generated)" id="1400847488683-1">
 		<addForeignKeyConstraint
 			constraintName="fk_idTrabajador" referencedTableName="Trabajador"
-			baseColumnNames="idTrabajador" baseTableName="Base"
+			baseColumnNames="FK_TRABAJADOR_IDTRABAJADOR" baseTableName="Base"
 			referencedColumnNames="idTrabajador" />
 	</changeSet>
 

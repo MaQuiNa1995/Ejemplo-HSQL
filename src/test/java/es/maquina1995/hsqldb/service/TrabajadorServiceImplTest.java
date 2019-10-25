@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package es.maquina1995.hsqldb.service;
 
 import java.util.List;
@@ -61,10 +56,7 @@ public class TrabajadorServiceImplTest {
 
     @Test
     public void testObtenerBases() {
-	List<Trabajador> trabajadores = sut.obtenerTrabajadors();
-	trabajadores.forEach((trabajador) -> {
-	    Assertions.assertNotNull(trabajador.getId());
-	});
+	sut.obtenerTrabajadors().forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
     }
 
     @Test
@@ -91,10 +83,7 @@ public class TrabajadorServiceImplTest {
     }
 
     private void limpiarTrabajadors() {
-	List<Trabajador> bases = sut.obtenerTrabajadors();
-	bases.forEach((base) -> {
-	    trabajadorRepository.delete(base);
-	});
+	sut.obtenerTrabajadors().forEach((base) -> trabajadorRepository.delete(base));
     }
 
     @Autowired
