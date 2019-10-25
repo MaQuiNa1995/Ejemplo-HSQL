@@ -11,7 +11,7 @@ import es.maquina1995.hsqldb.dominio.Trabajador;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
-public class TrabajadorRepositoryTest extends AbstractRepositoryImplTest<Long, Trabajador> {
+public class TrabajadorRepositoryTest extends CrudRepositoryImplTest<Long, Trabajador> {
 
     private TrabajadorRepository sut;
 

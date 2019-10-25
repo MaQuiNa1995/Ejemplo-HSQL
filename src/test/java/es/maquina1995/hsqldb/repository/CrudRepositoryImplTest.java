@@ -16,7 +16,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 @ExtendWith(SpringExtension.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-public abstract class AbstractRepositoryImplTest<K extends Number, T extends Identificable<K>> {
+public abstract class CrudRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
     @PersistenceContext
     private EntityManager entityManager;

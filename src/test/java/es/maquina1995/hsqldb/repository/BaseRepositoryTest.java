@@ -11,7 +11,7 @@ import es.maquina1995.hsqldb.dominio.Base;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
-public class BaseRepositoryTest extends AbstractRepositoryImplTest<Long, Base> {
+public class BaseRepositoryTest extends CrudRepositoryImplTest<Long, Base> {
 
     private BaseRepository sut;
 

@@ -11,7 +11,7 @@ import es.maquina1995.hsqldb.dominio.Mapa;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
-public class MapaRepositoryTest extends AbstractRepositoryImplTest<Long, Mapa> {
+public class MapaRepositoryTest extends CrudRepositoryImplTest<Long, Mapa> {
 
     private MapaRepository sut;
 
