@@ -13,11 +13,9 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 
 @ExtendWith(SpringExtension.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-@Transactional
 public abstract class AbstractRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
     @PersistenceContext
@@ -55,7 +53,7 @@ public abstract class AbstractRepositoryImplTest<K extends Number, T extends Ide
     }
 
     @Test
-    public void testRead_NoExiste() {
+    public void testReadNoExiste() {
 	K clavePrimaria = getClavePrimariaNoExistente();
 
 	Assertions.assertThrows(PersistenceException.class, () -> getRepository().readByPk(clavePrimaria));
@@ -63,7 +61,7 @@ public abstract class AbstractRepositoryImplTest<K extends Number, T extends Ide
     }
 
     @Test
-    public void testList() {
+    public void testFindAll() {
 
 	for (int i = 0; i < 3; i++) {
 	    generaDatoLectura();

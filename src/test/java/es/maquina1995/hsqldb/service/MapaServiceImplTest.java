@@ -12,7 +12,6 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
@@ -22,7 +21,6 @@ import es.maquina1995.hsqldb.repository.MapaRepository;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-@Transactional
 public class MapaServiceImplTest {
 
     private MapaService sut;
