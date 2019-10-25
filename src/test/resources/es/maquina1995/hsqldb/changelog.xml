@@ -8,31 +8,31 @@
 	<changeSet author="usuario (generated)" id="1400847488681-1">
 
 		<createTable catalogName="maquina1995" tableName="MAPA"
-			remarks="A table to contain all the authors">
-			>
-			<column autoIncrement="true" name="id" type="INT(10)">
+			remarks="Contiene todos los mapas del juego">
+			<column autoIncrement="true" name="idMapa" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
 			<column name="nombreMapa" type="VARCHAR(20)" />
 			<column name="basesMaximo" type="INT(1)" />
 			<column name="jugadoresMaximo" type="INT(1)" />
 			<column name="jugado" type="BOOLEAN" />
-			<column name="idBase" type="INT(10)" />
+			<column name="idBaseMapa" type="INT(10)" />
 		</createTable>
 
 		<createTable catalogName="maquina1995" tableName="BASE"
-			remarks="A table to contain all the authors">
+			remarks="Contiene las bases creadas que tiene cada mapa del juego">
 			<column autoIncrement="true" name="idBase" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
 			<column name="cantidadMineral" type="VARCHAR(20)" />
 			<column name="tipoMineral" type="VARCHAR(20)" />
 			<column name="TrabajadoresMaximo" type="INT(2)" />
-			<column name="idTrabajador" type="INT(10)" />
+			<column name="idTrabajadorBase" type="INT(10)" />
 		</createTable>
 
 		<createTable catalogName="maquina1995"
-			tableName="TRABAJADOR" remarks="A table to contain all the authors">
+			tableName="TRABAJADOR"
+			remarks="Contiene todos los trabajadores que tienen las bases">
 
 			<column autoIncrement="true" name="idTrabajador"
 				type="INT(10)">
@@ -42,20 +42,18 @@
 		</createTable>
 	</changeSet>
 
-	<changeSet author="maquina1995 (generated)"
-		id="1400847488682-1">
+	<changeSet author="usuario (generated)" id="1400847488682-1">
 		<addForeignKeyConstraint
-			constraintName="idBase" referencedTableName="BASE"
-			baseColumnNames="idBase" baseTableName="MAPA"
-			referencedColumnNames="id" />
+			constraintName="fk_idBase" referencedTableName="Base"
+			baseColumnNames="idBaseMapa" baseTableName="Mapa"
+			referencedColumnNames="idBase" />
 	</changeSet>
 
-	<changeSet author="maquina1995 (generated)"
-		id="1400847488683-1">
+	<changeSet author="usuario (generated)" id="1400847488683-1">
 		<addForeignKeyConstraint
-			constraintName="idTrabajador" referencedTableName="TRABAJADOR"
-			baseColumnNames="idMapa" baseTableName="BASE"
-			referencedColumnNames="idBase" />
+			constraintName="fk_idTrabajador" referencedTableName="Trabajador"
+			baseColumnNames="idTrabajadorBase" baseTableName="Base"
+			referencedColumnNames="idTrabajador" />
 	</changeSet>
 
 </databaseChangeLog>

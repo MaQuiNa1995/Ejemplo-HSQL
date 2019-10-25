@@ -34,7 +34,7 @@ public class Base implements Identificable<Long> {
     @Column(name = "TrabajadoresMaximo")
     private int TrabajadoresMaximo;
 
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idTrabajadorBase")
     @ManyToOne(fetch = FetchType.LAZY)
     private Trabajador trabajador;
 
@@ -44,8 +44,8 @@ public class Base implements Identificable<Long> {
     }
 
     @Override
-    public void setId(Long id) {
-	this.idBase = id;
+    public void setId(Long idBase) {
+	this.idBase = idBase;
     }
 
     public int getCantidadMineral() {

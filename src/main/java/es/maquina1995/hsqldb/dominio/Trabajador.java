@@ -20,19 +20,19 @@ public class Trabajador implements Identificable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTrabajador;
 
     @Column(name = "tipoTrabajador")
     private String tipoTrabajador;
 
     @Override
     public Long getId() {
-	return this.id;
+	return this.idTrabajador;
     }
 
     @Override
-    public void setId(Long id) {
-	this.id = id;
+    public void setId(Long idTrabajador) {
+	this.idTrabajador = idTrabajador;
     }
 
     public String getTipoTrabajador() {

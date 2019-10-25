@@ -37,7 +37,7 @@ public class Mapa implements Identificable<Long> {
     @Column(name = "jugado")
     private boolean jugado;
 
-    @JoinColumn(name = "idBase")
+    @JoinColumn(name = "idMapaBase")
     @ManyToOne(fetch = FetchType.LAZY)
     private Base base;
 
@@ -47,8 +47,8 @@ public class Mapa implements Identificable<Long> {
     }
 
     @Override
-    public void setId(Long id) {
-	this.idMapa = id;
+    public void setId(Long idMapa) {
+	this.idMapa = idMapa;
     }
 
     public String getNombreMapa() {
