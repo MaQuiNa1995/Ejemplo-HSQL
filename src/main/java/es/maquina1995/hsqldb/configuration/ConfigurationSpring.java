@@ -13,6 +13,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Clase destinada a la configuración de Spring
@@ -26,6 +27,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  * @author MaQuiNa1995
  *
  */
+@EnableTransactionManagement
 @ComponentScan(basePackages = "es.maquina1995.hsqldb.", useDefaultFilters = true, includeFilters = @Filter(type = FilterType.REGEX, pattern = "(repository|service)$"))
 public class ConfigurationSpring {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.HSQLDialect";
@@ -53,7 +55,7 @@ public class ConfigurationSpring {
 	dataSource.setInitialSize(5);
 	// Número de conexiones activas simultáneas
 	dataSource.setMaxActive(10);
-	// Se usa para precompilar las sentencias SQL y verificar su sintaxis
+	// Se usa para precompilar las sentencais SQL y verificar su sintaxis
 	dataSource.setPoolPreparedStatements(Boolean.TRUE);
 	// Número máximo de PreparedStatements activas simultáneas
 	dataSource.setMaxOpenPreparedStatements(10);
@@ -71,6 +73,7 @@ public class ConfigurationSpring {
     @Bean
     public JpaTransactionManager jpaTransactionManager() {
 	JpaTransactionManager transactionManager = new JpaTransactionManager();
+	transactionManager.setDataSource(dataSource());
 	transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
 	return transactionManager;
     }

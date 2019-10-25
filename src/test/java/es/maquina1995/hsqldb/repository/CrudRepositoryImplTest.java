@@ -12,9 +12,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 @ExtendWith(SpringExtension.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
+
 public abstract class CrudRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
     @PersistenceContext
@@ -33,6 +36,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     public abstract T getInstanceDeTParaModificar(K id);
 
     @Test
+    @Transactional
     public void testAdd() {
 	T instancia = getInstanceDeTParaNuevo();
 	Assertions.assertNull(instancia.getId());
@@ -43,6 +47,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     }
 
     @Test
+    @Transactional
     public void testRead() {
 	K clavePrimaria = generaDatoLectura();
 
@@ -52,6 +57,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     }
 
     @Test
+    @Transactional
     public void testReadNoExiste() {
 	K clavePrimaria = getClavePrimariaNoExistente();
 
@@ -60,6 +66,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     }
 
     @Test
+    @Transactional
     public void testFindAll() {
 
 	for (int i = 0; i < 3; i++) {
@@ -72,6 +79,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     }
 
     @Test
+    @Transactional
     public void testUpdate() {
 	K clavePrimaria = generaDatoLectura();
 
@@ -85,6 +93,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
     }
 
     @Test
+    @Transactional
     public void testDelete() {
 	K clavePrimaria = generaDatoLectura();
 
@@ -95,6 +104,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Identif
 	Assertions.assertNull(objetoBd);
     }
 
+    @Transactional
     private K generaDatoLectura() {
 	T instancia = getInstanceDeTParaLectura();
 	entityManager.persist(instancia);
