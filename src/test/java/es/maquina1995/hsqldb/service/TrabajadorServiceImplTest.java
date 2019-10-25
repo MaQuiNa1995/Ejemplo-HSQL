@@ -36,14 +36,14 @@ public class TrabajadorServiceImplTest {
     }
 
     @Test
-    public void testAniadirBase() {
+    public void testAniadirTrabajador() {
 	Long idTrabajador = sut.aniadirTrabajador("Sonda");
 
 	Assertions.assertNotNull(idTrabajador);
     }
 
     @Test
-    public void testObtenerBase() {
+    public void testObtenerTrabajador() {
 	Long idTrabajador = sut.aniadirTrabajador("Sonda");
 
 	Trabajador trabajador = sut.obtenerTrabajador(idTrabajador);
@@ -53,7 +53,7 @@ public class TrabajadorServiceImplTest {
     }
 
     @Test
-    public void testObtenerBases() {
+    public void testObtenerTrabajadors() {
 	List<Trabajador> listaTrabajadores = sut.obtenerTrabajadores();
 
 	Assertions.assertFalse(listaTrabajadores.isEmpty());
@@ -61,7 +61,7 @@ public class TrabajadorServiceImplTest {
     }
 
     @Test
-    public void testActualizarBase() {
+    public void testActualizarTrabajador() {
 	Long idTrabajador = sut.aniadirTrabajador("Sonda");
 
 	Trabajador trabajador = sut.obtenerTrabajador(idTrabajador);
@@ -73,7 +73,7 @@ public class TrabajadorServiceImplTest {
     }
 
     @Test
-    public void testBorrarBase() {
+    public void testBorrarTrabajador() {
 	Long idTrabajador = sut.aniadirTrabajador("Sonda");
 
 	sut.borrarTrabajador(idTrabajador);

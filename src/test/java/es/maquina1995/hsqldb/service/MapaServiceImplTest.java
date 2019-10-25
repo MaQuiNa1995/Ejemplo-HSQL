@@ -32,14 +32,14 @@ public class MapaServiceImplTest {
     }
 
     @Test
-    public void testAniadirBase() {
-	Long idBase = sut.aniadirMapa("Desert", 9, 8, false, 7);
+    public void testAniadirMapa() {
+	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
 
-	Assertions.assertNotNull(idBase);
+	Assertions.assertNotNull(idMapa);
     }
 
     @Test
-    public void testObtenerBase() {
+    public void testObtenerMapa() {
 	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
 
 	Mapa mapa = sut.obtenerMapa(idMapa);
@@ -52,7 +52,7 @@ public class MapaServiceImplTest {
     }
 
     @Test
-    public void testObtenerBases() {
+    public void testObtenerMapas() {
 
 	List<Mapa> listaMapas = sut.obtenerMapas();
 
@@ -61,7 +61,7 @@ public class MapaServiceImplTest {
     }
 
     @Test
-    public void testActualizarBase() {
+    public void testActualizarMapa() {
 	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
 
 	Mapa mapa = sut.obtenerMapa(idMapa);
@@ -73,7 +73,7 @@ public class MapaServiceImplTest {
     }
 
     @Test
-    public void testBorrarBase() {
+    public void testBorrarMapa() {
 	Long idMapa = sut.aniadirMapa("Desert", 9, 8, false, 7);
 
 	sut.borrarMapa(idMapa);
