@@ -1,7 +1,11 @@
-# Starcraft_Hibernate
-Proyecto ejemplo de base de datos HSQL (Base de datos en memoria)
+# Hsqldb
 
-Usé una estrutura sencilla de clses para la base de datos
-Mapas tienen de 1 a N bases y a su vez estos tienen de 1 a N trabajadores 
+Proyecto de ejemplo para hacer pruebas con una base de datos en memoria que pueda reventar una y otra vez
 
-Este proyecto usa spring e hibernate + Hsql para el mapeo de clases y la construccion de bases de datos
+Tiene 91% de test , todos los metodos principales están probados
+
+Básicamente tenemos 3 tablas en este momento en el futuro se irán añadiendo mas para ver los conceptos de N - M y distintos mapeos de 1 - N
+
+Mapas que tiene 0 - N Bases que tienen 0 - N trabajadores 
+
+Iré actualizando este readme con los avances que haga
