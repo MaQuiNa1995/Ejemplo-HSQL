@@ -13,57 +13,56 @@ import es.maquina1995.hsqldb.repository.MapaRepository;
 @Service
 public class MapaServiceImpl implements MapaService {
 
-	private MapaRepository mapaRepository;
-	private BaseRepository baseRepository;
+    private MapaRepository mapaRepository;
+    private BaseRepository baseRepository;
 
-	@Autowired
-	public void setBaseRepository(BaseRepository baseRepository) {
-		this.baseRepository = baseRepository;
-	}
+    @Autowired
+    public void setBaseRepository(BaseRepository baseRepository) {
+	this.baseRepository = baseRepository;
+    }
 
-	@Autowired
-	public void setMapaRepository(MapaRepository mapaRepository) {
-		this.mapaRepository = mapaRepository;
-	}
+    @Autowired
+    public void setMapaRepository(MapaRepository mapaRepository) {
+	this.mapaRepository = mapaRepository;
+    }
 
-	@Override
-	public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
+    @Override
+    public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
 
-		Mapa mapa = new Mapa();
-		mapa.setNombreMapa(nombreMapa);
-		mapa.setBasesMaximo(basesMaximo);
-		mapa.setJugadoresMaximo(jugadoresMaximo);
-		mapa.setJugado(jugado);
-		Base base = baseRepository.readByPk(idBase);
-		mapa.setBase(base);
-		Mapa aniadida = aniadirMapa(mapa);
+	Mapa mapa = new Mapa();
+	mapa.setNombreMapa(nombreMapa);
+	mapa.setBasesMaximo(basesMaximo);
+	mapa.setJugadoresMaximo(jugadoresMaximo);
+	mapa.setJugado(jugado);
+	Base base = baseRepository.readByPk(idBase);
+	mapa.setBase(base);
+	Mapa aniadida = aniadirMapa(mapa);
 
-		return aniadida.getId();
+	return aniadida.getId();
 
-	}
+    }
 
-	private Mapa aniadirMapa(Mapa nueva) {
-		return mapaRepository.persist(nueva);
-	}
+    private Mapa aniadirMapa(Mapa nueva) {
+	return mapaRepository.persist(nueva);
+    }
 
-	@Override
-	public Mapa actualizarMapa(Mapa modificada) {
-		return mapaRepository.merge(modificada);
-	}
+    @Override
+    public Mapa actualizarMapa(Mapa modificada) {
+	return mapaRepository.merge(modificada);
+    }
 
-	@Override
-	public void borrarMapa(Long id) {
-		Mapa aBorrar = obtenerMapa(id);
-		mapaRepository.delete(aBorrar);
-	}
+    @Override
+    public void borrarMapa(Long id) {
+	mapaRepository.deleteByPk(id);
+    }
 
-	@Override
-	public Mapa obtenerMapa(Long id) {
-		return mapaRepository.readByPk(id);
-	}
+    @Override
+    public Mapa obtenerMapa(Long id) {
+	return mapaRepository.readByPk(id);
+    }
 
-	@Override
-	public List<Mapa> obtenerMapas() {
-		return mapaRepository.findAll();
-	}
+    @Override
+    public List<Mapa> obtenerMapas() {
+	return mapaRepository.findAll();
+    }
 }

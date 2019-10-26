@@ -11,11 +11,24 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mapa;
 
+/**
+ * Clase de test para el testo de {@link MapaService}
+ * <p>
+ * Lecciones Aprendidas:
+ * <p>
+ * Si pones {@link Transactional} a los test harán rollback automático y no
+ * interferirán los datos que no borraste de otros test en los demás se usa en
+ * conjunto con {@link TransactionalTestExecutionListener}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
@@ -26,6 +39,7 @@ public class MapaServiceImplTest {
     // ----------------- Create ------------------
 
     @Test
+    @Transactional
     public void testAniadirMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
@@ -35,6 +49,7 @@ public class MapaServiceImplTest {
     // ----------------- Read ------------------
 
     @Test
+    @Transactional
     public void testObtenerMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
@@ -48,7 +63,11 @@ public class MapaServiceImplTest {
     }
 
     @Test
+    @Transactional
     public void testObtenerMapas() {
+
+	cut.aniadirMapa("Desert", 9, 8, false, 7);
+	cut.aniadirMapa("Desert2", 9, 8, false, 7);
 
 	List<Mapa> listaMapas = cut.obtenerMapas();
 
@@ -59,6 +78,7 @@ public class MapaServiceImplTest {
     // ----------------- Update ------------------
 
     @Test
+    @Transactional
     public void testActualizarMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 
@@ -73,6 +93,7 @@ public class MapaServiceImplTest {
     // ----------------- Delete ------------------
 
     @Test
+    @Transactional
     public void testBorrarMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
 

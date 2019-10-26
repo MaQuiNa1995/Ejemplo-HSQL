@@ -51,8 +51,7 @@ public class BaseServiceImpl implements BaseService {
 
     @Override
     public void borrarBase(Long id) {
-	Base aBorrar = obtenerBase(id);
-	baseRepository.delete(aBorrar);
+	baseRepository.deleteByPk(id);
     }
 
     @Autowired

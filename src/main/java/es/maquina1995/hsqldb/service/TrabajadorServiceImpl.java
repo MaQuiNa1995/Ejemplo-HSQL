@@ -11,45 +11,44 @@ import es.maquina1995.hsqldb.repository.TrabajadorRepository;
 @Service
 public class TrabajadorServiceImpl implements TrabajadorService {
 
-	private TrabajadorRepository trabajadorRepository;
+    private TrabajadorRepository trabajadorRepository;
 
-	@Autowired
+    @Autowired
     public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
-        this.trabajadorRepository = trabajadorRepository;
+	this.trabajadorRepository = trabajadorRepository;
     }
-	
-	@Override
-	public Trabajador actualizarTrabajador(Trabajador modificada) {
-		return trabajadorRepository.merge(modificada);
-	}
 
-	@Override
-	public Long aniadirTrabajador(String tipoTrabajador) {
-		Trabajador trabajador = new Trabajador();
-		trabajador.setTipoTrabajador(tipoTrabajador);
+    @Override
+    public Trabajador actualizarTrabajador(Trabajador modificada) {
+	return trabajadorRepository.merge(modificada);
+    }
 
-		Trabajador aniadida = aniadirTrabajador(trabajador);
+    @Override
+    public Long aniadirTrabajador(String tipoTrabajador) {
+	Trabajador trabajador = new Trabajador();
+	trabajador.setTipoTrabajador(tipoTrabajador);
 
-		return aniadida.getId();
-	}
+	Trabajador aniadida = aniadirTrabajador(trabajador);
 
-	private Trabajador aniadirTrabajador(Trabajador nueva) {
-		return trabajadorRepository.persist(nueva);
-	}
+	return aniadida.getId();
+    }
 
-	@Override
-	public void borrarTrabajador(Long id) {
-		Trabajador aBorrar = obtenerTrabajador(id);
-		trabajadorRepository.delete(aBorrar);
-	}
+    private Trabajador aniadirTrabajador(Trabajador nueva) {
+	return trabajadorRepository.persist(nueva);
+    }
 
-	@Override
-	public Trabajador obtenerTrabajador(Long id) {
-		return trabajadorRepository.readByPk(id);
-	}
+    @Override
+    public void borrarTrabajador(Long id) {
+	trabajadorRepository.deleteByPk(id);
+    }
 
-	@Override
-	public List<Trabajador> obtenerTrabajadores() {
-		return trabajadorRepository.findAll();
-	}
+    @Override
+    public Trabajador obtenerTrabajador(Long id) {
+	return trabajadorRepository.readByPk(id);
+    }
+
+    @Override
+    public List<Trabajador> obtenerTrabajadores() {
+	return trabajadorRepository.findAll();
+    }
 }

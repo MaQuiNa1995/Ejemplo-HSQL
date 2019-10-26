@@ -6,14 +6,14 @@ import es.maquina1995.hsqldb.dominio.Base;
 
 public interface BaseService {
 
-	public Base actualizarBase(Base modificada);
+    public Base actualizarBase(Base modificada);
 
-	public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador);
+    public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador);
 
-	public void borrarBase(Long id);
+    public void borrarBase(Long id);
 
-	public Base obtenerBase(Long id);
+    public Base obtenerBase(Long id);
 
-	public List<Base> obtenerBases();
-    
+    public List<Base> obtenerBases();
+
 }
