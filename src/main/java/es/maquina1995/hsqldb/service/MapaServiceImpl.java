@@ -16,16 +16,6 @@ public class MapaServiceImpl implements MapaService {
     private MapaRepository mapaRepository;
     private BaseRepository baseRepository;
 
-    @Autowired
-    public void setBaseRepository(BaseRepository baseRepository) {
-	this.baseRepository = baseRepository;
-    }
-
-    @Autowired
-    public void setMapaRepository(MapaRepository mapaRepository) {
-	this.mapaRepository = mapaRepository;
-    }
-
     @Override
     public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
 
@@ -64,5 +54,15 @@ public class MapaServiceImpl implements MapaService {
     @Override
     public List<Mapa> obtenerMapas() {
 	return mapaRepository.findAll();
+    }
+
+    @Autowired
+    public void setBaseRepository(BaseRepository baseRepository) {
+	this.baseRepository = baseRepository;
+    }
+
+    @Autowired
+    public void setMapaRepository(MapaRepository mapaRepository) {
+	this.mapaRepository = mapaRepository;
     }
 }

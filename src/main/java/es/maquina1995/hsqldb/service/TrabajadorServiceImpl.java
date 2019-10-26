@@ -13,11 +13,6 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 
     private TrabajadorRepository trabajadorRepository;
 
-    @Autowired
-    public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
-	this.trabajadorRepository = trabajadorRepository;
-    }
-
     @Override
     public Trabajador actualizarTrabajador(Trabajador modificada) {
 	return trabajadorRepository.merge(modificada);
@@ -50,5 +45,10 @@ public class TrabajadorServiceImpl implements TrabajadorService {
     @Override
     public List<Trabajador> obtenerTrabajadores() {
 	return trabajadorRepository.findAll();
+    }
+
+    @Autowired
+    public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
+	this.trabajadorRepository = trabajadorRepository;
     }
 }
