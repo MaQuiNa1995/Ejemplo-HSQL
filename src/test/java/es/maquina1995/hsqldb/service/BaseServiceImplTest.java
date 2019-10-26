@@ -3,7 +3,6 @@ package es.maquina1995.hsqldb.service;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,7 @@ public class BaseServiceImplTest {
     private BaseService cut;
     private BaseRepository baseRepository;
 
-    @BeforeEach
-    public void setUp() {
-	limpiarBases();
-    }
+    // ----------------- Create ------------------
 
     @Test
     public void testAniadirBase() {
@@ -37,6 +33,8 @@ public class BaseServiceImplTest {
 
 	Assertions.assertNotNull(idBase);
     }
+
+    // ----------------- Read ------------------
 
     @Test
     public void testObtenerBase() {
@@ -58,6 +56,8 @@ public class BaseServiceImplTest {
 	listaBases.forEach((base) -> Assertions.assertNotNull(base.getId()));
     }
 
+    // ----------------- Update ------------------
+
     @Test
     public void testActualizarBase() {
 	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
@@ -65,10 +65,12 @@ public class BaseServiceImplTest {
 	Base base = cut.obtenerBase(idBase);
 	base.setTipoMineral("Cristal");
 
-	Base baseMod = cut.obtenerBase(idBase);
+	Base baseMod = cut.actualizarBase(base);
 
 	Assertions.assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
     }
+
+    // ----------------- Delete ------------------
 
     @Test
     public void testBorrarBase() {
@@ -79,10 +81,6 @@ public class BaseServiceImplTest {
 	List<Base> bases = cut.obtenerBases();
 
 	Assertions.assertTrue(bases.isEmpty());
-    }
-
-    private void limpiarBases() {
-	cut.obtenerBases().forEach((base) -> baseRepository.delete(base));
     }
 
     @Autowired

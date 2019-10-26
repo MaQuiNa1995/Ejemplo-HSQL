@@ -3,7 +3,6 @@ package es.maquina1995.hsqldb.service;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,7 @@ public class MapaServiceImplTest {
     private MapaService cut;
     private MapaRepository mapaRepository;
 
-    @BeforeEach
-    public void setUp() {
-	limpiarMapas();
-    }
+    // ----------------- Create ------------------
 
     @Test
     public void testAniadirMapa() {
@@ -37,6 +33,8 @@ public class MapaServiceImplTest {
 
 	Assertions.assertNotNull(idMapa);
     }
+
+    // ----------------- Read ------------------
 
     @Test
     public void testObtenerMapa() {
@@ -60,6 +58,8 @@ public class MapaServiceImplTest {
 	listaMapas.forEach((mapa) -> Assertions.assertNotNull(mapa.getId()));
     }
 
+    // ----------------- Update ------------------
+
     @Test
     public void testActualizarMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
@@ -67,10 +67,12 @@ public class MapaServiceImplTest {
 	Mapa mapa = cut.obtenerMapa(idMapa);
 	mapa.setNombreMapa("Oceanic");
 
-	Mapa mapaMod = cut.obtenerMapa(idMapa);
+	Mapa mapaMod = cut.actualizarMapa(mapa);
 
 	Assertions.assertTrue(mapaMod.getNombreMapa().equalsIgnoreCase("Oceanic"));
     }
+
+    // ----------------- Delete ------------------
 
     @Test
     public void testBorrarMapa() {
@@ -81,10 +83,6 @@ public class MapaServiceImplTest {
 	List<Mapa> mapas = cut.obtenerMapas();
 
 	Assertions.assertTrue(mapas.isEmpty());
-    }
-
-    private void limpiarMapas() {
-	cut.obtenerMapas().forEach((base) -> mapaRepository.delete(base));
     }
 
     @Autowired

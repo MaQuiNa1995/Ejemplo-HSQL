@@ -3,7 +3,6 @@ package es.maquina1995.hsqldb.service;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,7 @@ public class TrabajadorServiceImplTest {
     private TrabajadorService cut;
     private TrabajadorRepository trabajadorRepository;
 
-    @BeforeEach
-    public void setUp() {
-	limpiarTrabajadores();
-    }
+    // ----------------- Create ------------------
 
     @Test
     public void testAniadirTrabajador() {
@@ -38,23 +34,7 @@ public class TrabajadorServiceImplTest {
 	Assertions.assertNotNull(idTrabajador);
     }
 
-    @Test
-    public void testObtenerTrabajador() {
-	Long idTrabajador = cut.aniadirTrabajador("Sonda");
-
-	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
-
-	Assertions.assertNotNull(trabajador.getId());
-	Assertions.assertTrue(trabajador.getTipoTrabajador().equalsIgnoreCase("Sonda"));
-    }
-
-    @Test
-    public void testObtenerTrabajadors() {
-	List<Trabajador> listaTrabajadores = cut.obtenerTrabajadores();
-
-	Assertions.assertFalse(listaTrabajadores.isEmpty());
-	listaTrabajadores.forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
-    }
+    // ----------------- Update ------------------
 
     @Test
     public void testActualizarTrabajador() {
@@ -69,6 +49,28 @@ public class TrabajadorServiceImplTest {
     }
 
     @Test
+    public void testObtenerTrabajador() {
+	Long idTrabajador = cut.aniadirTrabajador("Sonda");
+
+	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
+
+	Assertions.assertNotNull(trabajador.getId());
+	Assertions.assertTrue(trabajador.getTipoTrabajador().equalsIgnoreCase("Sonda"));
+    }
+
+    // ----------------- Read ------------------
+
+    @Test
+    public void testObtenerTrabajadores() {
+	List<Trabajador> listaTrabajadores = cut.obtenerTrabajadores();
+
+	Assertions.assertFalse(listaTrabajadores.isEmpty());
+	listaTrabajadores.forEach((trabajador) -> Assertions.assertNotNull(trabajador.getId()));
+    }
+
+    // ----------------- Delete ------------------
+
+    @Test
     public void testBorrarTrabajador() {
 	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
@@ -77,10 +79,6 @@ public class TrabajadorServiceImplTest {
 	List<Trabajador> trabajadors = cut.obtenerTrabajadores();
 
 	Assertions.assertTrue(trabajadors.isEmpty());
-    }
-
-    private void limpiarTrabajadores() {
-	cut.obtenerTrabajadores().forEach((base) -> trabajadorRepository.delete(base));
     }
 
     @Autowired
