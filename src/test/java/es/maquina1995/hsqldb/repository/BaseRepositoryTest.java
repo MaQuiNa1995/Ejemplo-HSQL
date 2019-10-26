@@ -35,30 +35,23 @@ public class BaseRepositoryTest extends CrudRepositoryImplTest<Long, Base> {
     }
 
     @Override
-    public boolean sonDatosIguales(Base t1, Base t2) {
-	if (t1 == null || t2 == null) {
-	    throw new UnsupportedOperationException("No puedo comparar nulos");
-	}
-
-	if (!t1.getTipoMineral().equals(t2.getTipoMineral())) {
-	    return false;
-	}
-
-	return true;
+    public boolean sonDatosIguales(Base base1, Base base2) {
+	return base1.equals(base2);
     }
 
     @Override
     public Long getClavePrimariaNoExistente() {
-
 	return Long.MAX_VALUE;
     }
 
     @Override
     public Base getInstanceDeTParaModificar(Long clave) {
-	Base trabajador = getInstanceDeTParaLectura();
-	trabajador.setId(clave);
-	trabajador.setTipoMineral("Vespeno");
-	return trabajador;
+	Base base = getInstanceDeTParaLectura().setTipoMineral("Vespeno");
+	// No se usa el id con la fluent api porque normalmente no tienes porque setear
+		// la variable y asi está diseñado el dominio con esto en mente
+	base.setId(clave);
+	
+	return base;
     }
 
     @Autowired

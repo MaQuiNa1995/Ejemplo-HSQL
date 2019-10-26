@@ -35,30 +35,23 @@ public class MapaRepositoryTest extends CrudRepositoryImplTest<Long, Mapa> {
     }
 
     @Override
-    public boolean sonDatosIguales(Mapa t1, Mapa t2) {
-	if (t1 == null || t2 == null) {
-	    throw new UnsupportedOperationException("No puedo comparar nulos");
-	}
-
-	if (!t1.getNombreMapa().equals(t2.getNombreMapa())) {
-	    return false;
-	}
-
-	return true;
+    public boolean sonDatosIguales(Mapa mapa1, Mapa mapa2) {
+	return mapa1.equals(mapa2);
     }
 
     @Override
     public Long getClavePrimariaNoExistente() {
-
 	return Long.MAX_VALUE;
     }
 
     @Override
     public Mapa getInstanceDeTParaModificar(Long clave) {
-	Mapa trabajador = getInstanceDeTParaLectura();
-	trabajador.setId(clave);
-	trabajador.setNombreMapa("Ocean");
-	return trabajador;
+	Mapa mapa = getInstanceDeTParaLectura().setNombreMapa("Ocean");;
+	// No se usa el id con la fluent api porque normalmente no tienes porque setear
+	// la variable y asi está diseñado el dominio con esto en mente
+	mapa.setId(clave);
+	
+	return mapa;
     }
 
     @Autowired

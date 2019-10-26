@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,4 +59,22 @@ public class Trabajador implements Identificable<Long> {
 	return this;
     }
 
+    @Override
+    public int hashCode() {
+	return Objects.hash(idTrabajador, tipoTrabajador);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Trabajador other = (Trabajador) obj;
+	return  Objects.equals(tipoTrabajador, other.tipoTrabajador);
+    }
+
+    
 }

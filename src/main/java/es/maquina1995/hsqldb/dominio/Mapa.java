@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -110,6 +112,24 @@ public class Mapa implements Identificable<Long> {
     public Mapa setJugado(boolean jugado) {
 	this.jugado = jugado;
 	return this;
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(base, basesMaximo, idMapa, jugado, jugadoresMaximo, nombreMapa);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Mapa other = (Mapa) obj;
+	return Objects.equals(base, other.base) && basesMaximo == other.basesMaximo && jugado == other.jugado
+		&& jugadoresMaximo == other.jugadoresMaximo && Objects.equals(nombreMapa, other.nombreMapa);
     }
 
 }

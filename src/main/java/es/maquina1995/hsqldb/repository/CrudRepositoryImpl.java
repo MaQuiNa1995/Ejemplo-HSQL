@@ -48,8 +48,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     @Override
     @Transactional
     public T merge(T modificado) {
-	T modificadoBd = entityManager.merge(modificado);
-	return modificadoBd;
+	return  entityManager.merge(modificado);
     }
 
     public EntityManager getEntityManager() {

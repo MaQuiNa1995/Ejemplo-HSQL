@@ -35,30 +35,22 @@ public class TrabajadorRepositoryTest extends CrudRepositoryImplTest<Long, Traba
     }
 
     @Override
-    public boolean sonDatosIguales(Trabajador t1, Trabajador t2) {
-	if (t1 == null || t2 == null) {
-	    throw new UnsupportedOperationException("No puedo comparar nulos");
-	}
-
-	if (!t1.getTipoTrabajador().equals(t2.getTipoTrabajador())) {
-	    return false;
-	}
-
-	return true;
+    public boolean sonDatosIguales(Trabajador trabajador1, Trabajador trabajador2) {
+	return trabajador1.equals(trabajador2);
     }
 
     @Override
     public Long getClavePrimariaNoExistente() {
-
 	return Long.MAX_VALUE;
-
     }
 
     @Override
     public Trabajador getInstanceDeTParaModificar(Long clave) {
-	Trabajador trabajador = getInstanceDeTParaLectura();
+	Trabajador trabajador = getInstanceDeTParaLectura().setTipoTrabajador("Zangano");
+	// No se usa el id con la fluent api porque normalmente no tienes porque setear
+	// la variable y asi está diseñado el dominio con esto en mente
 	trabajador.setId(clave);
-	trabajador.setTipoTrabajador("Zangano");
+	
 	return trabajador;
     }
 

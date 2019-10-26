@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -107,6 +109,24 @@ public class Base implements Identificable<Long> {
     public Base setTrabajador(Trabajador trabajador) {
 	this.trabajador = trabajador;
 	return this;
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(cantidadMineral, tipoMineral, trabajador, trabajadoresMaximo);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Base other = (Base) obj;
+	return cantidadMineral == other.cantidadMineral && Objects.equals(tipoMineral, other.tipoMineral)
+		&& Objects.equals(trabajador, other.trabajador) && trabajadoresMaximo == other.trabajadoresMaximo;
     }
 
 }
