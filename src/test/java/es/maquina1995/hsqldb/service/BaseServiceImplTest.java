@@ -41,7 +41,7 @@ public class BaseServiceImplTest {
     @Test
     @Transactional
     public void testAniadirBase() {
-	Long idBase = cut.aniadirBase(10, "VespenoAñadir", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
 	Assertions.assertNotNull(idBase);
     }
@@ -51,7 +51,7 @@ public class BaseServiceImplTest {
     @Test
     @Transactional
     public void testObtenerBase() {
-	Long idBase = cut.aniadirBase(10, "VespenoObtener", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
 	Base base = cut.obtenerBase(idBase);
 
@@ -64,12 +64,13 @@ public class BaseServiceImplTest {
     @Test
     @Transactional
     public void testObtenerBases() {
-	cut.aniadirBase(10, "VespenoObtener", 5, 1);
-	cut.aniadirBase(10, "VespenoObtener2", 5, 1);
+	cut.aniadirBase(10, "Vespeno", 5, 1);
+	cut.aniadirBase(10, "Vespeno2", 5, 1);
 
 	List<Base> listaBases = cut.obtenerBases();
 
 	Assertions.assertFalse(listaBases.isEmpty());
+	Assertions.assertEquals(2, listaBases.size());
 	listaBases.forEach((base) -> Assertions.assertNotNull(base.getId()));
     }
 
@@ -78,14 +79,14 @@ public class BaseServiceImplTest {
     @Test
     @Transactional
     public void testActualizarBase() {
-	Long idBase = cut.aniadirBase(10, "VespenoActualizar", 5, 1);
+	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
 
 	Base base = cut.obtenerBase(idBase);
-	base.setTipoMineral("CristalActualizar");
+	base.setTipoMineral("Cristal");
 
 	Base baseMod = cut.actualizarBase(base);
 
-	Assertions.assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("CristalActualizar"));
+	Assertions.assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
     }
 
     // ----------------- Delete ------------------
@@ -94,7 +95,11 @@ public class BaseServiceImplTest {
     @Transactional
     public void testBorrarBase() {
 	Long idBase = cut.aniadirBase(10, "Vespeno", 5, 1);
-	Assertions.assertFalse(cut.obtenerBases().isEmpty());
+
+	List<Base> listaBasesBd = cut.obtenerBases();
+
+	Assertions.assertFalse(listaBasesBd.isEmpty());
+	Assertions.assertEquals(2, listaBasesBd.size());
 
 	cut.borrarBase(idBase);
 	Assertions.assertTrue(cut.obtenerBases().isEmpty());

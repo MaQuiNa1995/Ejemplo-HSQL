@@ -41,7 +41,6 @@ public class TrabajadorServiceImplTest {
     @Test
     public void testAniadirTrabajador() {
 	Long idTrabajador = cut.aniadirTrabajador("Sonda");
-
 	Assertions.assertNotNull(idTrabajador);
     }
 
@@ -50,25 +49,27 @@ public class TrabajadorServiceImplTest {
     @Test
     @Transactional
     public void testActualizarTrabajador() {
+	
 	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
 	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
-	trabajador.setTipoTrabajador("Sonda");
+	trabajador.setTipoTrabajador("Sonda2");
 
 	Trabajador trabajadorMod = cut.obtenerTrabajador(idTrabajador);
 
-	Assertions.assertTrue(trabajadorMod.getTipoTrabajador().equalsIgnoreCase("Sonda"));
+	Assertions.assertEquals("Sonda2", trabajadorMod.getTipoTrabajador());
     }
 
     @Test
     @Transactional
     public void testObtenerTrabajador() {
+	
 	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 
 	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
 
 	Assertions.assertNotNull(trabajador.getId());
-	Assertions.assertTrue(trabajador.getTipoTrabajador().equalsIgnoreCase("Sonda"));
+	Assertions.assertEquals("Sonda", trabajador.getTipoTrabajador());
     }
 
     // ----------------- Read ------------------
@@ -89,6 +90,7 @@ public class TrabajadorServiceImplTest {
     @Test
     @Transactional
     public void testBorrarTrabajador() {
+	
 	Long idTrabajador = cut.aniadirTrabajador("Sonda");
 	Assertions.assertFalse(cut.obtenerTrabajadores().isEmpty());
 

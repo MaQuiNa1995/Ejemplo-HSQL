@@ -41,7 +41,7 @@ public class MapaServiceImplTest {
     @Test
     @Transactional
     public void testAniadirMapa() {
-	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
 
 	Assertions.assertNotNull(idMapa);
     }
@@ -51,28 +51,30 @@ public class MapaServiceImplTest {
     @Test
     @Transactional
     public void testObtenerMapa() {
-	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
 
 	Mapa mapa = cut.obtenerMapa(idMapa);
 
 	Assertions.assertNotNull(mapa.getId());
-	Assertions.assertTrue(mapa.getNombreMapa().equalsIgnoreCase("Desert"));
+	Assertions.assertTrue(mapa.getNombreMapa().equals("Desert"));
 	Assertions.assertTrue(mapa.getBasesMaximo() == 9);
 	Assertions.assertTrue(mapa.getJugadoresMaximo() == 8);
-	Assertions.assertTrue(mapa.isJugado() == false);
+	Assertions.assertFalse(mapa.isJugado());
     }
 
     @Test
     @Transactional
     public void testObtenerMapas() {
 
-	cut.aniadirMapa("Desert", 9, 8, false, 7);
-	cut.aniadirMapa("Desert2", 9, 8, false, 7);
+	cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
+	cut.aniadirMapa("Desert2", 9, 8, Boolean.FALSE, 7);
 
 	List<Mapa> listaMapas = cut.obtenerMapas();
 
 	Assertions.assertFalse(listaMapas.isEmpty());
 	listaMapas.forEach((mapa) -> Assertions.assertNotNull(mapa.getId()));
+
+	Assertions.assertEquals(2, listaMapas.size());
     }
 
     // ----------------- Update ------------------
@@ -80,7 +82,7 @@ public class MapaServiceImplTest {
     @Test
     @Transactional
     public void testActualizarMapa() {
-	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
 
 	Mapa mapa = cut.obtenerMapa(idMapa);
 	mapa.setNombreMapa("Oceanic");
@@ -95,7 +97,7 @@ public class MapaServiceImplTest {
     @Test
     @Transactional
     public void testBorrarMapa() {
-	Long idMapa = cut.aniadirMapa("Desert", 9, 8, false, 7);
+	Long idMapa = cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
 
 	cut.borrarMapa(idMapa);
 
