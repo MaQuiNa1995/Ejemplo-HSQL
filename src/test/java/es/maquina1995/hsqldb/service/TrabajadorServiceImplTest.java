@@ -15,7 +15,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Trabajador;
-import es.maquina1995.hsqldb.repository.TrabajadorRepository;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
@@ -23,7 +22,6 @@ import es.maquina1995.hsqldb.repository.TrabajadorRepository;
 public class TrabajadorServiceImplTest {
 
     private TrabajadorService cut;
-    private TrabajadorRepository trabajadorRepository;
 
     // ----------------- Create ------------------
 
@@ -86,8 +84,4 @@ public class TrabajadorServiceImplTest {
 	this.cut = trabajadorService;
     }
 
-    @Autowired
-    public void setTrabajadorRepository(TrabajadorRepository trabajadorRepository) {
-	this.trabajadorRepository = trabajadorRepository;
-    }
 }

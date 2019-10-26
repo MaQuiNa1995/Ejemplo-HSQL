@@ -15,7 +15,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mapa;
-import es.maquina1995.hsqldb.repository.MapaRepository;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
@@ -23,7 +22,6 @@ import es.maquina1995.hsqldb.repository.MapaRepository;
 public class MapaServiceImplTest {
 
     private MapaService cut;
-    private MapaRepository mapaRepository;
 
     // ----------------- Create ------------------
 
@@ -90,8 +88,4 @@ public class MapaServiceImplTest {
 	this.cut = mapaService;
     }
 
-    @Autowired
-    public void setMapaRepository(MapaRepository mapaRepository) {
-	this.mapaRepository = mapaRepository;
-    }
 }

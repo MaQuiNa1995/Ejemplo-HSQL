@@ -15,7 +15,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Base;
-import es.maquina1995.hsqldb.repository.BaseRepository;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
@@ -23,7 +22,6 @@ import es.maquina1995.hsqldb.repository.BaseRepository;
 public class BaseServiceImplTest {
 
     private BaseService cut;
-    private BaseRepository baseRepository;
 
     // ----------------- Create ------------------
 
@@ -81,11 +79,6 @@ public class BaseServiceImplTest {
 	List<Base> bases = cut.obtenerBases();
 
 	Assertions.assertTrue(bases.isEmpty());
-    }
-
-    @Autowired
-    public void setBaseRepository(BaseRepository baseRepository) {
-	this.baseRepository = baseRepository;
     }
 
     @Autowired
