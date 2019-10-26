@@ -19,21 +19,17 @@ public class MapaServiceImpl implements MapaService {
     @Override
     public Long aniadirMapa(String nombreMapa, int basesMaximo, int jugadoresMaximo, boolean jugado, long idBase) {
 
-	Mapa mapa = new Mapa();
-	mapa.setNombreMapa(nombreMapa);
-	mapa.setBasesMaximo(basesMaximo);
-	mapa.setJugadoresMaximo(jugadoresMaximo);
-	mapa.setJugado(jugado);
 	Base base = baseRepository.readByPk(idBase);
-	mapa.setBase(base);
-	Mapa aniadida = aniadirMapa(mapa);
+	
+	Mapa mapaAniadir = new Mapa()
+		.setNombreMapa(nombreMapa)
+		.setBasesMaximo(basesMaximo)
+		.setJugadoresMaximo(jugadoresMaximo)
+		.setJugado(jugado)
+		.setBase(base);
 
-	return aniadida.getId();
+	return mapaRepository.persist(mapaAniadir).getId();
 
-    }
-
-    private Mapa aniadirMapa(Mapa nueva) {
-	return mapaRepository.persist(nueva);
     }
 
     @Override

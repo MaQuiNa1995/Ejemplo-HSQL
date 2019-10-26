@@ -20,17 +20,13 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 
     @Override
     public Long aniadirTrabajador(String tipoTrabajador) {
-	Trabajador trabajador = new Trabajador();
-	trabajador.setTipoTrabajador(tipoTrabajador);
+	
+	Trabajador trabajador = new Trabajador()
+		.setTipoTrabajador(tipoTrabajador);
 
-	Trabajador aniadida = aniadirTrabajador(trabajador);
-
-	return aniadida.getId();
+	return trabajadorRepository.persist(trabajador).getId();
     }
 
-    private Trabajador aniadirTrabajador(Trabajador nueva) {
-	return trabajadorRepository.persist(nueva);
-    }
 
     @Override
     public void borrarTrabajador(Long id) {
