@@ -49,8 +49,8 @@ public class Base implements Identificable<Long> {
     /**
      * Máximo de trabajadores que puede tener la base
      */
-    @Column(name = "TrabajadoresMaximo")
-    private int TrabajadoresMaximo;
+    @Column(name = "trabajadoresMaximo")
+    private int trabajadoresMaximo;
 
     /**
      * Columna que referencia a los trabajadores que posee una base
@@ -77,32 +77,36 @@ public class Base implements Identificable<Long> {
 	return cantidadMineral;
     }
 
-    public void setCantidadMineral(int cantidadMineral) {
+    public Base setCantidadMineral(int cantidadMineral) {
 	this.cantidadMineral = cantidadMineral;
+	return this;
     }
 
     public String getTipoMineral() {
 	return tipoMineral;
     }
 
-    public void setTipoMineral(String tipoMineral) {
+    public Base setTipoMineral(String tipoMineral) {
 	this.tipoMineral = tipoMineral;
+	return this;
     }
 
     public int getTrabajadoresMaximo() {
-	return TrabajadoresMaximo;
+	return trabajadoresMaximo;
     }
 
-    public void setTrabajadoresMaximo(int TrabajadoresMaximo) {
-	this.TrabajadoresMaximo = TrabajadoresMaximo;
+    public Base setTrabajadoresMaximo(int trabajadoresMaximo) {
+	this.trabajadoresMaximo = trabajadoresMaximo;
+	return this;
     }
 
     public Trabajador getTrabajador() {
 	return trabajador;
     }
 
-    public void setTrabajador(Trabajador trabajador) {
+    public Base setTrabajador(Trabajador trabajador) {
 	this.trabajador = trabajador;
+	return this;
     }
 
 }

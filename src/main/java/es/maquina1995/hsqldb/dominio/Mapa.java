@@ -71,40 +71,45 @@ public class Mapa implements Identificable<Long> {
 	return nombreMapa;
     }
 
-    public void setNombreMapa(String nombreMapa) {
+    public Mapa setNombreMapa(String nombreMapa) {
 	this.nombreMapa = nombreMapa;
+	return this;
     }
 
     public int getBasesMaximo() {
 	return basesMaximo;
     }
 
-    public void setBasesMaximo(int basesMaximo) {
+    public Mapa setBasesMaximo(int basesMaximo) {
 	this.basesMaximo = basesMaximo;
+	return this;
     }
 
     public int getJugadoresMaximo() {
 	return jugadoresMaximo;
     }
 
-    public void setJugadoresMaximo(int jugadoresMaximo) {
+    public Mapa setJugadoresMaximo(int jugadoresMaximo) {
 	this.jugadoresMaximo = jugadoresMaximo;
+	return this;
     }
 
     public Base getBase() {
 	return base;
     }
 
-    public void setBase(Base base) {
+    public Mapa setBase(Base base) {
 	this.base = base;
+	return this;
     }
 
     public boolean isJugado() {
 	return jugado;
     }
 
-    public void setJugado(boolean jugado) {
+    public Mapa setJugado(boolean jugado) {
 	this.jugado = jugado;
+	return this;
     }
 
 }

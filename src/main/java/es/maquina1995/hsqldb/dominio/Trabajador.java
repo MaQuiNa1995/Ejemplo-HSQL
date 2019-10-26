@@ -52,8 +52,9 @@ public class Trabajador implements Identificable<Long> {
 	return tipoTrabajador;
     }
 
-    public void setTipoTrabajador(String tipoTrabajador) {
+    public Trabajador setTipoTrabajador(String tipoTrabajador) {
 	this.tipoTrabajador = tipoTrabajador;
+	return this;
     }
 
 }

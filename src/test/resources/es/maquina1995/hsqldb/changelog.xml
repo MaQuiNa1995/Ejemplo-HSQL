@@ -26,7 +26,7 @@
 			</column>
 			<column name="cantidadMineral" type="VARCHAR(20)" />
 			<column name="tipoMineral" type="VARCHAR(20)" />
-			<column name="TrabajadoresMaximo" type="INT(2)" />
+			<column name="trabajadoresMaximo" type="INT(2)" />
 			<column name="FK_TRABAJADOR_IDTRABAJADOR" type="INT(10)" />
 		</createTable>
 
