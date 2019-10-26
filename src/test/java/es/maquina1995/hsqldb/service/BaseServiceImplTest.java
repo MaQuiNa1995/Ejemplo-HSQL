@@ -56,7 +56,7 @@ public class BaseServiceImplTest {
 	Base base = cut.obtenerBase(idBase);
 
 	Assertions.assertNotNull(base.getId());
-	Assertions.assertTrue(base.getTipoMineral().equalsIgnoreCase("VespenoObtener"));
+	Assertions.assertEquals("Vespeno", base.getTipoMineral());
 	Assertions.assertTrue(base.getCantidadMineral() == 10);
 	Assertions.assertTrue(base.getTrabajadoresMaximo() == 5);
     }
@@ -86,7 +86,7 @@ public class BaseServiceImplTest {
 
 	Base baseMod = cut.actualizarBase(base);
 
-	Assertions.assertTrue(baseMod.getTipoMineral().equalsIgnoreCase("Cristal"));
+	Assertions.assertEquals("Cristal", baseMod.getTipoMineral());
     }
 
     // ----------------- Delete ------------------
@@ -99,7 +99,7 @@ public class BaseServiceImplTest {
 	List<Base> listaBasesBd = cut.obtenerBases();
 
 	Assertions.assertFalse(listaBasesBd.isEmpty());
-	Assertions.assertEquals(2, listaBasesBd.size());
+	Assertions.assertEquals(1, listaBasesBd.size());
 
 	cut.borrarBase(idBase);
 	Assertions.assertTrue(cut.obtenerBases().isEmpty());

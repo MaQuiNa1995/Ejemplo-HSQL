@@ -89,7 +89,7 @@ public class MapaServiceImplTest {
 
 	Mapa mapaMod = cut.actualizarMapa(mapa);
 
-	Assertions.assertTrue(mapaMod.getNombreMapa().equalsIgnoreCase("Oceanic"));
+	Assertions.assertEquals("Oceanic", mapaMod.getNombreMapa());
     }
 
     // ----------------- Delete ------------------
@@ -99,9 +99,15 @@ public class MapaServiceImplTest {
     public void testBorrarMapa() {
 	Long idMapa = cut.aniadirMapa("Desert", 9, 8, Boolean.FALSE, 7);
 
+	List<Mapa> mapas = cut.obtenerMapas();
+
+	Assertions.assertEquals(1, mapas.size());
+
 	cut.borrarMapa(idMapa);
 
-	List<Mapa> mapas = cut.obtenerMapas();
+	// Se vuelve a llamar a obtenerMapas para recoger la lista de entidades despues
+	// del delete
+	mapas = cut.obtenerMapas();
 
 	Assertions.assertTrue(mapas.isEmpty());
     }
