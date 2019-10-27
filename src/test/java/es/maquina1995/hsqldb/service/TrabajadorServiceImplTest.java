@@ -55,7 +55,7 @@ public class TrabajadorServiceImplTest {
 	Trabajador trabajador = cut.obtenerTrabajador(idTrabajador);
 	trabajador.setTipoTrabajador("Sonda2");
 
-	Trabajador trabajadorMod = cut.obtenerTrabajador(idTrabajador);
+	Trabajador trabajadorMod = cut.actualizarTrabajador(trabajador);
 
 	Assertions.assertEquals("Sonda2", trabajadorMod.getTipoTrabajador());
     }

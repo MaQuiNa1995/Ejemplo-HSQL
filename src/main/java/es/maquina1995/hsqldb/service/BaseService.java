@@ -8,7 +8,7 @@ public interface BaseService {
 
     public Base actualizarBase(Base modificada);
 
-    public Long aniadirBase(int cantidadMineral, String tipoMineral, int TrabajadoresMaximo, long idTrabajador);
+    public Long aniadirBase(int cantidadMineral, String tipoMineral, int trabajadoresMaximo, long idTrabajador);
 
     public void borrarBase(Long id);
 
