@@ -20,14 +20,14 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public T readByPk(K id) {
 	return entityManager.find(getClassDeT(), id);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
     public List<T> findAll() {
 	return entityManager.createNativeQuery("SELECT * FROM " + getNombreTabla(), getClassDeT()).getResultList();
     }
@@ -48,7 +48,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
     @Override
     @Transactional
     public T merge(T modificado) {
-	return  entityManager.merge(modificado);
+	return entityManager.merge(modificado);
     }
 
     public EntityManager getEntityManager() {
