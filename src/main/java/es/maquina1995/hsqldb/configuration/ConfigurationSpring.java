@@ -67,29 +67,35 @@ public class ConfigurationSpring {
      * Bean que representa la clase encargada de las transacciones en la base de
      * datos
      * 
+     * @param dataSource {@link DataSource} bean que representa la conexión a la
+     *                   base de datos
+     * 
      * @return {@link JpaTransactionManager} encargado de las transaciones en la
      *         base de datos
      */
     @Bean
-    public JpaTransactionManager jpaTransactionManager() {
+    public JpaTransactionManager jpaTransactionManager(DataSource dataSource) {
 	JpaTransactionManager transactionManager = new JpaTransactionManager();
-	transactionManager.setDataSource(dataSource());
-	transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
+	transactionManager.setDataSource(dataSource);
+	transactionManager.setEntityManagerFactory(entityManagerFactoryBean(dataSource).getObject());
 	return transactionManager;
     }
 
     /**
      * Bean encargado de la persistencia usando el dominio
      * 
+     * @param dataSource {@link DataSource} bean que representa la conexión a la
+     *                   base de datos
+     * 
      * @return {@link LocalContainerEntityManagerFactoryBean} objeto encargado de la
      *         persistencia en base de datos
      */
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
 
 	LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-	entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());
-	entityManagerFactoryBean.setDataSource(dataSource());
+	entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter());
+	entityManagerFactoryBean.setDataSource(dataSource);
 	entityManagerFactoryBean.setPersistenceUnitName("MaQuiNaPersistenceUnit");
 	// Clase encargada de la persistencia
 	entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
@@ -107,7 +113,7 @@ public class ConfigurationSpring {
      * @return {@link HibernateJpaVendorAdapter} Objeto que contiene las propieades
      *         adicionales que podemos usar en jpa/hibernate
      */
-    private HibernateJpaVendorAdapter vendorAdaptor() {
+    private HibernateJpaVendorAdapter vendorAdapter() {
 	HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	// Indicamos si en el log nos saldrán las sentencias que se vayan ejecutando (En
 	// entornos de producción esto debería de estar a FALSE)
