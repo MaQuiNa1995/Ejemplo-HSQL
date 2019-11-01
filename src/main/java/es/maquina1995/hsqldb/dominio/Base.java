@@ -1,5 +1,6 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import es.maquina1995.hsqldb.repository.Identificable;
+import es.maquina1995.hsqldb.repository.Persistible;
 
 /**
  * Entidad que tiene la información referente a las bases que tiene un Mapa
@@ -22,7 +23,7 @@ import es.maquina1995.hsqldb.repository.Identificable;
  */
 @Entity
 @Table(name = "BASE")
-public class Base implements Identificable<Long> {
+public class Base implements Persistible<Long> {
 
     /**
      *
@@ -63,7 +64,7 @@ public class Base implements Identificable<Long> {
      */
     @JoinColumn(name = "FK_TRABAJADOR_IDTRABAJADOR")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Trabajador trabajador;
+    private List<Trabajador>  listaTrabajadores;
 
     @Override
     public Long getId() {
@@ -102,18 +103,18 @@ public class Base implements Identificable<Long> {
 	return this;
     }
 
-    public Trabajador getTrabajador() {
-	return trabajador;
+    public List<Trabajador> getListaTrabajadores() {
+	return listaTrabajadores;
     }
 
-    public Base setTrabajador(Trabajador trabajador) {
-	this.trabajador = trabajador;
+    public Base setListaTrabajadores(List<Trabajador> listaTrabajadores) {
+	this.listaTrabajadores = listaTrabajadores;
 	return this;
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(cantidadMineral, tipoMineral, trabajador, trabajadoresMaximo);
+	return Objects.hash(cantidadMineral, tipoMineral, listaTrabajadores, trabajadoresMaximo);
     }
 
     @Override
@@ -126,7 +127,7 @@ public class Base implements Identificable<Long> {
 	    return false;
 	Base other = (Base) obj;
 	return cantidadMineral == other.cantidadMineral && Objects.equals(tipoMineral, other.tipoMineral)
-		&& Objects.equals(trabajador, other.trabajador) && trabajadoresMaximo == other.trabajadoresMaximo;
+		&& Objects.equals(listaTrabajadores, other.listaTrabajadores) && trabajadoresMaximo == other.trabajadoresMaximo;
     }
 
 }

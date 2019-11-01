@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import es.maquina1995.hsqldb.repository.Identificable;
+import es.maquina1995.hsqldb.repository.Persistible;
 
 /**
  * Entidad que tiene la información referente a los Mapas
@@ -22,7 +22,7 @@ import es.maquina1995.hsqldb.repository.Identificable;
  */
 @Entity
 @Table(name = "MAPA")
-public class Mapa implements Identificable<Long> {
+public class Mapa implements Persistible<Long> {
 
     /**
      *

@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class CrudRepositoryImpl<K extends Number, T extends Identificable<K>> implements CrudRepository<K, T> {
+public abstract class CrudRepositoryImpl<K extends Number, T extends Persistible<K>> implements CrudRepository<K, T> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -51,7 +51,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Identificab
 	return entityManager.merge(modificado);
     }
 
-    public EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
 	return entityManager;
     }
 }
