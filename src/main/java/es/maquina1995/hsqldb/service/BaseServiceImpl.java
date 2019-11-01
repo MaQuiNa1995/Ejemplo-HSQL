@@ -17,15 +17,15 @@ public class BaseServiceImpl implements BaseService {
     private TrabajadorRepository trabajadorRepository;
 
     @Override
-    public Long aniadirBase(int cantidadMineral, String tipoMineral, int trabajadoresMaximo, long... idTrabajadores) {
+    public Long aniadirBase(int cantidadMineral, String tipoMineral, int trabajadoresMaximo, long idTrabajador) {
 
-	List<Trabajador> listaTrabajadores = trabajadorRepository.findTrabajadoresByPk(idTrabajadores);
+	Trabajador trabajador = trabajadorRepository.readByPk(idTrabajador);
 
 	Base baseAniadir = new Base()
 		.setCantidadMineral(cantidadMineral)
 		.setTipoMineral(tipoMineral)
 		.setTrabajadoresMaximo(trabajadoresMaximo)
-		.setListaTrabajadores(listaTrabajadores);
+		.setTrabajador(trabajador);
 
 	return baseRepository.persist(baseAniadir).getId();
     }

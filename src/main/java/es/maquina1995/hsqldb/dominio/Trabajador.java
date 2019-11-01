@@ -9,10 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NamedQuery;
-
-import es.maquina1995.hsqldb.repository.Persistible;
-import es.maquina1995.hsqldb.repository.TrabajadorRepositoryImpl;
+import es.maquina1995.hsqldb.repository.Identificable;
 
 /**
  * Entidad que tiene la información referente a los trabajadores que tiene una
@@ -23,8 +20,7 @@ import es.maquina1995.hsqldb.repository.TrabajadorRepositoryImpl;
  */
 @Entity
 @Table(name = "TRABAJADOR")
-@NamedQuery(name = TrabajadorRepositoryImpl.FIND_TRABAJADORES_BY_PK, query = "SELECT tra FROM TRABAJADOR WHERE tra.idTrabajador IN :arrayId", comment = "Query para leer todos los nombres de los usuarios registrados")
-public class Trabajador implements Persistible<Long> {
+public class Trabajador implements Identificable<Long> {
 
     /**
      *
@@ -77,7 +73,8 @@ public class Trabajador implements Persistible<Long> {
 	if (getClass() != obj.getClass())
 	    return false;
 	Trabajador other = (Trabajador) obj;
-	return Objects.equals(tipoTrabajador, other.tipoTrabajador);
+	return  Objects.equals(tipoTrabajador, other.tipoTrabajador);
     }
 
+    
 }

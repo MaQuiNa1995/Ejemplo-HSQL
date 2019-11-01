@@ -41,7 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @ExtendWith(SpringExtension.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-public abstract class CrudRepositoryImplTest<K extends Number, T extends Persistible<K>> {
+public abstract class CrudRepositoryImplTest<K extends Number, T extends Identificable<K>> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -122,7 +122,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 
 	getRepository().deleteByPk(clavePrimaria);
 
-	Persistible<?> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+	Identificable<?> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
 	Assertions.assertNull(objetoBd);
     }

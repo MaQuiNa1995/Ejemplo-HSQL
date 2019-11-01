@@ -2,7 +2,7 @@ package es.maquina1995.hsqldb.repository;
 
 import java.util.List;
 
-public interface CrudRepository<K extends Number, T extends Persistible<K>> {
+public interface CrudRepository<K extends Number, T extends Identificable<K>> {
 
     T persist(T nuevo);
 
