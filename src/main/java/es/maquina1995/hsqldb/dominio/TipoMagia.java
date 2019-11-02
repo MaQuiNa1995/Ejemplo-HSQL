@@ -1,12 +1,16 @@
 package es.maquina1995.hsqldb.dominio;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.Persistible;
 
+@Entity
+@Table(name = "TIPO_MAGIA")
 public class TipoMagia implements Persistible<Long> {
 
     /**
