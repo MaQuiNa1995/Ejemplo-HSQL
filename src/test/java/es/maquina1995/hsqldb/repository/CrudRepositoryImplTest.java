@@ -15,6 +15,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.maquina1995.hsqldb.dominio.Persistible;
+
 /**
  * Clase de test genérica para hacer test al vuelo de método tipicos de un CRUD
  * <p>

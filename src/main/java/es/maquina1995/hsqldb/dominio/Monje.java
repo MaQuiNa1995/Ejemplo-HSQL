@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import es.maquina1995.hsqldb.repository.Persistible;
-
 @Entity
 @Table(name = "MONJE")
 public class Monje implements Persistible<Long> {

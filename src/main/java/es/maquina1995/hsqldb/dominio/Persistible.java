@@ -1,4 +1,4 @@
-package es.maquina1995.hsqldb.repository;
+package es.maquina1995.hsqldb.dominio;
 
 import java.io.Serializable;
 

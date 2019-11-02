@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.MagoRepositoryImpl;
-import es.maquina1995.hsqldb.repository.Persistible;
 
 @Entity
 @Table(name = MagoRepositoryImpl.TABLA)
