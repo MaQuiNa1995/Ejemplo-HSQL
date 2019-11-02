@@ -22,8 +22,8 @@ public class Rango implements Persistible<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "NOMBRE")
-    private String nombre;
+    @Column(name = "RANGO")
+    private int alcance;
 
     @Override
     public Long getId() {
@@ -35,12 +35,12 @@ public class Rango implements Persistible<Long> {
 	this.id = id;
     }
 
-    public String getNombre() {
-	return nombre;
+    public int getAlcance() {
+	return alcance;
     }
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
+    public void setAlcances(int alcance) {
+	this.alcance = alcance;
     }
 
 }
