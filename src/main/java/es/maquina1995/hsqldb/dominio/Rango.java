@@ -25,7 +25,7 @@ public class Rango implements Persistible<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "RANGO")
+    @Column(name = "ALCANCE")
     private int alcance;
 
     @OneToOne(mappedBy = "rango", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
