@@ -2,9 +2,10 @@ package es.maquina1995.hsqldb.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.Persistible;
@@ -19,11 +20,14 @@ public class TipoMagia implements Persistible<Long> {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "NOMBRE")
     private String nombre;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private Mago mago;
 
     @Override
     public Long getId() {
@@ -33,6 +37,14 @@ public class TipoMagia implements Persistible<Long> {
     @Override
     public void setId(Long id) {
 	this.id = id;
+    }
+
+    public Mago getMago() {
+        return mago;
+    }
+
+    public void setMago(Mago mago) {
+        this.mago = mago;
     }
 
     public String getNombre() {
