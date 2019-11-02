@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.repository;
 
-public interface MagoRepository {
+import es.maquina1995.hsqldb.dominio.Mago;
+
+public interface MagoRepository extends CrudRepository<Long, Mago>{
 
 }

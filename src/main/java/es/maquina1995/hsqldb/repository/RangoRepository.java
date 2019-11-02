@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.repository;
 
-public interface RangoRepository {
+import es.maquina1995.hsqldb.dominio.Rango;
+
+public interface RangoRepository  extends CrudRepository<Long, Rango>{
 
 }

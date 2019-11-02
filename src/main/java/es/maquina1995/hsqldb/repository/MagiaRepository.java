@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.repository;
 
-public interface MagiaRepository {
+import es.maquina1995.hsqldb.dominio.Magia;
+
+public interface MagiaRepository  extends CrudRepository<Long, Magia>{
 
 }
