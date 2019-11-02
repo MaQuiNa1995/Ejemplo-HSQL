@@ -10,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import es.maquina1995.hsqldb.repository.MagiaRepositoryImpl;
 import es.maquina1995.hsqldb.repository.Persistible;
 
 @Entity
-@Table(name = "MAGIA")
+@Table(name = MagiaRepositoryImpl.TABLA)
 public class Magia implements Persistible<Long> {
 
     /**

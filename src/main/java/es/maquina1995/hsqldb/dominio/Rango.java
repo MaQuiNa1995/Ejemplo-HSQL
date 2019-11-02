@@ -11,9 +11,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.Persistible;
+import es.maquina1995.hsqldb.repository.RangoRepositoryImpl;
 
 @Entity
-@Table(name = "RANGO")
+@Table(name = RangoRepositoryImpl.TABLA)
 public class Rango implements Persistible<Long> {
 
     /**
