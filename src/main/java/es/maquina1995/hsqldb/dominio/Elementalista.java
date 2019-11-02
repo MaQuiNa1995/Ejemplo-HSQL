@@ -1,5 +1,6 @@
 package es.maquina1995.hsqldb.dominio;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,9 @@ public class Elementalista implements Persistible<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "NOMBRE")
+    private String nombre;
 
     @Override
     public Long getId() {
@@ -27,5 +31,12 @@ public class Elementalista implements Persistible<Long> {
 	this.id = id;
     }
 
+    public String getNombre() {
+	return nombre;
+    }
+
+    public void setNombre(String nombre) {
+	this.nombre = nombre;
+    }
 
 }
