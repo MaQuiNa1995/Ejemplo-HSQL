@@ -23,6 +23,7 @@ public class Rango implements Persistible<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_RANGO")
     private Long id;
 
     @Column(name = "ALCANCE")

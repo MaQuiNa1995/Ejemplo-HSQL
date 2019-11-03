@@ -15,6 +15,7 @@ import es.maquina1995.hsqldb.dominio.Tecnica;
 public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica> {
 
     private TecnicaRepository cut;
+    private RangoRepository rangoRepository;
 
     @Override
     public CrudRepository<Long, Tecnica> getRepository() {
@@ -41,6 +42,7 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
 	
 	Rango rango = new Rango();
 	rango.setAlcanceMaximo(1);
+	rangoRepository.persist(rango);
 	
 	tecnica.setRango(rango);
 	
@@ -73,6 +75,11 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
     @Autowired
     public void setMagiaRepository(TecnicaRepository sut) {
 	this.cut = sut;
+    }
+    
+    @Autowired
+    public void setRangoRepository(RangoRepository rangoRepository) {
+        this.rangoRepository = rangoRepository;
     }
 }    
    

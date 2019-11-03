@@ -23,13 +23,14 @@ public class Tecnica implements Persistible<Long> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "ID_TECNICA")
     private Long id;
     
     @Column(name = "NOMBRE")
     private String nombre;
     
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RANGO_ID")
+    @JoinColumn(name = "ID_RANGO")
     private Rango rango;
 
     @Override
