@@ -23,6 +23,7 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
     @Override
     public Mago getInstanceDeTParaNuevo() {
 	Mago mago = new Mago();
+	mago.setNombre("Mago Negro");
 	
 	return mago;
     }
@@ -30,7 +31,7 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
     @Override
     public Mago getInstanceDeTParaLectura() {
 	Mago mago = new Mago();
-
+	mago.setNombre("Mago Negro");
 	return mago;
     }
 
@@ -46,14 +47,15 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 
     @Override
     public Mago getInstanceDeTParaModificar(Long clave) {
-	Mago trabajador = getInstanceDeTParaLectura();
-	trabajador.setId(clave);
-	return trabajador;
+	Mago mago = getInstanceDeTParaLectura();
+	mago.setId(clave);
+	mago.setNombre("Mago Negro");
+
+	return mago;
     }
 
     @Autowired
     public void setMagoRepository(MagoRepository sut) {
 	this.cut = sut;
     }
-}    
-   
+}

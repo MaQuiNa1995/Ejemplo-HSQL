@@ -5,55 +5,61 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 			http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-	<changeSet author="usuario (generated)" id="1400847488681-1">
+	<changeSet author="usuario (generated)" id="Relaciones 1:1">
 
-		<createTable catalogName="maquina1995" tableName="MAPA"
-			remarks="Contiene todos los mapas del juego">
-			<column autoIncrement="true" name="idMapa" type="INT(10)">
+		<!-- Tablas con relaciones 1:1 -->
+
+		<!-- Grupo 1 -->
+		<createTable catalogName="maquina1995" tableName="MAGO">
+			<column autoIncrement="true" name="ID_MAGO" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="nombreMapa" type="VARCHAR(20)" />
-			<column name="basesMaximo" type="INT(1)" />
-			<column name="jugadoresMaximo" type="INT(1)" />
-			<column name="jugado" type="BOOLEAN" />
-			<column name="FK_BASE_IDBASE" type="INT(10)" />
+			<column name="NOMBRE" type="VARCHAR(15)" />
 		</createTable>
 
-		<createTable catalogName="maquina1995" tableName="BASE"
-			remarks="Contiene las bases creadas que tiene cada mapa del juego">
-			<column autoIncrement="true" name="idBase" type="INT(10)">
+		<createTable catalogName="maquina1995" tableName="TIPO_MAGIA">
+			<column autoIncrement="true" name="id" type="INT(10)">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="cantidadMineral" type="VARCHAR(20)" />
-			<column name="tipoMineral" type="VARCHAR(20)" />
-			<column name="trabajadoresMaximo" type="INT(2)" />
-			<column name="FK_TRABAJADOR_IDTRABAJADOR" type="INT(10)" />
+			<column name="NOMBRE" type="VARCHAR(20)" />
 		</createTable>
+		
+<!-- 		<addForeignKeyConstraint -->
+<!-- 			constraintName="fk_idBase" -->
+			
+<!-- 			referencedTableName="Base" -->
+<!-- 			baseColumnNames="FK_BASE_IDBASE" -->
+			
+<!-- 			baseTableName="Mapa" -->
+<!-- 			referencedColumnNames="idBase" /> -->
 
-		<createTable catalogName="maquina1995"
-			tableName="TRABAJADOR"
-			remarks="Contiene todos los trabajadores que tienen las bases">
+		<!-- Grupo 2 -->
+		<!-- <createTable catalogName="maquina1995" tableName="TECNICA"> -->
+		<!-- <column autoIncrement="true" name="ID" type="INT(10)"> -->
+		<!-- <constraints primaryKey="true" /> -->
+		<!-- </column> -->
+		<!-- <column name="NOMBRE" type="VARCHAR(20)" /> -->
+		<!-- </createTable> -->
 
-			<column autoIncrement="true" name="idTrabajador"
-				type="INT(10)">
-				<constraints primaryKey="true" />
-			</column>
-			<column name="tipoTrabajador" type="VARCHAR(12)" />
-		</createTable>
+		<!-- <createTable catalogName="maquina1995" tableName="RANGO"> -->
+		<!-- <column autoIncrement="true" name="ID" type="INT(10)"> -->
+		<!-- <constraints primaryKey="true" /> -->
+		<!-- </column> -->
+		<!-- <column name="ALCANCE" type="INT(1)" /> -->
+		<!-- </createTable> -->
+
+		<!-- Tablas Con relaciones 1:N -->
+
+		<!-- Tablas Con relaciones N:M -->
+
 	</changeSet>
 
-	<changeSet author="usuario (generated)" id="1400847488682-1">
-		<addForeignKeyConstraint
-			constraintName="fk_idBase" referencedTableName="Base"
-			baseColumnNames="FK_BASE_IDBASE" baseTableName="Mapa"
-			referencedColumnNames="idBase" />
-	</changeSet>
 
-	<changeSet author="usuario (generated)" id="1400847488683-1">
-		<addForeignKeyConstraint
-			constraintName="fk_idTrabajador" referencedTableName="Trabajador"
-			baseColumnNames="FK_TRABAJADOR_IDTRABAJADOR" baseTableName="Base"
-			referencedColumnNames="idTrabajador" />
-	</changeSet>
+	<!-- <changeSet author="usuario (generated)" id="1400847488683-1"> -->
+	<!-- <addForeignKeyConstraint -->
+	<!-- constraintName="fk_idTrabajador" referencedTableName="Trabajador" -->
+	<!-- baseColumnNames="FK_TRABAJADOR_IDTRABAJADOR" baseTableName="Base" -->
+	<!-- referencedColumnNames="idTrabajador" /> -->
+	<!-- </changeSet> -->
 
 </databaseChangeLog>

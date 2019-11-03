@@ -7,6 +7,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
+import es.maquina1995.hsqldb.dominio.Mago;
 import es.maquina1995.hsqldb.dominio.TipoMagia;
 
 @ExtendWith(SpringExtension.class)
@@ -23,6 +24,12 @@ public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMa
     @Override
     public TipoMagia getInstanceDeTParaNuevo() {
 	TipoMagia tipoMagia = new TipoMagia();
+	tipoMagia.setNombre("Magia Roja");
+	
+	Mago mago = new Mago();
+	mago.setNombre("Mago Rojo");
+	
+	tipoMagia.setMago(mago);
 	
 	return tipoMagia;
     }
@@ -30,7 +37,13 @@ public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMa
     @Override
     public TipoMagia getInstanceDeTParaLectura() {
 	TipoMagia tipoMagia = new TipoMagia();
-
+	tipoMagia.setNombre("Magia Roja");
+	
+	Mago mago = new Mago();
+	mago.setNombre("Mago Rojo");
+	
+	tipoMagia.setMago(mago);
+	
 	return tipoMagia;
     }
 
@@ -46,9 +59,18 @@ public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMa
 
     @Override
     public TipoMagia getInstanceDeTParaModificar(Long clave) {
-	TipoMagia trabajador = getInstanceDeTParaLectura();
-	trabajador.setId(clave);
-	return trabajador;
+	TipoMagia tipoMagia = new TipoMagia();
+
+	tipoMagia.setId(clave);
+	tipoMagia.setNombre("Magia Roja");
+	
+	Mago mago = new Mago();
+	mago.setId(clave);
+	mago.setNombre("Mago Rojo");
+	
+	tipoMagia.setMago(mago);
+	
+	return tipoMagia;
     }
 
     @Autowired
