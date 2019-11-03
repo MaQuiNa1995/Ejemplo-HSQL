@@ -8,6 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Rango;
+import es.maquina1995.hsqldb.dominio.Tecnica;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
@@ -23,6 +24,12 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
     @Override
     public Rango getInstanceDeTParaNuevo() {
 	Rango rango = new Rango();
+	rango.setAlcanceMaximo(5);
+	
+	Tecnica tecnica = new Tecnica();
+	tecnica.setNombre("Imitar");
+	
+	rango.setTecnica(tecnica);
 	
 	return rango;
     }
@@ -30,7 +37,13 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
     @Override
     public Rango getInstanceDeTParaLectura() {
 	Rango rango = new Rango();
-
+	rango.setAlcanceMaximo(5);
+	
+	Tecnica tecnica = new Tecnica();
+	tecnica.setNombre("Imitar");
+	
+	rango.setTecnica(tecnica);
+	
 	return rango;
     }
 
@@ -46,9 +59,15 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 
     @Override
     public Rango getInstanceDeTParaModificar(Long clave) {
-	Rango trabajador = getInstanceDeTParaLectura();
-	trabajador.setId(clave);
-	return trabajador;
+	Rango rango = new Rango();
+	rango.setAlcanceMaximo(5);
+	
+	Tecnica tecnica = new Tecnica();
+	tecnica.setNombre("Imitar");
+	
+	rango.setTecnica(tecnica);
+	
+	return rango;
     }
 
     @Autowired
