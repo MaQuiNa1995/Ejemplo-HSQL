@@ -2,16 +2,16 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.stereotype.Repository;
 
-import es.maquina1995.hsqldb.dominio.Magia;
+import es.maquina1995.hsqldb.dominio.Tecnica;
 
 @Repository
-public class MagiaRepositoryImpl extends CrudRepositoryImpl<Long, Magia> implements MagiaRepository {
+public class TecnicaRepositoryImpl extends CrudRepositoryImpl<Long, Tecnica> implements TecnicaRepository {
 
-    public static final String TABLA = "MAGIA";
+    public static final String TABLA = "TECNICA";
 
     @Override
-    public Class<Magia> getClassDeT() {
-	return Magia.class;
+    public Class<Tecnica> getClassDeT() {
+	return Tecnica.class;
     }
 
     /**
