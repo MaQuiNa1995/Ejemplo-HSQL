@@ -26,10 +26,10 @@ public class Rango implements Persistible<Long> {
     private Long id;
 
     @Column(name = "ALCANCE")
-    private int alcance;
+    private int alcanceMaximo;
 
     @OneToOne(mappedBy = "rango", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private Magia magia;
+    private Tecnica tecnica;
 
     @Override
     public Long getId() {
@@ -41,20 +41,20 @@ public class Rango implements Persistible<Long> {
 	this.id = id;
     }
 
-    public Magia getMagia() {
-        return magia;
+    public Tecnica getTecnica() {
+        return tecnica;
     }
 
-    public void setMagia(Magia magia) {
-        this.magia = magia;
+    public void setTecnica(Tecnica tecnica) {
+        this.tecnica = tecnica;
     }
 
-    public int getAlcance() {
-	return alcance;
+    public int getAlcanceMaximo() {
+	return alcanceMaximo;
     }
 
-    public void setAlcances(int alcance) {
-	this.alcance = alcance;
+    public void setAlcanceMaximo(int alcanceMaximo) {
+	this.alcanceMaximo = alcanceMaximo;
     }
 
 }

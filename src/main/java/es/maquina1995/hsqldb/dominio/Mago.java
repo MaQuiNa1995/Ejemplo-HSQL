@@ -1,13 +1,12 @@
 package es.maquina1995.hsqldb.dominio;
 
-import javax.persistence.CascadeType;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.repository.MagoRepositoryImpl;
@@ -23,13 +22,11 @@ public class Mago implements Persistible<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_MAGO")
     private Long id;
 
     @Column(name = "NOMBRE")
     private String nombre;
-
-    @OneToOne(mappedBy = "mago", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private TipoMagia tipoMagia;
 
     @Override
     public Long getId() {
@@ -41,14 +38,6 @@ public class Mago implements Persistible<Long> {
 	this.id = id;
     }
 
-    public TipoMagia getTipoMagia() {
-	return tipoMagia;
-    }
-
-    public void setTipoMagia(TipoMagia tipoMagia) {
-	this.tipoMagia = tipoMagia;
-    }
-
     public String getNombre() {
 	return nombre;
     }
@@ -56,5 +45,24 @@ public class Mago implements Persistible<Long> {
     public void setNombre(String nombre) {
 	this.nombre = nombre;
     }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(nombre);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Mago other = (Mago) obj;
+	return Objects.equals(nombre, other.nombre);
+    }
+    
+    
 
 }
