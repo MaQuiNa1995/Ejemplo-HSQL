@@ -78,6 +78,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 
 	T resultado = getRepository().readByPk(clavePrimaria);
 
+	Assertions.assertNotNull(resultado);
 	Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
     }
 
@@ -122,6 +123,8 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
     public void testDelete() {
 	K clavePrimaria = generaDatoLectura();
 
+	Assertions.assertFalse(getRepository().findAll().isEmpty());
+	
 	getRepository().deleteByPk(clavePrimaria);
 
 	Persistible<?> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
