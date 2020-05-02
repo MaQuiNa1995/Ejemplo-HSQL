@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -22,16 +21,16 @@ public class Tecnica implements Persistible<Long> {
      * 
      */
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name= "ID_TECNICA")
+    @Column(name = "ID_TECNICA")
     private Long id;
-    
+
     @Column(name = "NOMBRE")
     private String nombre;
-    
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_RANGO")
     private Rango rango;
@@ -45,12 +44,13 @@ public class Tecnica implements Persistible<Long> {
     public void setId(Long id) {
 	this.id = id;
     }
+
     public Rango getRango() {
-        return rango;
+	return rango;
     }
 
     public void setRango(Rango rango) {
-        this.rango = rango;
+	this.rango = rango;
     }
 
     public String getNombre() {

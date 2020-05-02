@@ -34,8 +34,8 @@ public class TipoMagia implements Persistible<Long> {
     @Column(name = "NOMBRE")
     private String nombre;
 
-    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private Mago mago;
 
@@ -81,6 +81,5 @@ public class TipoMagia implements Persistible<Long> {
 	TipoMagia other = (TipoMagia) obj;
 	return Objects.equals(mago, other.mago) && Objects.equals(nombre, other.nombre);
     }
-
 
 }

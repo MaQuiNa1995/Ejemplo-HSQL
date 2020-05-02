@@ -4,17 +4,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.dominio.Persistible;
 
 /**
@@ -36,6 +37,7 @@ import es.maquina1995.hsqldb.dominio.Persistible;
  * @param <T> Genérico que representa un objeto que esté anotado con {@link Entity}
  */
 @ExtendWith ( SpringExtension.class )
+@ContextConfiguration ( classes = { ConfigurationSpring.class } )
 @TestExecutionListeners ( { DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class } )
 public abstract class CrudRepositoryImplTest <	K extends Number,
 												T extends Persistible < K > >
@@ -86,7 +88,7 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 	{
 		K clavePrimaria = getClavePrimariaNoExistente ( );
 
-		Assertions.assertThrows ( PersistenceException.class, ( ) -> getRepository ( ).readByPk ( clavePrimaria ) );
+		Assertions.assertNull ( getRepository ( ).readByPk ( clavePrimaria ) );
 
 	}
 
@@ -144,7 +146,7 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 		return instancia.getId ( );
 	}
 
-	public EntityManager getEntityManager ( )
+	protected EntityManager getEntityManager ( )
 	{
 		return entityManager;
 	}

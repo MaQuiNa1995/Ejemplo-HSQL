@@ -53,7 +53,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends Persistible
 	return entityManager.merge(modificado);
     }
 
-    public EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
 	return entityManager;
     }
 }

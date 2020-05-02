@@ -1,80 +1,82 @@
 package es.maquina1995.hsqldb.repository;
 
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.dominio.Mago;
 import es.maquina1995.hsqldb.dominio.TipoMagia;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class})
-public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMagia> {
+public class TipoMagiaRepositoryTest
+		extends CrudRepositoryImplTest < Long, TipoMagia >
+{
 
-    private TipoMagiaRepository cut;
+	private TipoMagiaRepository cut;
 
-    @Override
-    public CrudRepository<Long, TipoMagia> getRepository() {
-	return cut;
-    }
+	@Override
+	public CrudRepository < Long, TipoMagia > getRepository ( )
+	{
+		return cut;
+	}
 
-    @Override
-    public TipoMagia getInstanceDeTParaNuevo() {
-	TipoMagia tipoMagia = new TipoMagia();
-	tipoMagia.setNombre("Magia Roja");
-	
-	Mago mago = new Mago();
-	mago.setNombre("Mago Rojo");
-	
-	tipoMagia.setMago(mago);
-	
-	return tipoMagia;
-    }
+	@Override
+	public TipoMagia getInstanceDeTParaNuevo ( )
+	{
+		TipoMagia tipoMagia = new TipoMagia ( );
+		tipoMagia.setNombre ( "Magia Roja" );
 
-    @Override
-    public TipoMagia getInstanceDeTParaLectura() {
-	TipoMagia tipoMagia = new TipoMagia();
-	tipoMagia.setNombre("Magia Roja");
-	
-	Mago mago = new Mago();
-	mago.setNombre("Mago Rojo");
-	
-	tipoMagia.setMago(mago);
-	
-	return tipoMagia;
-    }
+		Mago mago = new Mago ( );
+		mago.setNombre ( "Mago Rojo" );
 
-    @Override
-    public boolean sonDatosIguales(TipoMagia tipoMagia1, TipoMagia tipoMagia2) {
-	return tipoMagia1.equals(tipoMagia2);
-    }
+		tipoMagia.setMago ( mago );
 
-    @Override
-    public Long getClavePrimariaNoExistente() {
-	return Long.MAX_VALUE;
-    }
+		return tipoMagia;
+	}
 
-    @Override
-    public TipoMagia getInstanceDeTParaModificar(Long clave) {
-	TipoMagia tipoMagia = new TipoMagia();
+	@Override
+	public TipoMagia getInstanceDeTParaLectura ( )
+	{
+		TipoMagia tipoMagia = new TipoMagia ( );
+		tipoMagia.setNombre ( "Magia Roja" );
 
-	tipoMagia.setId(clave);
-	tipoMagia.setNombre("Magia Roja");
-	
-	Mago mago = new Mago();
-	mago.setId(clave);
-	mago.setNombre("Mago Rojo");
-	
-	tipoMagia.setMago(mago);
-	
-	return tipoMagia;
-    }
+		Mago mago = new Mago ( );
+		mago.setNombre ( "Mago Rojo" );
 
-    @Autowired
-    public void setTipoMagiaRepository(TipoMagiaRepository sut) {
-	this.cut = sut;
-    }
-}    
-   
+		tipoMagia.setMago ( mago );
+
+		return tipoMagia;
+	}
+
+	@Override
+	public boolean sonDatosIguales ( TipoMagia tipoMagia1, TipoMagia tipoMagia2 )
+	{
+		return tipoMagia1.equals ( tipoMagia2 );
+	}
+
+	@Override
+	public Long getClavePrimariaNoExistente ( )
+	{
+		return Long.MAX_VALUE;
+	}
+
+	@Override
+	public TipoMagia getInstanceDeTParaModificar ( Long clave )
+	{
+		TipoMagia tipoMagia = new TipoMagia ( );
+
+		tipoMagia.setId ( clave );
+		tipoMagia.setNombre ( "Magia Roja" );
+
+		Mago mago = new Mago ( );
+		mago.setId ( clave );
+		mago.setNombre ( "Mago Rojo" );
+
+		tipoMagia.setMago ( mago );
+
+		return tipoMagia;
+	}
+
+	@Autowired
+	public void setTipoMagiaRepository ( TipoMagiaRepository sut )
+	{
+		this.cut = sut;
+	}
+}
