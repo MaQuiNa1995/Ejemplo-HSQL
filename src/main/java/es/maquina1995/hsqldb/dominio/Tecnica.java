@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import es.maquina1995.hsqldb.repository.TecnicaRepositoryImpl;
 
 @Entity
@@ -22,7 +24,8 @@ public class Tecnica implements Persistible<Long> {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name= "ID_TECNICA")
     private Long id;
     

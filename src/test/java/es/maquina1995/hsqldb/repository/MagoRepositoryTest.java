@@ -6,11 +6,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
-import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mago;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
+@ContextConfiguration(classes = { ConfigurationSpring.class}) // , LiquibaseConfig.class 
 public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 
     private MagoRepository cut;

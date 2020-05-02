@@ -6,12 +6,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
-import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Mago;
 import es.maquina1995.hsqldb.dominio.TipoMagia;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
+@ContextConfiguration(classes = { ConfigurationSpring.class})
 public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMagia> {
 
     private TipoMagiaRepository cut;

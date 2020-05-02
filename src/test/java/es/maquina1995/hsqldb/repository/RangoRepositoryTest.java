@@ -6,12 +6,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
-import es.maquina1995.hsqldb.configuration.LiquibaseConfig;
 import es.maquina1995.hsqldb.dominio.Rango;
 import es.maquina1995.hsqldb.dominio.Tecnica;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class, LiquibaseConfig.class })
+@ContextConfiguration(classes = { ConfigurationSpring.class})
 public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 
     private RangoRepository cut;
