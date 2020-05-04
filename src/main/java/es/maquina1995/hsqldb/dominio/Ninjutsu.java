@@ -8,37 +8,43 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "NINJUTSU")
-public class Ninjutsu implements Persistible<Long> {
+@Table ( name = "NINJUTSU" )
+public class Ninjutsu
+		implements Persistible < Long >
+{
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(name = "NOMBRE")
-    private String nombre;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    public Long getId() {
-	return id;
-    }
+	@Id
+	@GeneratedValue ( strategy = GenerationType.IDENTITY )
+	private Long id;
 
-    @Override
-    public void setId(Long id) {
-	this.id = id;
-    }
+	@Column ( name = "NOMBRE" )
+	private String nombre;
 
-    public String getNombre() {
-	return nombre;
-    }
+	@Override
+	public Long getId ( )
+	{
+		return id;
+	}
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
-    }
+	@Override
+	public void setId ( Long id )
+	{
+		this.id = id;
+	}
+
+	public String getNombre ( )
+	{
+		return nombre;
+	}
+
+	public void setNombre ( String nombre )
+	{
+		this.nombre = nombre;
+	}
 
 }

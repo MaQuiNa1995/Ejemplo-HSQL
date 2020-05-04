@@ -9,51 +9,62 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
 
-public abstract class CrudRepositoryImpl<K extends Number, T extends Persistible<K>> implements CrudRepository<K, T> {
+public abstract class CrudRepositoryImpl <	K extends Number,
+											T extends Persistible < K > >
+		implements CrudRepository < K, T >
+{
 
-    @PersistenceContext
-    private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    @Override
-    @Transactional
-    public T persist(T nuevo) {
-	entityManager.persist(nuevo);
-	return nuevo;
-    }
+	@Override
+	@Transactional
+	public T persist ( T nuevo )
+	{
+		entityManager.persist ( nuevo );
+		return nuevo;
+	}
 
-    @Override
-    @Transactional(readOnly = true)
-    public T readByPk(K id) {
-	return entityManager.find(getClassDeT(), id);
-    }
+	@Override
+	@Transactional ( readOnly = true )
+	public T readByPk ( K id )
+	{
+		return entityManager.find ( getClassDeT ( ), id );
+	}
 
-    @Override
-    @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
-    public List<T> findAll() {
-	return entityManager.createNativeQuery("SELECT * FROM " + getNombreTabla(), getClassDeT()).getResultList();
-    }
+	@Override
+	@Transactional ( readOnly = true )
+	@SuppressWarnings ( "unchecked" )
+	public List < T > findAll ( )
+	{
+		return entityManager.createNativeQuery ( "SELECT * FROM " + getNombreTabla ( ), getClassDeT ( ) )
+				.getResultList ( );
+	}
 
-    @Override
-    @Transactional
-    public void deleteByPk(K id) {
-	T aBorrar = entityManager.find(getClassDeT(), id);
-	delete(aBorrar);
-    }
+	@Override
+	@Transactional
+	public void deleteByPk ( K id )
+	{
+		T aBorrar = entityManager.find ( getClassDeT ( ), id );
+		delete ( aBorrar );
+	}
 
-    @Override
-    @Transactional
-    public void delete(T aBorrar) {
-	entityManager.remove(aBorrar);
-    }
+	@Override
+	@Transactional
+	public void delete ( T aBorrar )
+	{
+		entityManager.remove ( aBorrar );
+	}
 
-    @Override
-    @Transactional
-    public T merge(T modificado) {
-	return entityManager.merge(modificado);
-    }
+	@Override
+	@Transactional
+	public T merge ( T modificado )
+	{
+		return entityManager.merge ( modificado );
+	}
 
-    protected EntityManager getEntityManager() {
-	return entityManager;
-    }
+	protected EntityManager getEntityManager ( )
+	{
+		return entityManager;
+	}
 }

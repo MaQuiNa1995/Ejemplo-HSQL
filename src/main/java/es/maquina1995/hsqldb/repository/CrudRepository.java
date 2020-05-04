@@ -4,21 +4,23 @@ import java.util.List;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
 
-public interface CrudRepository<K extends Number, T extends Persistible<K>> {
+public interface CrudRepository <	K extends Number,
+									T extends Persistible < K > >
+{
 
-    T persist(T nuevo);
+	T persist ( T nuevo );
 
-    T readByPk(K id);
+	T readByPk ( K id );
 
-    List<T> findAll();
+	List < T > findAll ( );
 
-    T merge(T modificado);
+	T merge ( T modificado );
 
-    void deleteByPk(K id);
+	void deleteByPk ( K id );
 
-    void delete(T aBorrar);
+	void delete ( T aBorrar );
 
-    public abstract Class<T> getClassDeT();
+	public abstract Class < T > getClassDeT ( );
 
-    public abstract String getNombreTabla();
+	public abstract String getNombreTabla ( );
 }

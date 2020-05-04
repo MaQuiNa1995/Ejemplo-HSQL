@@ -1,5 +1,6 @@
 package es.maquina1995.hsqldb.repository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.Rango;
@@ -11,10 +12,22 @@ public class RangoRepositoryTest
 
 	private RangoRepository cut;
 
+	private Tecnica tecnica;
+
+	@BeforeEach
+	public void setUp ( )
+	{
+
+		this.tecnica = new Tecnica ( );
+		this.tecnica.setNombre ( "Imitar" );
+
+		getEntityManager ( ).persist ( this.tecnica );
+	}
+
 	@Override
 	public CrudRepository < Long, Rango > getRepository ( )
 	{
-		return cut;
+		return this.cut;
 	}
 
 	@Override
@@ -23,10 +36,7 @@ public class RangoRepositoryTest
 		Rango rango = new Rango ( );
 		rango.setAlcanceMaximo ( 5 );
 
-		Tecnica tecnica = new Tecnica ( );
-		tecnica.setNombre ( "Imitar" );
-
-		rango.setTecnica ( tecnica );
+		rango.setTecnica ( this.tecnica );
 
 		return rango;
 	}
@@ -37,10 +47,7 @@ public class RangoRepositoryTest
 		Rango rango = new Rango ( );
 		rango.setAlcanceMaximo ( 5 );
 
-		Tecnica tecnica = new Tecnica ( );
-		tecnica.setNombre ( "Imitar" );
-
-		rango.setTecnica ( tecnica );
+		rango.setTecnica ( this.tecnica );
 
 		return rango;
 	}

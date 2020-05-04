@@ -60,19 +60,18 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 
 	@Test
 	@Transactional
-	public void testAdd ( )
+	public void addTest ( )
 	{
 		T instancia = getInstanceDeTParaNuevo ( );
 		Assertions.assertNull ( instancia.getId ( ) );
 
 		instancia = getRepository ( ).persist ( instancia );
-
 		Assertions.assertNotNull ( instancia.getId ( ) );
 	}
 
 	@Test
 	@Transactional
-	public void testRead ( )
+	public void readTest ( )
 	{
 		K clavePrimaria = generaDatoLectura ( );
 
@@ -84,7 +83,7 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 
 	@Test
 	@Transactional
-	public void testReadNoExiste ( )
+	public void readNoExisteTest ( )
 	{
 		K clavePrimaria = getClavePrimariaNoExistente ( );
 
@@ -94,7 +93,7 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 
 	@Test
 	@Transactional
-	public void testFindAll ( )
+	public void findAllTest ( )
 	{
 
 		for ( int i = 0; i < 3; i++ )
@@ -104,12 +103,12 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 
 		List < T > resultado = getRepository ( ).findAll ( );
 
-		Assertions.assertTrue ( resultado.size ( ) >= 3 );
+		Assertions.assertEquals ( 3, resultado.size ( ) );
 	}
 
 	@Test
 	@Transactional
-	public void testUpdate ( )
+	public void updateTest ( )
 	{
 		K clavePrimaria = generaDatoLectura ( );
 
@@ -124,7 +123,7 @@ public abstract class CrudRepositoryImplTest <	K extends Number,
 
 	@Test
 	@Transactional
-	public void testDelete ( )
+	public void deleteTest ( )
 	{
 		K clavePrimaria = generaDatoLectura ( );
 
