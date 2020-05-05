@@ -1,5 +1,7 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +34,7 @@ public class Ninjutsu
 	private String nombre;
 
 	@OneToOne ( fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn ( name = "USER_ID" )
+	@JoinColumn ( name = "id" )
 	private Ninja ninja;
 
 	@Override
@@ -55,6 +57,32 @@ public class Ninjutsu
 	public void setNombre ( String nombre )
 	{
 		this.nombre = nombre;
+	}
+
+	public Ninja getNinja ( )
+	{
+		return ninja;
+	}
+
+	public void setNinja ( Ninja ninja )
+	{
+		this.ninja = ninja;
+	}
+
+	@Override
+	public int hashCode ( )
+	{
+		return Objects.hash ( ninja, nombre );
+	}
+
+	@Override
+	public boolean equals ( Object obj )
+	{
+		if ( this == obj ) return true;
+		if ( obj == null ) return false;
+		if ( getClass ( ) != obj.getClass ( ) ) return false;
+		Ninjutsu other = ( Ninjutsu ) obj;
+		return Objects.equals ( ninja, other.ninja ) && Objects.equals ( nombre, other.nombre );
 	}
 
 }
