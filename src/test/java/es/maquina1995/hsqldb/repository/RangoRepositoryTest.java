@@ -21,7 +21,7 @@ public class RangoRepositoryTest
 		this.tecnica = new Tecnica ( );
 		this.tecnica.setNombre ( "Imitar" );
 
-		getEntityManager ( ).persist ( this.tecnica );
+//		getEntityManager ( ).persist ( this.tecnica );
 	}
 
 	@Override

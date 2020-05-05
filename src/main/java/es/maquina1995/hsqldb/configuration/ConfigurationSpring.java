@@ -71,7 +71,6 @@ public class ConfigurationSpring
 	)
 	{
 		JpaTransactionManager transactionManager = new JpaTransactionManager ( );
-		// transactionManager.setDataSource(dataSource);
 		transactionManager.setEntityManagerFactory ( entityManagerFactoryBean ( ).getObject ( ) );
 		return transactionManager;
 	}
@@ -95,8 +94,6 @@ public class ConfigurationSpring
 		entityManagerFactoryBean.setPersistenceProviderClass ( HibernatePersistenceProvider.class );
 		// Paquetes donde se van a buscar las entidades
 		entityManagerFactoryBean.setPackagesToScan ( ENTITYMANAGER_PACKAGES_TO_SCAN );
-		// // Propiedades adicionales de hibernate/Jpa
-		// entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
 
 		return entityManagerFactoryBean;
 	}
@@ -111,7 +108,7 @@ public class ConfigurationSpring
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter ( );
 		// Indicamos si en el log nos saldrán las sentencias que se vayan ejecutando (En
 		// entornos de producción esto debería de estar a FALSE)
-		vendorAdapter.setShowSql ( Boolean.FALSE );
+		vendorAdapter.setShowSql ( Boolean.TRUE );
 		vendorAdapter.setGenerateDdl ( Boolean.TRUE );
 		vendorAdapter.setDatabase ( Database.HSQL );
 		return vendorAdapter;
