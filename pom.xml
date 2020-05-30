@@ -48,11 +48,6 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>${commonsdbcp.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.liquibase</groupId> -->
-<!-- 			<artifactId>liquibase-core</artifactId> -->
-<!-- 			<version>${liquibase.version}</version> -->
-<!-- 		</dependency> -->
 		<!-- Dependencias De Hibernate / Jpa -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -81,7 +76,6 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>

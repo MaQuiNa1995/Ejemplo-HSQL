@@ -23,130 +23,124 @@ import es.maquina1995.hsqldb.dominio.Persistible;
  * <p>
  * Lecciones Aprendidas:
  * <p>
- * si no pones el {@link TransactionalTestExecutionListener} spring no puede crear el transactionManager en test con este error me tiré 1 tarde entera
+ * si no pones el {@link TransactionalTestExecutionListener} spring no puede
+ * crear el transactionManager en test con este error me tiré 1 tarde entera
  * <p>
  * Me daba un error de:
  * <p>
- * javax.persistence.TransactionRequiredException: No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call
+ * javax.persistence.TransactionRequiredException: No EntityManager with actual
+ * transaction available for current thread - cannot reliably process 'persist'
+ * call
  * <p>
- * <a href= "https://github.com/MaQuiNa1995/Ejemplo-HSQL/commit/2cb42961e4834f20a3b772cd64a3cee5547f6326">Este es el commit</a> donde arreglé el error
+ * <a href=
+ * "https://github.com/MaQuiNa1995/Ejemplo-HSQL/commit/2cb42961e4834f20a3b772cd64a3cee5547f6326">Este
+ * es el commit</a> donde arreglé el error
  * 
  * @author MaQuiNa1995
  *
  * @param <K> Genérico que representa un objeto que sea hijo de {@link Number}
- * @param <T> Genérico que representa un objeto que esté anotado con {@link Entity}
+ * @param <T> Genérico que representa un objeto que esté anotado con
+ *            {@link Entity}
  */
-@ExtendWith ( SpringExtension.class )
-@ContextConfiguration ( classes = { ConfigurationSpring.class } )
-@TestExecutionListeners ( { DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class } )
-public abstract class CrudRepositoryImplTest <	K extends Number,
-												T extends Persistible < K > >
-{
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { ConfigurationSpring.class })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
+public abstract class CrudRepositoryImplTest<K extends Number, T extends Persistible<K>> {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public abstract CrudRepository < K, T > getRepository ( );
+	public abstract CrudRepository<K, T> getRepository();
 
-	public abstract T getInstanceDeTParaNuevo ( );
+	public abstract T getInstanceDeTParaNuevo();
 
-	public abstract T getInstanceDeTParaLectura ( );
+	public abstract T getInstanceDeTParaLectura();
 
-	public abstract boolean sonDatosIguales ( T objeto1, T objeto2 );
+	public abstract boolean sonDatosIguales(T objeto1, T objeto2);
 
-	public abstract K getClavePrimariaNoExistente ( );
+	public abstract K getClavePrimariaNoExistente();
 
-	public abstract T getInstanceDeTParaModificar ( K id );
+	public abstract T getInstanceDeTParaModificar(K id);
 
 	@Test
 	@Transactional
-	public void addTest ( )
-	{
-		T instancia = getInstanceDeTParaNuevo ( );
-		Assertions.assertNull ( instancia.getId ( ) );
+	public void addTest() {
+		T instancia = getInstanceDeTParaNuevo();
+		Assertions.assertNull(instancia.getId());
 
-		instancia = getRepository ( ).persist ( instancia );
-		Assertions.assertNotNull ( instancia.getId ( ) );
+		instancia = getRepository().persist(instancia);
+		Assertions.assertNotNull(instancia.getId());
 	}
 
 	@Test
 	@Transactional
-	public void readTest ( )
-	{
-		K clavePrimaria = generaDatoLectura ( );
+	public void readTest() {
+		K clavePrimaria = generaDatoLectura();
 
-		T resultado = getRepository ( ).readByPk ( clavePrimaria );
+		T resultado = getRepository().readByPk(clavePrimaria);
 
-		Assertions.assertNotNull ( resultado );
-		Assertions.assertTrue ( sonDatosIguales ( getInstanceDeTParaLectura ( ), resultado ) );
+		Assertions.assertNotNull(resultado);
+		Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
 	}
 
 	@Test
 	@Transactional
-	public void readNoExisteTest ( )
-	{
-		K clavePrimaria = getClavePrimariaNoExistente ( );
+	public void readNoExisteTest() {
+		K clavePrimaria = getClavePrimariaNoExistente();
 
-		Assertions.assertNull ( getRepository ( ).readByPk ( clavePrimaria ) );
+		Assertions.assertNull(getRepository().readByPk(clavePrimaria));
 
 	}
 
 	@Test
 	@Transactional
-	public void findAllTest ( )
-	{
+	public void findAllTest() {
 
-		for ( int i = 0; i < 3; i++ )
-		{
-			generaDatoLectura ( );
+		for (int i = 0; i < 3; i++) {
+			generaDatoLectura();
 		}
 
-		List < T > resultado = getRepository ( ).findAll ( );
+		List<T> resultado = getRepository().findAll();
 
-		Assertions.assertEquals ( 3, resultado.size ( ) );
+		Assertions.assertEquals(3, resultado.size());
 	}
 
 	@Test
 	@Transactional
-	public void updateTest ( )
-	{
-		K clavePrimaria = generaDatoLectura ( );
+	public void updateTest() {
+		K clavePrimaria = generaDatoLectura();
 
-		T objetoUpdate = getInstanceDeTParaModificar ( clavePrimaria );
+		T objetoUpdate = getInstanceDeTParaModificar(clavePrimaria);
 
-		getRepository ( ).merge ( objetoUpdate );
+		getRepository().merge(objetoUpdate);
 
-		T enBBDD = entityManager.find ( getRepository ( ).getClassDeT ( ), clavePrimaria );
+		T enBBDD = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
-		Assertions.assertTrue ( sonDatosIguales ( getInstanceDeTParaModificar ( clavePrimaria ), enBBDD ) );
+		Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaModificar(clavePrimaria), enBBDD));
 	}
 
 	@Test
 	@Transactional
-	public void deleteTest ( )
-	{
-		K clavePrimaria = generaDatoLectura ( );
+	public void deleteTest() {
+		K clavePrimaria = generaDatoLectura();
 
-		Assertions.assertFalse ( getRepository ( ).findAll ( )
-				.isEmpty ( ) );
+		Assertions.assertFalse(getRepository().findAll().isEmpty());
 
-		getRepository ( ).deleteByPk ( clavePrimaria );
+		getRepository().deleteByPk(clavePrimaria);
 
-		Persistible < ? > objetoBd = entityManager.find ( getRepository ( ).getClassDeT ( ), clavePrimaria );
+		Persistible<?> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
-		Assertions.assertNull ( objetoBd );
+		Assertions.assertNull(objetoBd);
 	}
 
 	@Transactional
-	private K generaDatoLectura ( )
-	{
-		T instancia = getInstanceDeTParaLectura ( );
-		entityManager.persist ( instancia );
-		return instancia.getId ( );
+	private K generaDatoLectura() {
+		T instancia = getInstanceDeTParaLectura();
+		entityManager.persist(instancia);
+		return instancia.getId();
 	}
 
-	protected EntityManager getEntityManager ( )
-	{
+	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
