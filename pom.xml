@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+						http://maven.apache.org/xsd/maven-4.0.0.xsd">
+						
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>es.maquina1995</groupId>
 	<artifactId>hsqldb</artifactId>
 	<version>3.0.0-RELEASE</version>
 	<packaging>jar</packaging>
+	
+	<name>Ejemplo-Jpa</name>
+	<description>Proyecto de ejemplo para ver todas las relaciones y posibilidades de creacion de una Bd en HibernateJpa</description>>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.version>5.1.0.RELEASE</spring.version>
+		<spring.version>5.2.7.RELEASE</spring.version>
 		<hibernate.version>5.3.6.Final</hibernate.version>
 		<commonsdbcp.version>2.7.0</commonsdbcp.version>
-		<liquibase.version>3.6.2</liquibase.version>
 		<hsqldb.version>2.4.0</hsqldb.version>
 		<junit.version>5.5.2</junit.version>
 		<hibernate-jpa.version>1.0.2.Final</hibernate-jpa.version>
 	</properties>
+	
 	<dependencies>
 		<!-- Dependencias De Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
@@ -58,11 +59,6 @@
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>${hibernate-jpa.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>

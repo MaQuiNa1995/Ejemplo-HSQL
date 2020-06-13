@@ -1,6 +1,5 @@
 package es.maquina1995.hsqldb.dominio;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -19,16 +18,15 @@ import es.maquina1995.hsqldb.repository.ElementalistaRepositoryImpl;
  * @author MaQuiNa1995
  *
  */
-
 @Entity
 @Table(name = ElementalistaRepositoryImpl.TABLA)
-@NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL, query = "select ele from Elementalista ele")
-public class Elementalista implements Serializable {
+@NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL, query = "select elementalista from Elementalista elementalista")
+public class Elementalista implements Persistible<ElementalistaPk> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5323271373231228172L;
 
 	@EmbeddedId
 	private ElementalistaPk id;
@@ -47,6 +45,7 @@ public class Elementalista implements Serializable {
 	/**
 	 * @return the id
 	 */
+	@Override
 	public ElementalistaPk getId() {
 		return id;
 	}
@@ -54,6 +53,7 @@ public class Elementalista implements Serializable {
 	/**
 	 * @param id the id to set
 	 */
+	@Override
 	public void setId(ElementalistaPk id) {
 		this.id = id;
 	}

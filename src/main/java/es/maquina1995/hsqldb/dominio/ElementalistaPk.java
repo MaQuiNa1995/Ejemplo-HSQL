@@ -3,6 +3,7 @@ package es.maquina1995.hsqldb.dominio;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -19,7 +20,9 @@ public class ElementalistaPk implements Serializable {
 	 */
 	private static final long serialVersionUID = 2179897527538033194L;
 
+	@Column(name = "PODER")
 	private Long poder;
+	@Column(name = "ELEMENTO")
 	private String elemento;
 
 	/**

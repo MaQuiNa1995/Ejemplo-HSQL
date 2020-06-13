@@ -2,7 +2,7 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import es.maquina1995.hsqldb.dominio.Ninja;
+import es.maquina1995.hsqldb.dominio.one2one.Ninja;
 
 public class NinjaRepositoryTest
 		extends CrudRepositoryImplTest < Long, Ninja >

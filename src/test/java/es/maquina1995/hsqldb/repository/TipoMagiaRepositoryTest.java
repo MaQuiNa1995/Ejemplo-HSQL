@@ -2,8 +2,8 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import es.maquina1995.hsqldb.dominio.Mago;
-import es.maquina1995.hsqldb.dominio.TipoMagia;
+import es.maquina1995.hsqldb.dominio.one2one.Mago;
+import es.maquina1995.hsqldb.dominio.one2one.TipoMagia;
 
 public class TipoMagiaRepositoryTest
 		extends CrudRepositoryImplTest < Long, TipoMagia >

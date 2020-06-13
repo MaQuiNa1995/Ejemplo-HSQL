@@ -1,6 +1,6 @@
 package es.maquina1995.hsqldb.repository;
 
-import es.maquina1995.hsqldb.dominio.Ninja;
+import es.maquina1995.hsqldb.dominio.one2one.Ninja;
 
 public interface NinjaRepository
 		extends CrudRepository < Long, Ninja >

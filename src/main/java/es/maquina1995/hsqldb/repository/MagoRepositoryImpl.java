@@ -2,7 +2,7 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.stereotype.Repository;
 
-import es.maquina1995.hsqldb.dominio.Mago;
+import es.maquina1995.hsqldb.dominio.one2one.Mago;
 
 @Repository
 public class MagoRepositoryImpl

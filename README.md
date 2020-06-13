@@ -1,11 +1,16 @@
-# Hsqldb
+Si vais al código de la clase teneis javadoc explicado de como se hace y que es cada cosa
 
-Proyecto de ejemplo para hacer pruebas con una base de datos en memoria que pueda reventar una y otra vez
+# Entidad Con Clave Compuesta
+Elementalista - ElementalistaPk
 
-Tiene 91% de test , todos los metodos principales están probados
+# Relaciones One2One (Izquierda la dominante):
 
-Básicamente tenemos 3 tablas en este momento en el futuro se irán añadiendo mas para ver los conceptos de N - M y distintos mapeos de 1 - N
+Bidireccional
 
-Mapas que tiene 0 - N Bases que tienen 0 - N trabajadores 
+	TipoMagia 		- 		Mago 			- 		(Comparte el mismo Id)
+	Técnica			-		Rango
 
-Iré actualizando este readme con los avances que haga
+Unidireccional
+
+	Personaje		-		Oficio			-		(Tabla intermedia)
+	Ninja			-		Ninjutsu

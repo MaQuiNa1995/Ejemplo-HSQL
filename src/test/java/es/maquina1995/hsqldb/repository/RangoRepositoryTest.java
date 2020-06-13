@@ -3,8 +3,8 @@ package es.maquina1995.hsqldb.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import es.maquina1995.hsqldb.dominio.Rango;
-import es.maquina1995.hsqldb.dominio.Tecnica;
+import es.maquina1995.hsqldb.dominio.one2one.Rango;
+import es.maquina1995.hsqldb.dominio.one2one.Tecnica;
 
 public class RangoRepositoryTest
 		extends CrudRepositoryImplTest < Long, Rango >

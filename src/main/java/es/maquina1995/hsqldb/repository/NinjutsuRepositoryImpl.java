@@ -2,7 +2,7 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.stereotype.Repository;
 
-import es.maquina1995.hsqldb.dominio.Ninjutsu;
+import es.maquina1995.hsqldb.dominio.one2one.Ninjutsu;
 
 @Repository
 public class NinjutsuRepositoryImpl

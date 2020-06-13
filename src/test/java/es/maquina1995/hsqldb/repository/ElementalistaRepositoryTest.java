@@ -1,5 +1,9 @@
 package es.maquina1995.hsqldb.repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +19,20 @@ import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.dominio.Elementalista;
 import es.maquina1995.hsqldb.dominio.ElementalistaPk;
 
+/**
+ * Para que haga rollback automático en los test el método debe ir con el
+ * {@link Transactional}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class ElementalistaRepositoryTest {
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	private Elementalista elementalista;
 
@@ -27,6 +41,7 @@ public class ElementalistaRepositoryTest {
 
 	@BeforeEach
 	public void setUp() {
+
 		this.elementalista = new Elementalista();
 		this.elementalista.setNombre("Natsu");
 
@@ -39,6 +54,7 @@ public class ElementalistaRepositoryTest {
 	}
 
 	@Test
+	@Transactional
 	public void createTest() {
 
 		cut.create(elementalista);
@@ -47,24 +63,28 @@ public class ElementalistaRepositoryTest {
 	}
 
 	@Test
+	@Transactional
 	public void readByPkTest() {
 		Assertions.assertNull(cut.findByPk(this.elementalista.getId()));
-		cut.create(elementalista);
+
+		entityManager.persist(elementalista);
+
 		Assertions.assertEquals(cut.findByPk(this.elementalista.getId()), this.elementalista);
 
 	}
 
 	@Test
+	@Transactional
 	public void findAllTest() {
-		cut.create(elementalista);
+		entityManager.persist(elementalista);
 
 		Assertions.assertEquals(1, cut.findAll().size());
 	}
 
 	@Test
+	@Transactional
 	public void updateTest() {
-
-		cut.create(elementalista);
+		entityManager.persist(elementalista);
 
 		ElementalistaPk idAnterior = elementalista.getId();
 
@@ -81,13 +101,14 @@ public class ElementalistaRepositoryTest {
 	}
 
 	@Test
+	@Transactional
 	public void deleteTest() {
 
-		cut.create(elementalista);
+		entityManager.persist(elementalista);
 
 		Assertions.assertEquals(1, cut.findAll().size());
 
-		cut.delete(cut.update(elementalista));
+		cut.delete(elementalista);
 
 		Assertions.assertTrue(cut.findAll().isEmpty());
 

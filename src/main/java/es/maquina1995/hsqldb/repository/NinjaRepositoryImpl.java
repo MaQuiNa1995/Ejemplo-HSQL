@@ -2,7 +2,7 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.stereotype.Repository;
 
-import es.maquina1995.hsqldb.dominio.Ninja;
+import es.maquina1995.hsqldb.dominio.one2one.Ninja;
 
 @Repository
 public class NinjaRepositoryImpl
