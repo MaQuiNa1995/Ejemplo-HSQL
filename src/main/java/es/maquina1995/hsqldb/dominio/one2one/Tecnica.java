@@ -14,10 +14,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
-import es.maquina1995.hsqldb.repository.TecnicaRepositoryImpl;
 
 @Entity
-@Table(name = TecnicaRepositoryImpl.TABLA)
+@Table(name = "TECNICA")
 public class Tecnica implements Persistible<Long> {
 
 	/**

@@ -16,10 +16,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
-import es.maquina1995.hsqldb.repository.TipoMagiaRepositoryImpl;
 
 @Entity
-@Table(name = TipoMagiaRepositoryImpl.TABLA)
+@Table(name = "TIPO_MAGIA")
 public class TipoMagia implements Persistible<Long> {
 
 	/**

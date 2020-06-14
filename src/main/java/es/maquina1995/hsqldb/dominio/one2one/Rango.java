@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
-import es.maquina1995.hsqldb.repository.RangoRepositoryImpl;
+import es.maquina1995.hsqldb.repository.one2one.RangoRepositoryImpl;
 
 @Entity
 @Table(name = RangoRepositoryImpl.TABLA)

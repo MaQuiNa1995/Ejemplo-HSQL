@@ -52,9 +52,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 
 	public abstract CrudRepository<K, T> getRepository();
 
-	public abstract T getInstanceDeTParaNuevo();
-
-	public abstract T getInstanceDeTParaLectura();
+	public abstract T getInstanceDeT();
 
 	public abstract boolean sonDatosIguales(T objeto1, T objeto2);
 
@@ -65,9 +63,9 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 	@Test
 	@Transactional
 	public void addTest() {
-		T instancia = getInstanceDeTParaNuevo();
-		Assertions.assertNull(instancia.getId());
+		T instancia = getInstanceDeT();
 
+		Assertions.assertNull(instancia.getId());
 		instancia = getRepository().persist(instancia);
 		Assertions.assertNotNull(instancia.getId());
 	}
@@ -80,7 +78,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 		T resultado = getRepository().readByPk(clavePrimaria);
 
 		Assertions.assertNotNull(resultado);
-		Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaLectura(), resultado));
+		Assertions.assertTrue(sonDatosIguales(getInstanceDeT(), resultado));
 	}
 
 	@Test
@@ -96,8 +94,10 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 	@Transactional
 	public void findAllTest() {
 
+		Assertions.assertTrue(getRepository().findAll().isEmpty());
+
 		for (int i = 0; i < 3; i++) {
-			generaDatoLectura();
+			this.generaDatoLectura();
 		}
 
 		List<T> resultado = getRepository().findAll();
@@ -135,7 +135,7 @@ public abstract class CrudRepositoryImplTest<K extends Number, T extends Persist
 
 	@Transactional
 	private K generaDatoLectura() {
-		T instancia = getInstanceDeTParaLectura();
+		T instancia = getInstanceDeT();
 		entityManager.persist(instancia);
 		return instancia.getId();
 	}

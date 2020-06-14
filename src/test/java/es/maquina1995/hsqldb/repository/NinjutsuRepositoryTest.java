@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.one2one.Ninja;
 import es.maquina1995.hsqldb.dominio.one2one.Ninjutsu;
+import es.maquina1995.hsqldb.repository.one2one.NinjutsuRepository;
 
 public class NinjutsuRepositoryTest extends CrudRepositoryImplTest<Long, Ninjutsu> {
 
@@ -15,19 +16,7 @@ public class NinjutsuRepositoryTest extends CrudRepositoryImplTest<Long, Ninjuts
 	}
 
 	@Override
-	public Ninjutsu getInstanceDeTParaNuevo() {
-		Ninjutsu ninjutsu = new Ninjutsu();
-		ninjutsu.setNombre("Ultima Pesadilla");
-
-		Ninja ninja = new Ninja();
-		ninja.setNombre("Ninja Sepulcral");
-		ninja.setNinjutsu(ninjutsu);
-
-		return ninjutsu;
-	}
-
-	@Override
-	public Ninjutsu getInstanceDeTParaLectura() {
+	public Ninjutsu getInstanceDeT() {
 		Ninjutsu ninjutsu = new Ninjutsu();
 		ninjutsu.setNombre("Ultima Pesadilla");
 
@@ -50,9 +39,13 @@ public class NinjutsuRepositoryTest extends CrudRepositoryImplTest<Long, Ninjuts
 
 	@Override
 	public Ninjutsu getInstanceDeTParaModificar(Long clave) {
-		Ninjutsu ninjutsu = getInstanceDeTParaLectura();
+		Ninjutsu ninjutsu = getInstanceDeT();
 		ninjutsu.setId(clave);
-		ninjutsu.setNombre("Ultima Pesadilla");
+		ninjutsu.setNombre("Puño Mortífero");
+
+		Ninja ninja = new Ninja();
+		ninja.setNombre("Ninja De las Sombras");
+		ninja.setNinjutsu(ninjutsu);
 
 		return ninjutsu;
 	}

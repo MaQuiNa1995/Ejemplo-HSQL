@@ -4,79 +4,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.one2one.Mago;
 import es.maquina1995.hsqldb.dominio.one2one.TipoMagia;
+import es.maquina1995.hsqldb.repository.one2one.TipoMagiaRepository;
 
-public class TipoMagiaRepositoryTest
-		extends CrudRepositoryImplTest < Long, TipoMagia >
-{
+public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMagia> {
 
 	private TipoMagiaRepository cut;
 
 	@Override
-	public CrudRepository < Long, TipoMagia > getRepository ( )
-	{
+	public CrudRepository<Long, TipoMagia> getRepository() {
 		return cut;
 	}
 
 	@Override
-	public TipoMagia getInstanceDeTParaNuevo ( )
-	{
-		TipoMagia tipoMagia = new TipoMagia ( );
-		tipoMagia.setNombre ( "Magia Roja" );
+	public TipoMagia getInstanceDeT() {
+		TipoMagia tipoMagia = new TipoMagia();
+		tipoMagia.setNombre("Magia Roja");
 
-		Mago mago = new Mago ( );
-		mago.setNombre ( "Mago Rojo" );
+		Mago mago = new Mago();
+		mago.setNombre("Mago Rojo");
 
-		tipoMagia.setMago ( mago );
-
-		return tipoMagia;
-	}
-
-	@Override
-	public TipoMagia getInstanceDeTParaLectura ( )
-	{
-		TipoMagia tipoMagia = new TipoMagia ( );
-		tipoMagia.setNombre ( "Magia Roja" );
-
-		Mago mago = new Mago ( );
-		mago.setNombre ( "Mago Rojo" );
-
-		tipoMagia.setMago ( mago );
+		tipoMagia.setMago(mago);
 
 		return tipoMagia;
 	}
 
 	@Override
-	public boolean sonDatosIguales ( TipoMagia tipoMagia1, TipoMagia tipoMagia2 )
-	{
-		return tipoMagia1.equals ( tipoMagia2 );
+	public boolean sonDatosIguales(TipoMagia tipoMagia1, TipoMagia tipoMagia2) {
+		return tipoMagia1.equals(tipoMagia2);
 	}
 
 	@Override
-	public Long getClavePrimariaNoExistente ( )
-	{
+	public Long getClavePrimariaNoExistente() {
 		return Long.MAX_VALUE;
 	}
 
 	@Override
-	public TipoMagia getInstanceDeTParaModificar ( Long clave )
-	{
-		TipoMagia tipoMagia = new TipoMagia ( );
+	public TipoMagia getInstanceDeTParaModificar(Long clave) {
+		TipoMagia tipoMagia = new TipoMagia();
 
-		tipoMagia.setId ( clave );
-		tipoMagia.setNombre ( "Magia Roja" );
+		tipoMagia.setId(clave);
+		tipoMagia.setNombre("Magia Blanca");
 
-		Mago mago = new Mago ( );
-		mago.setId ( clave );
-		mago.setNombre ( "Mago Rojo" );
+		Mago mago = new Mago();
+		mago.setNombre("Mago Blanco");
 
-		tipoMagia.setMago ( mago );
+		tipoMagia.setMago(mago);
 
 		return tipoMagia;
 	}
 
 	@Autowired
-	public void setTipoMagiaRepository ( TipoMagiaRepository sut )
-	{
+	public void setTipoMagiaRepository(TipoMagiaRepository sut) {
 		this.cut = sut;
 	}
 }

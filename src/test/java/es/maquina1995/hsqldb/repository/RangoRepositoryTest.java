@@ -5,77 +5,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.one2one.Rango;
 import es.maquina1995.hsqldb.dominio.one2one.Tecnica;
+import es.maquina1995.hsqldb.repository.one2one.RangoRepository;
 
-public class RangoRepositoryTest
-		extends CrudRepositoryImplTest < Long, Rango >
-{
+public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 
 	private RangoRepository cut;
 	private Tecnica tecnica;
 
 	@BeforeEach
-	public void setUp ( )
-	{
+	public void setUp() {
 
-		this.tecnica = new Tecnica ( );
-		this.tecnica.setNombre ( "Imitar" );
+		this.tecnica = new Tecnica();
+		this.tecnica.setNombre("Imitar");
 
 	}
 
 	@Override
-	public CrudRepository < Long, Rango > getRepository ( )
-	{
+	public CrudRepository<Long, Rango> getRepository() {
 		return this.cut;
 	}
 
 	@Override
-	public Rango getInstanceDeTParaNuevo ( )
-	{
-		Rango rango = new Rango ( );
-		rango.setAlcanceMaximo ( 5 );
+	public Rango getInstanceDeT() {
+		Rango rango = new Rango();
+		rango.setAlcanceMaximo(5);
 
-		rango.setTecnica ( this.tecnica );
-
-		return rango;
-	}
-
-	@Override
-	public Rango getInstanceDeTParaLectura ( )
-	{
-		Rango rango = new Rango ( );
-		rango.setAlcanceMaximo ( 5 );
-
-		rango.setTecnica ( this.tecnica );
+		rango.setTecnica(this.tecnica);
 
 		return rango;
 	}
 
 	@Override
-	public boolean sonDatosIguales ( Rango rango1, Rango rango2 )
-	{
-		return rango1.equals ( rango2 );
+	public boolean sonDatosIguales(Rango rango1, Rango rango2) {
+		return rango1.equals(rango2);
 	}
 
 	@Override
-	public Long getClavePrimariaNoExistente ( )
-	{
+	public Long getClavePrimariaNoExistente() {
 		return Long.MAX_VALUE;
 	}
 
 	@Override
-	public Rango getInstanceDeTParaModificar ( Long clave )
-	{
-		Rango rango = new Rango ( );
-		rango.setAlcanceMaximo ( 5 );
+	public Rango getInstanceDeTParaModificar(Long clave) {
+		Rango rango = new Rango();
+		rango.setAlcanceMaximo(10);
+		rango.setId(clave);
 
-		rango.setTecnica ( this.tecnica );
+		this.tecnica.setNombre("Puño Airoso");
+
+		rango.setTecnica(this.tecnica);
 
 		return rango;
 	}
 
 	@Autowired
-	public void setRangoRepository ( RangoRepository sut )
-	{
+	public void setRangoRepository(RangoRepository sut) {
 		this.cut = sut;
 	}
 }

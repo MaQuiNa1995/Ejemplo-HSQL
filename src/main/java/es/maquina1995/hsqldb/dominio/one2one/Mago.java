@@ -11,10 +11,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import es.maquina1995.hsqldb.dominio.Persistible;
-import es.maquina1995.hsqldb.repository.MagoRepositoryImpl;
 
 @Entity
-@Table(name = MagoRepositoryImpl.TABLA)
+@Table(name = "MAGO")
 public class Mago implements Persistible<Long> {
 
 	/**
