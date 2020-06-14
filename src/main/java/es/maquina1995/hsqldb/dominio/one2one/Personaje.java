@@ -36,6 +36,7 @@ public class Personaje implements Persistible<Long> {
 	private String nombre;
 
 	/**
+	 * 
 	 * <li>PERSONAJE_TIENE_OFICIO - Nombre de la tabla intermedia</li>
 	 * <p>
 	 * <li>FK_PERSONAJE - Nombre de la columna que tiene la tabla
