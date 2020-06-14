@@ -3,36 +3,33 @@ package es.maquina1995.hsqldb.dominio.one2many;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "ARMA")
-public class Invocador implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_INVOCADOR"))
+public class Invocador extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_INVOCADOR")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
+	private static final long serialVersionUID = 4011086919749892365L;
 
 	/**
 	 * Esta al ser la parte dominante de la relacion debemos usar el
@@ -60,22 +57,12 @@ public class Invocador implements Persistible<Long> {
 					@JoinColumn(name = "FK_INVOCACION_SUPREMA", referencedColumnName = "ID_INVOCACION_SUPREMA") })
 	private List<InvocacionSuprema> invocaciones;
 
-	@Override
-	public Long getId() {
-		return id;
+	public List<InvocacionSuprema> getInvocaciones() {
+		return invocaciones;
 	}
 
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setInvocaciones(List<InvocacionSuprema> invocaciones) {
+		this.invocaciones = invocaciones;
 	}
 
 	@Override

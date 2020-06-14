@@ -2,38 +2,27 @@ package es.maquina1995.hsqldb.dominio.one2one;
 
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import es.maquina1995.hsqldb.dominio.Persistible;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 import es.maquina1995.hsqldb.repository.one2one.RangoRepositoryImpl;
 
 @Entity
 @Table(name = RangoRepositoryImpl.TABLA)
-public class Rango implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_RANGO"))
+public class Rango extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5835309247515650963L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "ID_RANGO")
-	private Long id;
-
-	@Column(name = "ALCANCE")
-	private int alcanceMaximo;
+	private static final long serialVersionUID = -8164571656516905569L;
 
 	/**
 	 * Aqui al ser la parte esclava de la relación en el {@link JoinColumn} se hace
@@ -47,16 +36,6 @@ public class Rango implements Persistible<Long> {
 	@JoinColumn(name = "FK_TECNICA")
 	private Tecnica tecnica;
 
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Tecnica getTecnica() {
 		return tecnica;
 	}
@@ -65,29 +44,24 @@ public class Rango implements Persistible<Long> {
 		this.tecnica = tecnica;
 	}
 
-	public int getAlcanceMaximo() {
-		return alcanceMaximo;
-	}
-
-	public void setAlcanceMaximo(int alcanceMaximo) {
-		this.alcanceMaximo = alcanceMaximo;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(alcanceMaximo, tecnica);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(tecnica);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Rango other = (Rango) obj;
-		return alcanceMaximo == other.alcanceMaximo && Objects.equals(tecnica, other.tecnica);
+		return Objects.equals(tecnica, other.tecnica);
 	}
 
 }

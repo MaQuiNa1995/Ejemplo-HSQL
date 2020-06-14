@@ -21,7 +21,7 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
 		tecnica.setNombre("Robar");
 
 		Rango rango = new Rango();
-		rango.setAlcanceMaximo(1);
+		rango.setNombre("Línea Recta");
 
 		tecnica.setRango(rango);
 
@@ -45,7 +45,7 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
 		tecnica.setId(clave);
 
 		Rango rango = new Rango();
-		rango.setAlcanceMaximo(8);
+		rango.setNombre("Arco Frontal");
 
 		tecnica.setRango(rango);
 

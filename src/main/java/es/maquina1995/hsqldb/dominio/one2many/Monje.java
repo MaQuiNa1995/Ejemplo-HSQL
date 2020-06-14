@@ -3,35 +3,32 @@ package es.maquina1995.hsqldb.dominio.one2many;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "MONJE")
-public class Monje implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_MONJE"))
+public class Monje extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_MONJE")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
+	private static final long serialVersionUID = 2382819739532578885L;
 
 	/**
 	 * Como esta es la parte dominante de la relacion debemos en el name decirle el
@@ -44,24 +41,6 @@ public class Monje implements Persistible<Long> {
 	@OneToMany
 	@JoinColumn(name = "FK_MONJE", referencedColumnName = "ID_MONJE")
 	private List<TecnicaKi> tecnicas;
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public List<TecnicaKi> getTecnicas() {
 		return tecnicas;

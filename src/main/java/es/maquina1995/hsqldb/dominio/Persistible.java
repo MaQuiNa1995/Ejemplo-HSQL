@@ -2,12 +2,10 @@ package es.maquina1995.hsqldb.dominio;
 
 import java.io.Serializable;
 
-public interface Persistible <K >
-		extends Serializable
-{
+public interface Persistible<K> extends Serializable {
 
-	K getId ( );
+	K getId();
 
-	void setId ( K id );
+	void setId(K id);
 
 }

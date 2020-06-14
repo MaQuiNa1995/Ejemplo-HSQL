@@ -2,38 +2,35 @@ package es.maquina1995.hsqldb.dominio.one2one;
 
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "PERSONAJE")
-public class Personaje implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_PERSONAJE"))
+public class Personaje extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6879662285510883545L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_PERSONAJE")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
+	private static final long serialVersionUID = -2456995784254405473L;
 
 	/**
 	 * 
@@ -60,39 +57,32 @@ public class Personaje implements Persistible<Long> {
 					@JoinColumn(name = "FK_OFICIO", referencedColumnName = "ID_OFICIO", unique = true) })
 	private Oficio oficio;
 
-	@Override
-	public Long getId() {
-		return id;
+	public Oficio getOficio() {
+		return oficio;
 	}
 
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setOficio(Oficio oficio) {
+		this.oficio = oficio;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre, oficio);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(oficio);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Personaje other = (Personaje) obj;
-		return Objects.equals(nombre, other.nombre) && Objects.equals(oficio, other.oficio);
+		return Objects.equals(oficio, other.oficio);
 	}
 
 }

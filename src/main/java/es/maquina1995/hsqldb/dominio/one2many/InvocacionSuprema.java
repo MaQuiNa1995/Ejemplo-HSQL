@@ -2,36 +2,33 @@ package es.maquina1995.hsqldb.dominio.one2many;
 
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "INVOCACION_SUPREMA")
-public class InvocacionSuprema implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_INVOCACION_SUPREMA"))
+public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_INVOCACION_SUPREMA")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
+	private static final long serialVersionUID = 6844034658579212079L;
 
 	/**
 	 * Esta al ser la parte esclava de la relación debemos usar el {@link ManyToOne}
@@ -62,24 +59,6 @@ public class InvocacionSuprema implements Persistible<Long> {
 			@JoinColumn(name = "FK_INVOCACION_SUPREMA", insertable = false, updatable = false, referencedColumnName = "ID_INVOCACION_SUPREMA") }, inverseJoinColumns = {
 					@JoinColumn(name = "FK_INVOCADOR", insertable = false, updatable = false, referencedColumnName = "ID_INVOCADOR") })
 	private Invocador invocador;
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public Invocador getInvocador() {
 		return invocador;

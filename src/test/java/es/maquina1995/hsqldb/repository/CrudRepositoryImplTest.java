@@ -16,6 +16,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 import es.maquina1995.hsqldb.dominio.Persistible;
 
 /**
@@ -45,7 +46,7 @@ import es.maquina1995.hsqldb.dominio.Persistible;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-public abstract class CrudRepositoryImplTest<K extends Number, T extends Persistible<K>> {
+public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
 
 	@PersistenceContext
 	private EntityManager entityManager;

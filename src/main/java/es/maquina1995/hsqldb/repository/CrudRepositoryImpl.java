@@ -7,9 +7,10 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-public abstract class CrudRepositoryImpl<K extends Number, T extends Persistible<K>> implements CrudRepository<K, T> {
+public abstract class CrudRepositoryImpl<K extends Number, T extends AbstractEntidadSimple<K>>
+		implements CrudRepository<K, T> {
 
 	@PersistenceContext
 	private EntityManager entityManager;

@@ -2,39 +2,36 @@ package es.maquina1995.hsqldb.dominio.one2one;
 
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "OFICIO")
-public class Oficio implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_OFICIO"))
+public class Oficio extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3232464532349625196L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_OFICIO")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
+	private static final long serialVersionUID = -4465939889127597689L;
 
 	/**
 	 * 
@@ -69,39 +66,32 @@ public class Oficio implements Persistible<Long> {
 					@JoinColumn(name = "FK_PERSONAJE", insertable = false, updatable = false, referencedColumnName = "ID_PERSONAJE", unique = true) })
 	private Personaje personaje;
 
-	@Override
-	public Long getId() {
-		return id;
+	public Personaje getPersonaje() {
+		return personaje;
 	}
 
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setPersonaje(Personaje personaje) {
+		this.personaje = personaje;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(personaje);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Oficio other = (Oficio) obj;
-		return Objects.equals(nombre, other.nombre);
+		return Objects.equals(personaje, other.personaje);
 	}
 
 }

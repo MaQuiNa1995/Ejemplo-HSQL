@@ -2,37 +2,34 @@ package es.maquina1995.hsqldb.dominio.one2one;
 
 import java.util.Objects;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
-
+/**
+ * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
+ * atributos si queremos sobreescribir el nombre de algun campo de esta clase
+ * debemos usar el {@link AttributeOverride}
+ * 
+ * @author MaQuiNa1995
+ *
+ */
 @Entity
 @Table(name = "NINJA")
-public class Ninja implements Persistible<Long> {
+@AttributeOverride(name = "id", column = @Column(name = "ID_NINJA"))
+public class Ninja extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8381958348888873920L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@Column(name = "ID_NINJA")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column(name = "NOMBRE")
-	private String nombre;
 
 	/**
 	 * En el name del {@link JoinColumn} se hace referencia al nombre del campo de
@@ -41,24 +38,6 @@ public class Ninja implements Persistible<Long> {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_NINJUTSU")
 	private Ninjutsu ninjutsu;
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public Ninjutsu getNinjutsu() {
 		return ninjutsu;
@@ -70,19 +49,22 @@ public class Ninja implements Persistible<Long> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(ninjutsu, nombre);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(ninjutsu);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Ninja other = (Ninja) obj;
-		return Objects.equals(ninjutsu, other.ninjutsu) && Objects.equals(nombre, other.nombre);
+		return Objects.equals(ninjutsu, other.ninjutsu);
 	}
 
 }

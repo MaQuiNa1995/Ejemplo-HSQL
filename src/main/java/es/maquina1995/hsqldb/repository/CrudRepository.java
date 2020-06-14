@@ -2,9 +2,9 @@ package es.maquina1995.hsqldb.repository;
 
 import java.util.List;
 
-import es.maquina1995.hsqldb.dominio.Persistible;
+import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
-public interface CrudRepository<K extends Number, T extends Persistible<K>> {
+public interface CrudRepository<K, T extends AbstractEntidadSimple<K>> {
 
 	T persist(T nuevo);
 

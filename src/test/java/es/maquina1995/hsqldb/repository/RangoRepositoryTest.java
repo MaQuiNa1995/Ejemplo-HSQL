@@ -28,8 +28,7 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 	@Override
 	public Rango getInstanceDeT() {
 		Rango rango = new Rango();
-		rango.setAlcanceMaximo(5);
-
+		rango.setNombre("Línea Recta");
 		rango.setTecnica(this.tecnica);
 
 		return rango;
@@ -48,11 +47,10 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 	@Override
 	public Rango getInstanceDeTParaModificar(Long clave) {
 		Rango rango = new Rango();
-		rango.setAlcanceMaximo(10);
+		rango.setNombre("Arco Frontal");
 		rango.setId(clave);
 
 		this.tecnica.setNombre("Puño Airoso");
-
 		rango.setTecnica(this.tecnica);
 
 		return rango;
