@@ -7,10 +7,25 @@ Elementalista - ElementalistaPk
 
 Bidireccional
 
-	TipoMagia 		- 		Mago 			- 		(Comparte el mismo Id)
 	Técnica			-		Rango
+	Personaje		-		Oficio						-		(Tabla intermedia)
+	TipoMagia 		- 		Mago 						- 		(Comparte el mismo Id)
+	
+Unidireccional
+
+	Ninja			-		Ninjutsu
+	
+# Relaciones One2Many (Izquierda la dominante):
+
+Bidireccional
+
+	Alquimista		-		Poción
+	Invocador		-		InvocaciónSuprema			-		(Tabla intermedia)
 
 Unidireccional
 
-	Personaje		-		Oficio			-		(Tabla intermedia)
-	Ninja			-		Ninjutsu
+	Monje			-		TécnicaKi
+	
+	
+	
+	
