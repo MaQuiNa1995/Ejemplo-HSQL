@@ -8,8 +8,8 @@ Elementalista - ElementalistaPk
 Bidireccional
 
 	Técnica			-		Rango
-	Personaje		-		Oficio						-		(Tabla intermedia)
-	TipoMagia 		- 		Mago 						- 		(Comparte el mismo Id)
+	Personaje		-		Oficio			-		(Tabla intermedia)
+	TipoMagia 		- 		Mago 			- 		(Comparte el mismo Id)
 	
 Unidireccional
 
@@ -20,7 +20,7 @@ Unidireccional
 Bidireccional
 
 	Alquimista		-		Poción
-	Invocador		-		InvocaciónSuprema			-		(Tabla intermedia)
+	Invocador		-		InvocaciónSuprema	-	(Tabla intermedia)
 
 Unidireccional
 
