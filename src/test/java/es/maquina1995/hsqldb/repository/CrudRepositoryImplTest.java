@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
-import es.maquina1995.hsqldb.dominio.Persistible;
 
 /**
  * Clase de test genérica para hacer test al vuelo de método tipicos de un CRUD
@@ -129,7 +128,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 
 		getRepository().deleteByPk(clavePrimaria);
 
-		Persistible<?> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+		AbstractEntidadSimple<K> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
 		Assertions.assertNull(objetoBd);
 	}
