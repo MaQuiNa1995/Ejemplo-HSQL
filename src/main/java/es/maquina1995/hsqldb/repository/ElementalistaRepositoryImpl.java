@@ -17,8 +17,6 @@ public class ElementalistaRepositoryImpl implements ElementalistaRepository {
 
 	public static final String ELEMENTALISTA_FIND_ALL = "findAll";
 
-	public static final String TABLA = "ELEMENTALISTA";
-
 	@PersistenceContext
 	private EntityManager entityManager;
 

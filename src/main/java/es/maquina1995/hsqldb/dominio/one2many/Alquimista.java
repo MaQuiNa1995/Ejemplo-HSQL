@@ -40,20 +40,22 @@ public class Alquimista extends AbstractEntidadSimple<Long> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nombre, pociones);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(pociones);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Alquimista other = (Alquimista) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(pociones, other.pociones);
+		return Objects.equals(pociones, other.pociones);
 	}
 
 }

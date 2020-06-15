@@ -19,7 +19,7 @@ import es.maquina1995.hsqldb.repository.ElementalistaRepositoryImpl;
  *
  */
 @Entity
-@Table(name = ElementalistaRepositoryImpl.TABLA)
+@Table(name = "ELEMENTALISTA")
 @NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL, query = "select elementalista from Elementalista elementalista")
 public class Elementalista implements Persistible<ElementalistaPk> {
 

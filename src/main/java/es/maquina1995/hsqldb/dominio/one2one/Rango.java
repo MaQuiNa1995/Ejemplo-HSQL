@@ -12,10 +12,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
-import es.maquina1995.hsqldb.repository.one2one.RangoRepositoryImpl;
 
 @Entity
-@Table(name = RangoRepositoryImpl.TABLA)
+@Table(name = "RANGO")
 @AttributeOverride(name = "id", column = @Column(name = "ID_RANGO"))
 public class Rango extends AbstractEntidadSimple<Long> {
 

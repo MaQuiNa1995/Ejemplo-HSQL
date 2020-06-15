@@ -8,8 +8,6 @@ import es.maquina1995.hsqldb.repository.CrudRepositoryImpl;
 @Repository
 public class TipoMagiaRepositoryImpl extends CrudRepositoryImpl<Long, TipoMagia> implements TipoMagiaRepository {
 
-	public static final String TABLA = "TIPO_MAGIA";
-
 	@Override
 	public Class<TipoMagia> getClassDeT() {
 		return TipoMagia.class;

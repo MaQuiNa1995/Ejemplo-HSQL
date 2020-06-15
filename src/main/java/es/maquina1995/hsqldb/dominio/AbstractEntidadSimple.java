@@ -47,7 +47,7 @@ public abstract class AbstractEntidadSimple<K> implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sequence", allocationSize = 1)
+	@SequenceGenerator(name = "sequence", allocationSize = 10)
 	protected K id;
 
 	@Column(name = "NOMBRE")

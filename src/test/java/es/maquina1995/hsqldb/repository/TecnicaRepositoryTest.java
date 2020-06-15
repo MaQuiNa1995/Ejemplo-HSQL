@@ -30,8 +30,8 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
 	}
 
 	@Override
-	public boolean sonDatosIguales(Tecnica magia1, Tecnica magia2) {
-		return magia1.equals(magia2);
+	public boolean sonDatosIguales(Tecnica tecnica1, Tecnica tecnica2) {
+		return tecnica1.equals(tecnica2);
 	}
 
 	@Override
