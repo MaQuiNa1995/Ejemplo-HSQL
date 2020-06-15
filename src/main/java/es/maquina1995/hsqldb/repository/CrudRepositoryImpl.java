@@ -13,7 +13,7 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends AbstractEnt
 		implements CrudRepository<K, T> {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	@Override
 	@Transactional
@@ -54,9 +54,5 @@ public abstract class CrudRepositoryImpl<K extends Number, T extends AbstractEnt
 	@Transactional
 	public T merge(T modificado) {
 		return entityManager.merge(modificado);
-	}
-
-	protected EntityManager getEntityManager() {
-		return entityManager;
 	}
 }
