@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.configuration.ConfigurationSpring;
 import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
+import es.maquina1995.hsqldb.repository.constants.ConstantesTesting;
 
 /**
  * Clase de test genérica para hacer test al vuelo de método tipicos de un CRUD
@@ -48,30 +49,36 @@ import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
-	public abstract CrudRepository<K, T> getRepository();
+	protected abstract CrudRepository<K, T> getRepository();
 
-	public abstract T getInstanceDeT();
+	protected abstract T getInstanceDeT();
 
-	public abstract boolean sonDatosIguales(T objeto1, T objeto2);
+	protected abstract boolean sonDatosIguales(T objeto1, T objeto2);
 
-	public abstract K getClavePrimariaNoExistente();
+	protected abstract K getClavePrimariaNoExistente();
 
-	public abstract T getInstanceDeTParaModificar(K id);
+	protected T getInstanceDeTParaModificar(K id) {
+		T objetoModificar = getInstanceDeT();
+		objetoModificar.setId(id);
+		objetoModificar.setNombre(ConstantesTesting.CADENA_TEXTO);
+
+		return objetoModificar;
+
+	}
 
 	@Test
 	@Transactional
 	public void addTest() {
 		T instancia = getInstanceDeT();
-
 		Assertions.assertNull(instancia.getId());
 		instancia = getRepository().persist(instancia);
 		Assertions.assertNotNull(instancia.getId());
 	}
 
 	@Test
-	@Transactional
+	@Transactional(readOnly = true)
 	public void readTest() {
 		K clavePrimaria = generaDatoLectura();
 
@@ -82,7 +89,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	}
 
 	@Test
-	@Transactional
+	@Transactional(readOnly = true)
 	public void readNoExisteTest() {
 		K clavePrimaria = getClavePrimariaNoExistente();
 
@@ -138,10 +145,6 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		T instancia = getInstanceDeT();
 		entityManager.persist(instancia);
 		return instancia.getId();
-	}
-
-	protected EntityManager getEntityManager() {
-		return entityManager;
 	}
 
 }

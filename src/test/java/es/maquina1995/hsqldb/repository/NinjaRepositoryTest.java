@@ -8,6 +8,7 @@ import es.maquina1995.hsqldb.repository.one2one.NinjaRepository;
 
 public class NinjaRepositoryTest extends CrudRepositoryImplTest<Long, Ninja> {
 
+	@Autowired
 	private NinjaRepository cut;
 
 	@Override
@@ -39,18 +40,11 @@ public class NinjaRepositoryTest extends CrudRepositoryImplTest<Long, Ninja> {
 
 	@Override
 	public Ninja getInstanceDeTParaModificar(Long clave) {
-		Ninja ninja = getInstanceDeT();
-		ninja.setId(clave);
-		ninja.setNombre("Ninja De Las Sombras");
+		Ninja ninja = super.getInstanceDeTParaModificar(clave);
 
-		Ninjutsu ninjutsu = new Ninjutsu();
-		ninjutsu.setNombre("Puño Mortífero");
+		ninja.getNinjutsu().setNombre("Puño Sombrío");
 
 		return ninja;
 	}
 
-	@Autowired
-	public void setNinjaRepository(NinjaRepository cut) {
-		this.cut = cut;
-	}
 }

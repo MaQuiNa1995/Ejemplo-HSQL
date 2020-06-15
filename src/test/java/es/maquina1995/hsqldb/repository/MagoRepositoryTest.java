@@ -3,10 +3,12 @@ package es.maquina1995.hsqldb.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.one2one.Mago;
+import es.maquina1995.hsqldb.repository.constants.ConstantesTesting;
 import es.maquina1995.hsqldb.repository.one2one.MagoRepository;
 
 public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 
+	@Autowired
 	private MagoRepository cut;
 
 	@Override
@@ -17,8 +19,7 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 	@Override
 	public Mago getInstanceDeT() {
 		Mago mago = new Mago();
-		mago.setNombre("Mago Negro");
-
+		mago.setNombre(ConstantesTesting.CADENA_TEXTO);
 		return mago;
 	}
 
@@ -32,17 +33,4 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 		return Long.MAX_VALUE;
 	}
 
-	@Override
-	public Mago getInstanceDeTParaModificar(Long clave) {
-		Mago mago = getInstanceDeT();
-		mago.setId(clave);
-		mago.setNombre("Mago Rojo");
-
-		return mago;
-	}
-
-	@Autowired
-	public void setMagoRepository(MagoRepository sut) {
-		this.cut = sut;
-	}
 }

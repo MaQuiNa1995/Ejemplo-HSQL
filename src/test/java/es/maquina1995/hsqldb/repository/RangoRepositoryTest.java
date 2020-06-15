@@ -1,6 +1,5 @@
 package es.maquina1995.hsqldb.repository;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.maquina1995.hsqldb.dominio.one2one.Rango;
@@ -9,27 +8,23 @@ import es.maquina1995.hsqldb.repository.one2one.RangoRepository;
 
 public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 
+	@Autowired
 	private RangoRepository cut;
-	private Tecnica tecnica;
-
-	@BeforeEach
-	public void setUp() {
-
-		this.tecnica = new Tecnica();
-		this.tecnica.setNombre("Imitar");
-
-	}
 
 	@Override
 	public CrudRepository<Long, Rango> getRepository() {
-		return this.cut;
+		return cut;
 	}
 
 	@Override
 	public Rango getInstanceDeT() {
 		Rango rango = new Rango();
 		rango.setNombre("Línea Recta");
-		rango.setTecnica(this.tecnica);
+
+		Tecnica tecnica = new Tecnica();
+		tecnica.setNombre("Imitar");
+
+		rango.setTecnica(tecnica);
 
 		return rango;
 	}
@@ -46,18 +41,11 @@ public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
 
 	@Override
 	public Rango getInstanceDeTParaModificar(Long clave) {
-		Rango rango = new Rango();
-		rango.setNombre("Arco Frontal");
-		rango.setId(clave);
+		Rango rango = super.getInstanceDeTParaModificar(clave);
 
-		this.tecnica.setNombre("Puño Airoso");
-		rango.setTecnica(this.tecnica);
+		rango.getTecnica().setNombre("Lluvia De Puños");
 
 		return rango;
 	}
 
-	@Autowired
-	public void setRangoRepository(RangoRepository sut) {
-		this.cut = sut;
-	}
 }

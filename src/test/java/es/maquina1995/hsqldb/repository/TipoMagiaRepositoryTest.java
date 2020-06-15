@@ -8,6 +8,7 @@ import es.maquina1995.hsqldb.repository.one2one.TipoMagiaRepository;
 
 public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMagia> {
 
+	@Autowired
 	private TipoMagiaRepository cut;
 
 	@Override
@@ -40,21 +41,11 @@ public class TipoMagiaRepositoryTest extends CrudRepositoryImplTest<Long, TipoMa
 
 	@Override
 	public TipoMagia getInstanceDeTParaModificar(Long clave) {
-		TipoMagia tipoMagia = new TipoMagia();
+		TipoMagia tipoMagia = super.getInstanceDeTParaModificar(clave);
 
-		tipoMagia.setId(clave);
-		tipoMagia.setNombre("Magia Blanca");
-
-		Mago mago = new Mago();
-		mago.setNombre("Mago Blanco");
-
-		tipoMagia.setMago(mago);
+		tipoMagia.getMago().setNombre("Mago Blanco");
 
 		return tipoMagia;
 	}
 
-	@Autowired
-	public void setTipoMagiaRepository(TipoMagiaRepository sut) {
-		this.cut = sut;
-	}
 }

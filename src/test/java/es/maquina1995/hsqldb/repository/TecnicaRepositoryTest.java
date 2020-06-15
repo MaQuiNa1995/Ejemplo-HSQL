@@ -8,6 +8,7 @@ import es.maquina1995.hsqldb.repository.one2one.TecnicaRepository;
 
 public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica> {
 
+	@Autowired
 	private TecnicaRepository cut;
 
 	@Override
@@ -40,21 +41,11 @@ public class TecnicaRepositoryTest extends CrudRepositoryImplTest<Long, Tecnica>
 
 	@Override
 	public Tecnica getInstanceDeTParaModificar(Long clave) {
-		Tecnica tecnica = new Tecnica();
-		tecnica.setNombre("Puño Airoso");
-		tecnica.setId(clave);
+		Tecnica tecnica = super.getInstanceDeTParaModificar(clave);
 
-		Rango rango = new Rango();
-		rango.setNombre("Arco Frontal");
-
-		tecnica.setRango(rango);
+		tecnica.getRango().setNombre("Arco Frontal");
 
 		return tecnica;
-	}
-
-	@Autowired
-	public void setMagiaRepository(TecnicaRepository sut) {
-		this.cut = sut;
 	}
 
 }
