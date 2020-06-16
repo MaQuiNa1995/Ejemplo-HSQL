@@ -23,7 +23,7 @@ import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
  *
  */
 @Entity
-@Table(name = "ARMA")
+@Table(name = "INVOCADOR")
 @AttributeOverride(name = "id", column = @Column(name = "ID_INVOCADOR"))
 public class Invocador extends AbstractEntidadSimple<Long> {
 
