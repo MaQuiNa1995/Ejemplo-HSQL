@@ -2,7 +2,9 @@ package es.maquina1995.hsqldb.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import es.maquina1995.hsqldb.dominio.one2many.Alquimista;
 import es.maquina1995.hsqldb.dominio.one2one.Oficio;
+import es.maquina1995.hsqldb.dominio.one2one.Personaje;
 import es.maquina1995.hsqldb.repository.one2one.OficioRepository;
 
 public class OficioRepositoryTest extends CrudRepositoryImplTest<Long, Oficio> {
@@ -15,15 +17,22 @@ public class OficioRepositoryTest extends CrudRepositoryImplTest<Long, Oficio> {
 		return cut;
 	}
 
+	/**
+	 * Al ser la parte esclava de la relación no se puede persistir un objeto
+	 * {@link Oficio} que tenga asociado un {@link Personaje} si queremos asociarles
+	 * deberemos persistir previamente un {@link Personaje} y luego al persistir el
+	 * {@link Oficio} enlazarles
+	 * <p>
+	 * {@link Personaje#getOficio()} En este caso la relacion dictamina que este
+	 * valor no puede ser nulable asique primero deberíamos hacer el persist de un
+	 * {@link Alquimista} y luego persistir el objeto {@link Personaje} habiendo
+	 * previamente hecho el {@link Personaje#setOficio(Oficio)}
+	 */
 	@Override
 	public Oficio getInstanceDeT() {
 		Oficio oficio = new Oficio();
 		oficio.setNombre("Dragontino");
 
-//		Personaje personaje = new Personaje();
-//		personaje.setNombre("MaQuiNa1995");
-//
-//		oficio.setPersonaje(personaje);
 		return oficio;
 	}
 
@@ -35,19 +44,6 @@ public class OficioRepositoryTest extends CrudRepositoryImplTest<Long, Oficio> {
 	@Override
 	public Long getClavePrimariaNoExistente() {
 		return Long.MAX_VALUE;
-	}
-
-	// TODO revisar porque al meter un personaje peta por
-	// not-null property references a null or transient value
-	@Override
-	protected Oficio getInstanceDeTParaModificar(Long id) {
-		Oficio oficio = super.getInstanceDeTParaModificar(id);
-
-//		Personaje personaje = new Personaje();
-//		personaje.setNombre("Maqui1995");
-//		oficio.setPersonaje(personaje);
-
-		return oficio;
 	}
 
 }

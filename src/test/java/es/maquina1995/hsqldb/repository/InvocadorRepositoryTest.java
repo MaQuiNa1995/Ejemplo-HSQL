@@ -20,12 +20,6 @@ public class InvocadorRepositoryTest extends CrudRepositoryImplTest<Long, Invoca
 		Invocador invocador = new Invocador();
 		invocador.setNombre("MaKy1995");
 
-//		InvocacionSuprema invocacionSuprema = new InvocacionSuprema();
-//		invocacionSuprema.setNombre("Bahamut");
-//		invocacionSuprema.setInvocador(invocador);
-//
-//		invocador.setInvocaciones(Arrays.asList(invocacionSuprema));
-
 		return invocador;
 	}
 
@@ -38,19 +32,5 @@ public class InvocadorRepositoryTest extends CrudRepositoryImplTest<Long, Invoca
 	public Long getClavePrimariaNoExistente() {
 		return Long.MAX_VALUE;
 	}
-
-	// TODO revisar porque da un stackoverflow exception al meter las invocaciones
-	// supremas
-//	@Override
-//	protected Invocador getInstanceDeTParaModificar(Long id) {
-//		Invocador invocador = super.getInstanceDeTParaModificar(id);
-//
-//		InvocacionSuprema invocacionSuprema = new InvocacionSuprema();
-//		invocacionSuprema.setNombre("Yogimbo");
-//
-//		invocador.setInvocaciones(Arrays.asList(invocacionSuprema));
-//
-//		return invocador;
-//	}
 
 }

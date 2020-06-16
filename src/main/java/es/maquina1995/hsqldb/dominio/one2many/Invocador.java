@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -51,7 +52,7 @@ public class Invocador extends AbstractEntidadSimple<Long> {
 	 * 
 	 * 
 	 */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS", joinColumns = {
 			@JoinColumn(name = "FK_INVOCADOR", referencedColumnName = "ID_INVOCADOR") }, inverseJoinColumns = {
 					@JoinColumn(name = "FK_INVOCACION_SUPREMA", referencedColumnName = "ID_INVOCACION_SUPREMA") })

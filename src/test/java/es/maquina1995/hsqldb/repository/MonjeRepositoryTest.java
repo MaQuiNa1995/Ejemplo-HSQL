@@ -15,16 +15,10 @@ public class MonjeRepositoryTest extends CrudRepositoryImplTest<Long, Monje> {
 		return cut;
 	}
 
-	// TODO revisar
 	@Override
 	public Monje getInstanceDeT() {
 		Monje monje = new Monje();
 		monje.setNombre("MaKy1995");
-
-//		TecnicaKi tecnicaKi = new TecnicaKi();
-//		tecnicaKi.setNombre("Chakra");
-//
-//		monje.setTecnicas(Arrays.asList(tecnicaKi));
 
 		return monje;
 	}
@@ -38,18 +32,5 @@ public class MonjeRepositoryTest extends CrudRepositoryImplTest<Long, Monje> {
 	public Long getClavePrimariaNoExistente() {
 		return Long.MAX_VALUE;
 	}
-
-	// TODO revisar
-//	@Override
-//	protected Monje getInstanceDeTParaModificar(Long id) {
-//		Monje monje = super.getInstanceDeTParaModificar(id);
-//
-//		TecnicaKi tecnicaKi = new TecnicaKi();
-//		tecnicaKi.setNombre("Mil Puños");
-//
-//		monje.setTecnicas(Arrays.asList(tecnicaKi));
-//
-//		return monje;
-//	}
 
 }

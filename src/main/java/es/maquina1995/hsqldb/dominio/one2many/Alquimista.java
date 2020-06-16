@@ -38,6 +38,14 @@ public class Alquimista extends AbstractEntidadSimple<Long> {
 	@OneToMany(mappedBy = "alquimista", cascade = CascadeType.ALL)
 	private List<Pocion> pociones;
 
+	public List<Pocion> getPociones() {
+		return pociones;
+	}
+
+	public void setPociones(List<Pocion> pociones) {
+		this.pociones = pociones;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
