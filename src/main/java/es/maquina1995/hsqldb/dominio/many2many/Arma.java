@@ -70,6 +70,9 @@ public class Arma extends AbstractEntidadSimple<Long> {
 		return result;
 	}
 
+	/**
+	 * FIXME revisar porque da false si tiene lo mismo
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

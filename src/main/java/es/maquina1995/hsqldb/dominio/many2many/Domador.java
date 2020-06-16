@@ -39,7 +39,9 @@ public class Domador extends AbstractEntidadSimple<Long> {
 	 * many2many con listas las operaciones que se hacen al eliminar eliminan todos
 	 * los objetos y luego los vuelve a insertar
 	 * <p>
-	 * https://vladmihalcea.com/the-best-way-to-use-the-manytomany-annotation-with-jpa-and-hibernate/
+	 * <a href=
+	 * "https://vladmihalcea.com/the-best-way-to-use-the-manytomany-annotation-with-jpa-and-hibernate/">mas
+	 * info aqui</a>
 	 * <p>
 	 * <li>DOMADORES_TIENEN_BESTIAS - nombre de la tabla intermedia</li>
 	 * <li>FK_DOMADOR - nombre de la columna de la tabla intermedia que hace
@@ -52,24 +54,27 @@ public class Domador extends AbstractEntidadSimple<Long> {
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "DOMADORES_TIENEN_BESTIAS", joinColumns = @JoinColumn(name = "FK_DOMADOR", referencedColumnName = "ID_DOMADOR"), inverseJoinColumns = @JoinColumn(name = "FK_BESTIA", referencedColumnName = "ID_BESTIA"))
-	private Set<Bestia> calidades;
+	private Set<Bestia> bestias;
 
-	public Set<Bestia> getCalidades() {
-		return calidades;
+	public Set<Bestia> getBestias() {
+		return bestias;
 	}
 
-	public void setCalidades(Set<Bestia> calidades) {
-		this.calidades = calidades;
+	public void setBestias(Set<Bestia> bestias) {
+		this.bestias = bestias;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(calidades);
+		result = prime * result + Objects.hash(bestias);
 		return result;
 	}
 
+	/**
+	 * FIXME porque da false al comparar los Set si tienen lo mismo ?
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,7 +84,7 @@ public class Domador extends AbstractEntidadSimple<Long> {
 		if (getClass() != obj.getClass())
 			return false;
 		Domador other = (Domador) obj;
-		return Objects.equals(calidades, other.calidades);
+		return bestias.equals(other.bestias);
 	}
 
 }
