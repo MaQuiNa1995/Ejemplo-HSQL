@@ -31,6 +31,14 @@ Unidireccional
 
 	Monje			-		TécnicaKi
 	
-	
+# Relaciones Many2Many (Izquierda la dominante):
+
+Bidireccional
+
+	Arma			-		Calidad				-		(Tabla intermedia)
+
+Unidireccional
+
+	Domador			-		Bestia
 	
 	
