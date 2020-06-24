@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
@@ -33,9 +34,18 @@ public class Pocion extends AbstractEntidadSimple<Long> {
 	 * Aqui al ser la parte esclava se debe usar el {@link ManyToOne} y en el
 	 * joinColumn se debe poner el nombre de la comlumna que haga referencia a la
 	 * parte dominante de la relacion {@link Alquimista}
+	 * <p>
+	 * Es preferible usar {@link NotNull} antes que <code>nullable = false</code> de
+	 * {@link JoinColumn} ya que esta última lo valida despues de hacer la query ,
+	 * la primera valida antes de hacerla
+	 * <p>
+	 * <a href="https://www.baeldung.com/hibernate-notnull-vs-nullable">Más info
+	 * aquí</a>
+	 * 
 	 */
 	@ManyToOne
-	@JoinColumn(name = "FK_ALQUIMISTA", nullable = false)
+	@NotNull(message = "El alquimista debe estar informado !!")
+	@JoinColumn(name = "FK_ALQUIMISTA")
 	private Alquimista alquimista;
 
 	public Alquimista getAlquimista() {

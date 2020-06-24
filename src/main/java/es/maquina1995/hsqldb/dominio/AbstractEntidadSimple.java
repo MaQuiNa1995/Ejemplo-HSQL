@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * Clase base que tiene 2 atributos {@link AbstractEntidadSimple#getId()} y
  * {@link AbstractEntidadSimple#getNombre()} extiende de esta para tener estos 2
@@ -21,7 +23,8 @@ import javax.persistence.SequenceGenerator;
  *            clase {@link AbstractEntidadSimple}
  */
 @MappedSuperclass
-public abstract class AbstractEntidadSimple<K> implements Serializable {
+public abstract class AbstractEntidadSimple<K> /** extends Auditable **/
+		implements Serializable {
 
 	/**
 	 * 
@@ -50,6 +53,7 @@ public abstract class AbstractEntidadSimple<K> implements Serializable {
 	@SequenceGenerator(name = "sequence", allocationSize = 10)
 	protected K id;
 
+	@NotBlank(message = "El nombre no puede estar vacío, ni ser nulo ni solo tener espacios !!!")
 	@Column(name = "NOMBRE")
 	protected String nombre;
 
