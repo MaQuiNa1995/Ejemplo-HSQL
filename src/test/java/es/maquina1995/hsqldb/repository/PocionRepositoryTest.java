@@ -1,15 +1,24 @@
 package es.maquina1995.hsqldb.repository;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.maquina1995.hsqldb.dominio.one2many.Alquimista;
 import es.maquina1995.hsqldb.dominio.one2many.Pocion;
+import es.maquina1995.hsqldb.repository.one2many.AlquimistaRepository;
 import es.maquina1995.hsqldb.repository.one2many.PocionRepository;
 
 public class PocionRepositoryTest extends CrudRepositoryImplTest<Long, Pocion> {
 
 	@Autowired
 	private PocionRepository cut;
+	@Autowired
+	private AlquimistaRepository alquimistaRepository;
 
 	@Override
 	public CrudRepository<Long, Pocion> getRepository() {
@@ -58,6 +67,37 @@ public class PocionRepositoryTest extends CrudRepositoryImplTest<Long, Pocion> {
 		personaje.getAlquimista().setNombre("MaKy1995");
 
 		return personaje;
+	}
+
+	@Test
+	@Transactional
+	public void testRelaciones() {
+
+		// Se persiste
+		Alquimista alquimista = new Alquimista();
+		alquimista.setNombre("Maquina1995");
+
+		// Se crea y relaciona la poción
+		Pocion pocion = new Pocion();
+		pocion.setNombre("Elixir");
+		pocion.setAlquimista(alquimista);
+
+		// Se crea y relaciona la poción2
+		Pocion pocion2 = new Pocion();
+		pocion2.setNombre("Ultrapoción");
+		pocion2.setAlquimista(alquimista);
+
+		// Se relacionan y se mete a la base de datos
+		alquimista.setPociones(Arrays.asList(pocion, pocion2));
+		entityManager.persist(alquimista);
+
+		// Comprobamos
+		Assertions.assertFalse(getRepository().findAll().stream().map(Pocion::getAlquimista)
+				.filter(e -> e.equals(alquimista)).collect(Collectors.toList()).isEmpty());
+
+		Assertions.assertFalse(alquimistaRepository.findAll().stream().filter(e -> !e.getPociones().isEmpty())
+				.collect(Collectors.toList()).isEmpty());
+
 	}
 
 }
