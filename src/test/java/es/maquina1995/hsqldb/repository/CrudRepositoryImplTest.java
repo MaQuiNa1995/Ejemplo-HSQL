@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -39,13 +40,18 @@ import es.maquina1995.hsqldb.repository.constants.ConstantesTesting;
  * 
  * @author MaQuiNa1995
  *
- * @param <K> Genérico que representa un objeto que sea hijo de {@link Number}
- * @param <T> Genérico que representa un objeto que esté anotado con
- *            {@link Entity}
+ * @param <K>
+ *            Genérico que representa un objeto que sea hijo de
+ *            {@link java.lang.Number}
+ * @param <T>
+ *            Genérico que representa un objeto que esté anotado con
+ *            {@link javax.persistence.Entity}
  */
+@Rollback
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
+@ContextConfiguration(classes = {ConfigurationSpring.class})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+		TransactionalTestExecutionListener.class})
 public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
 
 	@PersistenceContext
@@ -78,7 +84,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	}
 
 	@Test
-	@Transactional(readOnly = true)
+	@Transactional
 	public void readTest() {
 		K clavePrimaria = generaDatoLectura();
 
@@ -121,9 +127,11 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 
 		getRepository().merge(objetoUpdate);
 
-		T enBBDD = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+		T enBBDD = entityManager.find(getRepository().getClassDeT(),
+				clavePrimaria);
 
-		Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaModificar(clavePrimaria), enBBDD));
+		Assertions.assertTrue(sonDatosIguales(
+				getInstanceDeTParaModificar(clavePrimaria), enBBDD));
 	}
 
 	@Test
@@ -135,7 +143,8 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 
 		getRepository().deleteByPk(clavePrimaria);
 
-		AbstractEntidadSimple<K> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+		AbstractEntidadSimple<K> objetoBd = entityManager
+				.find(getRepository().getClassDeT(), clavePrimaria);
 
 		Assertions.assertNull(objetoBd);
 	}
@@ -144,6 +153,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	private K generaDatoLectura() {
 		T instancia = getInstanceDeT();
 		entityManager.persist(instancia);
+		entityManager.flush();
 		return instancia.getId();
 	}
 
