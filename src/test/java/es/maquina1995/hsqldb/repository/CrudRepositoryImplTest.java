@@ -64,7 +64,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	protected abstract K getClavePrimariaNoExistente();
 
 	protected T getInstanceDeTParaModificar(K id) {
-		T objetoModificar = getInstanceDeT();
+		T objetoModificar = this.getInstanceDeT();
 		objetoModificar.setId(id);
 		objetoModificar.setNombre(ConstantesTesting.CADENA_TEXTO);
 
@@ -75,18 +75,20 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	@Test
 	@Transactional
 	public void addTest() {
-		T instancia = getInstanceDeT();
+		T instancia = this.getInstanceDeT();
 		Assertions.assertNull(instancia.getId());
-		instancia = getRepository().persist(instancia);
+		instancia = this.getRepository()
+				.persist(instancia);
 		Assertions.assertNotNull(instancia.getId());
 	}
 
 	@Test
 	@Transactional
 	public void readTest() {
-		K clavePrimaria = generaDatoLectura();
+		K clavePrimaria = this.generaDatoLectura();
 
-		T resultado = getRepository().readByPk(clavePrimaria);
+		T resultado = this.getRepository()
+				.readByPk(clavePrimaria);
 
 		Assertions.assertNotNull(resultado);
 		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeT(), resultado));
@@ -142,7 +144,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		this.getRepository()
 				.merge(objetoUpdate);
 
-		T enBBDD = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+		T enBBDD = this.entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
 		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeTParaModificar(clavePrimaria), enBBDD));
 	}
@@ -150,13 +152,14 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	@Test
 	@Transactional
 	public void deleteTest() {
-		K clavePrimaria = generaDatoLectura();
+		K clavePrimaria = this.generaDatoLectura();
 
 		Assertions.assertFalse(this.getRepository()
 				.findAll()
 				.isEmpty());
 
-		getRepository().deleteByPk(clavePrimaria);
+		this.getRepository()
+				.deleteByPk(clavePrimaria);
 
 		AbstractEntidadSimple<K> objetoBd = this.entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
@@ -173,8 +176,8 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	private K generaDatoLectura() {
 
 		T instancia = getInstanceDeT();
-		entityManager.persist(instancia);
-		entityManager.flush();
+		this.entityManager.persist(instancia);
+		this.entityManager.flush();
 
 		return instancia.getId();
 	}
