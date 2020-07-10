@@ -82,6 +82,10 @@ public abstract class AbstractEntidadSimple<K> extends AbstractAuditable {
 	 * entidad se crea una entrada en cache y cuando se vaya a traer la entidad de
 	 * base de datos a traves de este campo acudirá a caché en vez de a base de
 	 * datos disminuyendo la carga de la BD
+	 * <p>
+	 * <a href=
+	 * "https://vladmihalcea.com/the-best-way-to-map-a-naturalid-business-key-with-jpa-and-hibernate/">Mas
+	 * Info Aquí</a>
 	 */
 	@NaturalId(mutable = false)
 	@NotBlank(message = "El objeto debe tener siempre una referencia !!!")
@@ -130,7 +134,7 @@ public abstract class AbstractEntidadSimple<K> extends AbstractAuditable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractEntidadSimple other = (AbstractEntidadSimple) obj;
+		AbstractEntidadSimple<K> other = (AbstractEntidadSimple<K>) obj;
 		return Objects.equals(nombre, other.nombre);
 	}
 
