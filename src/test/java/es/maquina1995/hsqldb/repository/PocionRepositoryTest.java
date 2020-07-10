@@ -39,7 +39,7 @@ public class PocionRepositoryTest extends CrudRepositoryImplTest<Long, Pocion> {
 	@Override
 	public Pocion getInstanceDeT() {
 		Pocion pocion = new Pocion();
-		pocion.setNombre("Elixir");
+		pocion.setNombre("Antídoto");
 
 		Alquimista alquimista = new Alquimista();
 		alquimista.setNombre("MaQuiNa1995");

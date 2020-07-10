@@ -28,13 +28,13 @@ public class Main {
 					.createEntityManager();
 
 			ejecutarQueryNativa(entitymanager,
-					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME, COLUMN_SIZE, DECIMAL_DIGITS, IS_NULLABLE FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
+					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
 		}
 
 	}
 
 	public static void ejecutarQueryNativa(EntityManager entityManager, String queryString) {
-		System.out.print("---------------------------");
+		System.out.println("---------------------------");
 		Query query = entityManager.createNativeQuery(queryString);
 		List<?> listaObjetosDb = query.getResultList();
 

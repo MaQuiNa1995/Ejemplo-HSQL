@@ -35,12 +35,14 @@ public class ConfigurationSpring {
 	/**
 	 * Bean que representa la conexión a la base de datos
 	 * 
-	 * @return {@link DataSource} bean que permite la conexión a la base de datos
+	 * @return {@link DataSource} bean que permite la conexión a la base de
+	 *         datos
 	 */
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		// Driver a usar en este caso usamos una base de datos en memoria (HSQLDB)
+		// Driver a usar en este caso usamos una base de datos en memoria
+		// (HSQLDB)
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
 		// Url de la base de datos
 		dataSource.setUrl("jdbc:hsqldb:mem:maquina1995");
@@ -63,28 +65,29 @@ public class ConfigurationSpring {
 	 * Bean que representa la clase encargada de las transacciones en la base de
 	 * datos
 	 * 
-	 * @param dataSource {@link DataSource} bean que representa la conexión a la
-	 *                   base de datos
+	 * @param dataSource
+	 *            {@link DataSource} bean que representa la conexión a la base
+	 *            de datos
 	 * 
 	 * @return {@link JpaTransactionManager} encargado de las transaciones en la
 	 *         base de datos
 	 */
 	@Bean
-	public JpaTransactionManager jpaTransactionManager( /** DataSource dataSource */
+	public JpaTransactionManager jpaTransactionManager( /**
+														 * DataSource dataSource
+														 */
 	) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
+		transactionManager.setEntityManagerFactory(
+				entityManagerFactoryBean().getObject());
 		return transactionManager;
 	}
 
 	/**
 	 * Bean encargado de la persistencia usando el dominio
 	 * 
-	 * @param dataSource {@link DataSource} bean que representa la conexión a la
-	 *                   base de datos
-	 * 
-	 * @return {@link LocalContainerEntityManagerFactoryBean} objeto encargado de la
-	 *         persistencia en base de datos
+	 * @return {@link LocalContainerEntityManagerFactoryBean} objeto encargado
+	 *         de la persistencia en base de datos
 	 */
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
@@ -92,24 +95,29 @@ public class ConfigurationSpring {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter());
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPersistenceUnitName("MaQuiNaPersistenceUnit");
+		entityManagerFactoryBean
+				.setPersistenceUnitName("MaQuiNaPersistenceUnit");
 		// Clase encargada de la persistencia
-		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+		entityManagerFactoryBean.setPersistenceProviderClass(
+				HibernatePersistenceProvider.class);
 		// Paquetes donde se van a buscar las entidades
-		entityManagerFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
+		entityManagerFactoryBean
+				.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
 
 		return entityManagerFactoryBean;
 	}
 
 	/**
-	 * Bean encargado de propiedades de configuracion adicionales de hibernate y jpa
+	 * Bean encargado de propiedades de configuracion adicionales de hibernate y
+	 * jpa
 	 * 
-	 * @return {@link HibernateJpaVendorAdapter} Objeto que contiene las propieades
-	 *         adicionales que podemos usar en jpa/hibernate
+	 * @return {@link HibernateJpaVendorAdapter} Objeto que contiene las
+	 *         propieades adicionales que podemos usar en jpa/hibernate
 	 */
 	private HibernateJpaVendorAdapter vendorAdapter() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		// Indicamos si en el log nos saldrán las sentencias que se vayan ejecutando (En
+		// Indicamos si en el log nos saldrán las sentencias que se vayan
+		// ejecutando (En
 		// entornos de producción esto debería de estar a FALSE)
 		vendorAdapter.setShowSql(Boolean.TRUE);
 		vendorAdapter.setGenerateDdl(Boolean.TRUE);

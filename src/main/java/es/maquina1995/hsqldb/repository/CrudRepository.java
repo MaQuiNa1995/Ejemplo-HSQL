@@ -1,6 +1,7 @@
 package es.maquina1995.hsqldb.repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import es.maquina1995.hsqldb.dominio.AbstractEntidadSimple;
 
@@ -19,4 +20,6 @@ public interface CrudRepository<K, T extends AbstractEntidadSimple<K>> {
 	void delete(T aBorrar);
 
 	public abstract Class<T> getClassDeT();
+
+	T readByNaturalId(UUID id);
 }

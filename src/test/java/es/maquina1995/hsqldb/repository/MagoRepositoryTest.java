@@ -24,8 +24,8 @@ public class MagoRepositoryTest extends CrudRepositoryImplTest<Long, Mago> {
 	}
 
 	@Override
-	public boolean sonDatosIguales(Mago mago1, Mago mago2) {
-		return mago1.equals(mago2);
+	public boolean sonDatosIguales(Mago mago, Mago mago2) {
+		return mago.equals(mago2);
 	}
 
 	@Override
