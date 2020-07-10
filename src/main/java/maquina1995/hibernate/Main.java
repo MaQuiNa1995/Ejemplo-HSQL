@@ -24,7 +24,8 @@ public class Main {
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				ConfigurationSpring.class)) {
 
-			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class).getObject()
+			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class)
+					.getObject()
 					.createEntityManager();
 
 			ejecutarQueryNativa(entitymanager,
