@@ -6,9 +6,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>es.maquina1995</groupId>
-	<artifactId>hsqldb</artifactId>
-	<version>3.0.0-RELEASE</version>
+	<groupId>maquina1995</groupId>
+	<artifactId>hibernate</artifactId>
+	<version>4.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>Ejemplo-Jpa</name>
