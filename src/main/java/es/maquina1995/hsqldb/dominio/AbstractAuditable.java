@@ -28,7 +28,8 @@ import es.maquina1995.hsqldb.audit.AuditManager;
  *
  */
 @MappedSuperclass
-public abstract class Auditable implements Serializable {
+
+public abstract class AbstractAuditable implements Serializable {
 
 	/**
 	 * 
@@ -37,12 +38,12 @@ public abstract class Auditable implements Serializable {
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga
-	 * {@link GenerationTime#INSERT} vaya a {@link AuditManager} y meta el
-	 * usuario que ha tocado la entidad
+	 * {@link GenerationTime#INSERT} vaya a {@link AuditManager} y meta el usuario
+	 * que ha tocado la entidad
 	 */
 	@Column(name = "CREADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.INSERT)
-	protected String creadoPor;
+	private String creadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -53,17 +54,18 @@ public abstract class Auditable implements Serializable {
 	 * Info</a>
 	 */
 	@CreationTimestamp
-	protected LocalDateTime fechaCreacion;
+	@Column(name = "FECHA_CREACION")
+	private LocalDateTime fechaCreacion;
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga cualquier operación
-	 * {@link GenerationTime#ALWAYS} vaya a {@link AuditManager} y meta el
-	 * usuario que ha tocado la entidad
+	 * {@link GenerationTime#ALWAYS} vaya a {@link AuditManager} y meta el usuario
+	 * que ha tocado la entidad
 	 * 
 	 */
 	@Column(name = "MODIFICADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.ALWAYS)
-	protected String modificadoPor;
+	private String modificadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -74,38 +76,7 @@ public abstract class Auditable implements Serializable {
 	 * Info</a>
 	 */
 	@UpdateTimestamp
-	protected LocalDateTime fechaModificacion;
-
-	public String getCreadoPor() {
-		return creadoPor;
-	}
-
-	public void setCreadoPor(String creadoPor) {
-		this.creadoPor = creadoPor;
-	}
-
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public String getModificadoPor() {
-		return modificadoPor;
-	}
-
-	public void setModificadoPor(String modificadoPor) {
-		this.modificadoPor = modificadoPor;
-	}
-
-	public LocalDateTime getFechaModificacion() {
-		return fechaModificacion;
-	}
-
-	public void setFechaModificacion(LocalDateTime fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
+	@Column(name = "FECHA_MODIFICACION")
+	private LocalDateTime fechaModificacion;
 
 }
