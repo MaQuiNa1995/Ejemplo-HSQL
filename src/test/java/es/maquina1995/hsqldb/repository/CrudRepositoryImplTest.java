@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -40,10 +41,12 @@ import es.maquina1995.hsqldb.repository.constants.ConstantesTesting;
  * 
  * @author MaQuiNa1995
  *
- * @param <K> Genérico que representa un objeto que sea hijo de {@link Number}
+ * @param <K> Genérico que representa un objeto que sea hijo de
+ *            {@link java.lang.Number}
  * @param <T> Genérico que representa un objeto que esté anotado con
- *            {@link Entity}
+ *            {@link javax.persistence.Entity}
  */
+@Rollback
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConfigurationSpring.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
@@ -79,7 +82,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	}
 
 	@Test
-	@Transactional(readOnly = true)
+	@Transactional
 	public void readTest() {
 		K clavePrimaria = generaDatoLectura();
 
@@ -160,10 +163,19 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		Assertions.assertNull(objetoBd);
 	}
 
+	/**
+	 * Se hace {@link EntityManager#flush()} para que cree los campos de
+	 * {@link es.maquina1995.hsqldb.dominio.AbstractAuditable}
+	 * 
+	 * @return
+	 */
 	@Transactional
 	private K generaDatoLectura() {
-		T instancia = this.getInstanceDeT();
-		this.entityManager.persist(instancia);
+
+		T instancia = getInstanceDeT();
+		entityManager.persist(instancia);
+		entityManager.flush();
+
 		return instancia.getId();
 	}
 

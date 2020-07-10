@@ -1,5 +1,6 @@
 package es.maquina1995.hsqldb.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ import es.maquina1995.hsqldb.audit.AuditManager;
  * Clase creada para que las tablas que queramos auditar puedan extender de ella
  * y guarde información útil sobre ellas, solo serviría para acciones que no
  * sean borrados físicos , ya que con estos se borra toda la entidad de base de
- * datos para llevar un historico completo debemos usar otra manera a
+ * datos para llevar un historico completo debemos usar otra manera:
  * <a href="https://www.baeldung.com/database-auditing-jpa">como esta</a>
  * <p>
  * <a href=
@@ -27,7 +28,13 @@ import es.maquina1995.hsqldb.audit.AuditManager;
  *
  */
 @MappedSuperclass
-public abstract class AbstractAuditable {
+
+public abstract class AbstractAuditable implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2680594333158867645L;
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga

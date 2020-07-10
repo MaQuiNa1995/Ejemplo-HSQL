@@ -1,6 +1,5 @@
 package es.maquina1995.hsqldb.dominio;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -41,12 +40,12 @@ import jakarta.validation.constraints.NotBlank;
 @NaturalIdCache
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MappedSuperclass
-public abstract class AbstractEntidadSimple<K> extends AbstractAuditable implements Serializable {
+public abstract class AbstractEntidadSimple<K> extends AbstractAuditable {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -121629940122714557L;
+	* 
+	*/
+	private static final long serialVersionUID = 7040921383481388954L;
 
 	/**
 	 * Id de la entidad
