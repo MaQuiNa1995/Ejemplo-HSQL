@@ -35,7 +35,7 @@ Unidireccional
 
 Bidireccional
 
-	Arma			-		Calidad				-		(Tabla intermedia)
+	Arma			-		Calidad			-		(Tabla intermedia)
 
 Unidireccional
 
