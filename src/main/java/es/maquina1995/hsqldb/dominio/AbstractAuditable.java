@@ -27,7 +27,7 @@ import es.maquina1995.hsqldb.audit.AuditManager;
  *
  */
 @MappedSuperclass
-public abstract class Auditable {
+public abstract class AbstractAuditable {
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga
@@ -36,7 +36,7 @@ public abstract class Auditable {
 	 */
 	@Column(name = "CREADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.INSERT)
-	protected String creadoPor;
+	private String creadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -47,7 +47,8 @@ public abstract class Auditable {
 	 * Info</a>
 	 */
 	@CreationTimestamp
-	protected LocalDateTime fechaCreacion;
+	@Column(name = "FECHA_CREACION")
+	private LocalDateTime fechaCreacion;
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga cualquier operación
@@ -57,7 +58,7 @@ public abstract class Auditable {
 	 */
 	@Column(name = "MODIFICADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.ALWAYS)
-	protected String modificadoPor;
+	private String modificadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -68,38 +69,7 @@ public abstract class Auditable {
 	 * Info</a>
 	 */
 	@UpdateTimestamp
-	protected LocalDateTime fechaModificacion;
-
-	public String getCreadoPor() {
-		return creadoPor;
-	}
-
-	public void setCreadoPor(String creadoPor) {
-		this.creadoPor = creadoPor;
-	}
-
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public String getModificadoPor() {
-		return modificadoPor;
-	}
-
-	public void setModificadoPor(String modificadoPor) {
-		this.modificadoPor = modificadoPor;
-	}
-
-	public LocalDateTime getFechaModificacion() {
-		return fechaModificacion;
-	}
-
-	public void setFechaModificacion(LocalDateTime fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
+	@Column(name = "FECHA_MODIFICACION")
+	private LocalDateTime fechaModificacion;
 
 }

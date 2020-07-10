@@ -1,6 +1,7 @@
 package es.maquina1995.hsqldb.repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -85,15 +86,28 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		T resultado = getRepository().readByPk(clavePrimaria);
 
 		Assertions.assertNotNull(resultado);
-		Assertions.assertTrue(sonDatosIguales(getInstanceDeT(), resultado));
+		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeT(), resultado));
+	}
+
+	@Test
+	@Transactional
+	public void readByNaturalIdTest() {
+		UUID idNatural = this.generaDatoLecturaNaturalId();
+
+		T resultado = this.getRepository()
+				.readByNaturalId(idNatural);
+
+		Assertions.assertNotNull(resultado);
+		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeT(), resultado));
 	}
 
 	@Test
 	@Transactional(readOnly = true)
 	public void readNoExisteTest() {
-		K clavePrimaria = getClavePrimariaNoExistente();
+		K clavePrimaria = this.getClavePrimariaNoExistente();
 
-		Assertions.assertNull(getRepository().readByPk(clavePrimaria));
+		Assertions.assertNull(this.getRepository()
+				.readByPk(clavePrimaria));
 
 	}
 
@@ -101,13 +115,16 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	@Transactional
 	public void findAllTest() {
 
-		Assertions.assertTrue(getRepository().findAll().isEmpty());
+		Assertions.assertTrue(this.getRepository()
+				.findAll()
+				.isEmpty());
 
 		for (int i = 0; i < 3; i++) {
 			this.generaDatoLectura();
 		}
 
-		List<T> resultado = getRepository().findAll();
+		List<T> resultado = this.getRepository()
+				.findAll();
 
 		Assertions.assertEquals(3, resultado.size());
 	}
@@ -115,15 +132,16 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	@Test
 	@Transactional
 	public void updateTest() {
-		K clavePrimaria = generaDatoLectura();
+		K clavePrimaria = this.generaDatoLectura();
 
-		T objetoUpdate = getInstanceDeTParaModificar(clavePrimaria);
+		T objetoUpdate = this.getInstanceDeTParaModificar(clavePrimaria);
 
-		getRepository().merge(objetoUpdate);
+		this.getRepository()
+				.merge(objetoUpdate);
 
 		T enBBDD = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
-		Assertions.assertTrue(sonDatosIguales(getInstanceDeTParaModificar(clavePrimaria), enBBDD));
+		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeTParaModificar(clavePrimaria), enBBDD));
 	}
 
 	@Test
@@ -131,20 +149,29 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	public void deleteTest() {
 		K clavePrimaria = generaDatoLectura();
 
-		Assertions.assertFalse(getRepository().findAll().isEmpty());
+		Assertions.assertFalse(this.getRepository()
+				.findAll()
+				.isEmpty());
 
 		getRepository().deleteByPk(clavePrimaria);
 
-		AbstractEntidadSimple<K> objetoBd = entityManager.find(getRepository().getClassDeT(), clavePrimaria);
+		AbstractEntidadSimple<K> objetoBd = this.entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
 		Assertions.assertNull(objetoBd);
 	}
 
 	@Transactional
 	private K generaDatoLectura() {
-		T instancia = getInstanceDeT();
-		entityManager.persist(instancia);
+		T instancia = this.getInstanceDeT();
+		this.entityManager.persist(instancia);
 		return instancia.getId();
+	}
+
+	@Transactional
+	private UUID generaDatoLecturaNaturalId() {
+		T instancia = this.getInstanceDeT();
+		entityManager.persist(instancia);
+		return instancia.getReferencia();
 	}
 
 }
