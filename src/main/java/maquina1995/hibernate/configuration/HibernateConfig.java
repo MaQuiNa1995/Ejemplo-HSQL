@@ -1,8 +1,10 @@
 package maquina1995.hibernate.configuration;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +15,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * Clase destinada a la configuración de Spring
@@ -28,7 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @ComponentScan(basePackages = "maquina1995.hibernate.", useDefaultFilters = true, includeFilters = @Filter(type = FilterType.REGEX, pattern = "(repository)$"))
-public class ConfigurationSpring {
+public class HibernateConfig {
 
 	private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "maquina1995.hibernate.dominio";
 
@@ -39,24 +44,31 @@ public class ConfigurationSpring {
 	 */
 	@Bean
 	public DataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		// Driver a usar en este caso usamos una base de datos en memoria
-		// (HSQLDB)
-		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		// Url de la base de datos
-		dataSource.setUrl("jdbc:hsqldb:mem:maquina1995");
-		// Credenciales base de datos
-		dataSource.setUsername("sa");
-		dataSource.setPassword("");
-		// Número de conexiones iniciales
-		dataSource.setInitialSize(5);
-		// Número de conexiones activas simultáneas
-		dataSource.setMaxIdle(10);
-		// Se usa para precompilar las sentencais SQL y verificar su sintaxis
-		dataSource.setPoolPreparedStatements(Boolean.TRUE);
-		// Número máximo de PreparedStatements activas simultáneas
-		dataSource.setMaxOpenPreparedStatements(10);
-		return dataSource;
+
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setDriverClassName("org.hsqldb.jdbcDriver");
+		hikariConfig.setJdbcUrl("jdbc:hsqldb:mem:maquina1995");
+		hikariConfig.setUsername("sa");
+		hikariConfig.setPassword("");
+
+		hikariConfig.setMaximumPoolSize(5);
+		hikariConfig.setPoolName("SpringHikariCP");
+
+		hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
+		hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSize", "250");
+		hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSqlLimit", "2048");
+		hikariConfig.addDataSourceProperty("dataSource.useServerPrepStmts", "true");
+
+		return new HikariDataSource(hikariConfig);
+	}
+
+	@Bean
+	public Configuration createHibernateConfig(CustomPhysicalNamingStrategy customPhysicalNamingStrategy) {
+
+		Configuration hibernateConfiguration = new Configuration();
+		hibernateConfiguration.setPhysicalNamingStrategy(customPhysicalNamingStrategy);
+
+		return hibernateConfiguration;
 
 	}
 
@@ -88,14 +100,22 @@ public class ConfigurationSpring {
 
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter());
+		entityManagerFactoryBean.setJpaProperties(this.createAditionalProperties());
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPersistenceUnitName("MaQuiNaPersistenceUnit");
 		// Clase encargada de la persistencia
 		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		// Paquetes donde se van a buscar las entidades
 		entityManagerFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
-
 		return entityManagerFactoryBean;
+	}
+
+	private Properties createAditionalProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		properties.setProperty("hibernate.physical_naming_strategy",
+				"maquina1995.hibernate.configuration.CustomPhysicalNamingStrategy");
+		return properties;
 	}
 
 	/**
@@ -109,9 +129,13 @@ public class ConfigurationSpring {
 		// Indicamos si en el log nos saldrán las sentencias que se vayan
 		// ejecutando (En entornos de producción esto debería de estar a FALSE)
 		vendorAdapter.setShowSql(Boolean.TRUE);
-		vendorAdapter.setGenerateDdl(Boolean.TRUE);
 		vendorAdapter.setDatabase(Database.HSQL);
 		return vendorAdapter;
 	}
+//
+//	@Bean
+//	public PhysicalNamingStrategy crearEstrategiaNombradoBd() {
+//		return new CustomPhysicalNamingStrategy();
+//	}
 
 }

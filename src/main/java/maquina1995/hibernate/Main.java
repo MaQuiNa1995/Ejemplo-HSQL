@@ -7,9 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-import maquina1995.hibernate.configuration.ConfigurationSpring;
+import maquina1995.hibernate.configuration.HibernateConfig;
 
 /**
  * Main para la ejecución de pruebas personalizadas
@@ -22,14 +21,14 @@ public class Main {
 	public static void main(String... args) {
 
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				ConfigurationSpring.class)) {
+				HibernateConfig.class)) {
 
-			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class)
-					.getObject()
-					.createEntityManager();
-
-			ejecutarQueryNativa(entitymanager,
-					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
+//			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class)
+//					.getObject()
+//					.createEntityManager();
+//
+//			ejecutarQueryNativa(entitymanager,
+//					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
 		}
 
 	}

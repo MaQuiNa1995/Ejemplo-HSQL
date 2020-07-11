@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import maquina1995.hibernate.configuration.ConfigurationSpring;
+import maquina1995.hibernate.configuration.HibernateConfig;
 import maquina1995.hibernate.dominio.Elementalista;
 import maquina1995.hibernate.dominio.ElementalistaPk;
 import maquina1995.hibernate.repository.ElementalistaRepository;
@@ -28,7 +28,7 @@ import maquina1995.hibernate.repository.ElementalistaRepository;
  *
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class })
+@ContextConfiguration(classes = { HibernateConfig.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class ElementalistaRepositoryTest {
 

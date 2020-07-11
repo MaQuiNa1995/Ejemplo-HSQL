@@ -89,11 +89,10 @@ public abstract class AbstractEntidadSimple<K> extends AbstractAuditable {
 	 */
 	@NaturalId(mutable = false)
 	@NotBlank(message = "El objeto debe tener siempre una referencia !!!")
-	@Column(name = "referencia", unique = true)
+	@Column(unique = true)
 	private UUID referencia;
 
 	@NotBlank(message = "El nombre no puede estar vacío, ni ser nulo ni solo tener espacios !!!")
-	@Column(name = "NOMBRE")
 	protected String nombre;
 
 	public K getId() {

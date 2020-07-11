@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 
 @Entity
-@Table(name = "RANGO")
+@Table
 @AttributeOverride(name = "id", column = @Column(name = "ID_RANGO"))
 public class Rango extends AbstractEntidadSimple<Long> {
 

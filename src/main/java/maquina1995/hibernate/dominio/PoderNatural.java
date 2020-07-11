@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "PODER_NATURAL")
+@Table
 @AttributeOverride(name = "id", column = @Column(name = "ID_PODER_NATURAL"))
 public class PoderNatural extends AbstractEntidadSimple<Long> {
 

@@ -3,7 +3,6 @@ package maquina1995.hibernate.dominio;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -20,9 +19,8 @@ public class ElementalistaPk implements Serializable {
 	 */
 	private static final long serialVersionUID = 2179897527538033194L;
 
-	@Column(name = "PODER")
 	private Long poder;
-	@Column(name = "ELEMENTO")
+
 	private String elemento;
 
 	/**
@@ -68,17 +66,6 @@ public class ElementalistaPk implements Serializable {
 			return false;
 		ElementalistaPk other = (ElementalistaPk) obj;
 		return Objects.equals(elemento, other.elemento) && Objects.equals(poder, other.poder);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ElementalistaPk [poder=");
-		builder.append(poder);
-		builder.append(", elemento=");
-		builder.append(elemento);
-		builder.append("]");
-		return builder.toString();
 	}
 
 }

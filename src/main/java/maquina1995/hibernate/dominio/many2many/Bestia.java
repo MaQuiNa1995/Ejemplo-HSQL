@@ -16,7 +16,7 @@ import maquina1995.hibernate.dominio.AbstractEntidadSimple;
  *
  */
 @Entity
-@Table(name = "BESTIA")
+@Table
 @AttributeOverride(name = "id", column = @Column(name = "ID_BESTIA"))
 public class Bestia extends AbstractEntidadSimple<Long> {
 

@@ -17,7 +17,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import maquina1995.hibernate.configuration.ConfigurationSpring;
+import maquina1995.hibernate.configuration.HibernateConfig;
 import maquina1995.hibernate.constants.ConstantesTesting;
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 import maquina1995.hibernate.repository.CrudRepository;
@@ -49,7 +49,7 @@ import maquina1995.hibernate.repository.CrudRepository;
  */
 @Rollback
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { ConfigurationSpring.class })
+@ContextConfiguration(classes = { HibernateConfig.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
 

@@ -1,8 +1,8 @@
 package maquina1995.hibernate.dominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,19 +19,18 @@ import maquina1995.hibernate.repository.ElementalistaRepositoryImpl;
  *
  */
 @Entity
-@Table(name = "ELEMENTALISTA")
+@Table
 @NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL, query = "select elementalista from Elementalista elementalista")
-public class Elementalista implements Persistible<ElementalistaPk> {
+public class Elementalista implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5323271373231228172L;
+	private static final long serialVersionUID = -5440566391256042865L;
 
 	@EmbeddedId
 	private ElementalistaPk id;
 
-	@Column(name = "NOMBRE")
 	private String nombre;
 
 	public String getNombre() {
@@ -45,7 +44,6 @@ public class Elementalista implements Persistible<ElementalistaPk> {
 	/**
 	 * @return the id
 	 */
-	@Override
 	public ElementalistaPk getId() {
 		return id;
 	}
@@ -53,7 +51,6 @@ public class Elementalista implements Persistible<ElementalistaPk> {
 	/**
 	 * @param id the id to set
 	 */
-	@Override
 	public void setId(ElementalistaPk id) {
 		this.id = id;
 	}
@@ -73,17 +70,6 @@ public class Elementalista implements Persistible<ElementalistaPk> {
 			return false;
 		Elementalista other = (Elementalista) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Elementalista [id=");
-		builder.append(id);
-		builder.append(", nombre=");
-		builder.append(nombre);
-		builder.append("]");
-		return builder.toString();
 	}
 
 }

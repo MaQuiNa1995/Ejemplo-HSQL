@@ -3,7 +3,6 @@ package maquina1995.hibernate.dominio;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,7 +27,6 @@ import maquina1995.hibernate.audit.AuditManager;
  *
  */
 @MappedSuperclass
-
 public abstract class AbstractAuditable implements Serializable {
 
 	/**
@@ -41,7 +39,6 @@ public abstract class AbstractAuditable implements Serializable {
 	 * {@link GenerationTime#INSERT} vaya a {@link AuditManager} y meta el usuario
 	 * que ha tocado la entidad
 	 */
-	@Column(name = "CREADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.INSERT)
 	private String creadoPor;
 
@@ -54,7 +51,6 @@ public abstract class AbstractAuditable implements Serializable {
 	 * Info</a>
 	 */
 	@CreationTimestamp
-	@Column(name = "FECHA_CREACION")
 	private LocalDateTime fechaCreacion;
 
 	/**
@@ -63,7 +59,6 @@ public abstract class AbstractAuditable implements Serializable {
 	 * que ha tocado la entidad
 	 * 
 	 */
-	@Column(name = "MODIFICADO_POR")
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.ALWAYS)
 	private String modificadoPor;
 
@@ -76,7 +71,22 @@ public abstract class AbstractAuditable implements Serializable {
 	 * Info</a>
 	 */
 	@UpdateTimestamp
-	@Column(name = "FECHA_MODIFICACION")
 	private LocalDateTime fechaModificacion;
+
+	public String getCreadoPor() {
+		return creadoPor;
+	}
+
+	public LocalDateTime getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public String getModificadoPor() {
+		return modificadoPor;
+	}
+
+	public LocalDateTime getFechaModificacion() {
+		return fechaModificacion;
+	}
 
 }
