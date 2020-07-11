@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.many2many.Bestia;
 import maquina1995.hibernate.dominio.many2many.Domador;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.many2many.DomadorRepository;
 
-public class DomadorRepositoryTest extends CrudRepositoryImplTest<Long, Domador> {
+public class DomadorRepositoryTest extends JpaRepositoryImplTest<Long, Domador> {
 
 	@Autowired
 	private DomadorRepository cut;
 
 	@Override
-	public CrudRepository<Long, Domador> getRepository() {
+	public JpaRepository<Long, Domador> getRepository() {
 		return cut;
 	}
 

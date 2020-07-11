@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2one.Ninja;
 import maquina1995.hibernate.dominio.one2one.Ninjutsu;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2one.NinjaRepository;
 
-public class NinjaRepositoryTest extends CrudRepositoryImplTest<Long, Ninja> {
+public class NinjaRepositoryTest extends JpaRepositoryImplTest<Long, Ninja> {
 
 	@Autowired
 	private NinjaRepository cut;
 
 	@Override
-	public CrudRepository<Long, Ninja> getRepository() {
+	public JpaRepository<Long, Ninja> getRepository() {
 		return cut;
 	}
 

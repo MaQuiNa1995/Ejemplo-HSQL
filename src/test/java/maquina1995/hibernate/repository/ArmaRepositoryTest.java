@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.many2many.Arma;
 import maquina1995.hibernate.dominio.many2many.Calidad;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.many2many.ArmaRepository;
 
-public class ArmaRepositoryTest extends CrudRepositoryImplTest<Long, Arma> {
+public class ArmaRepositoryTest extends JpaRepositoryImplTest<Long, Arma> {
 
 	@Autowired
 	private ArmaRepository cut;
 
 	@Override
-	public CrudRepository<Long, Arma> getRepository() {
+	public JpaRepository<Long, Arma> getRepository() {
 		return cut;
 	}
 

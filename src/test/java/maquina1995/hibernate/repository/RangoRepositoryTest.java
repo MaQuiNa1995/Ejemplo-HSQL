@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2one.Rango;
 import maquina1995.hibernate.dominio.one2one.Tecnica;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2one.RangoRepository;
 
-public class RangoRepositoryTest extends CrudRepositoryImplTest<Long, Rango> {
+public class RangoRepositoryTest extends JpaRepositoryImplTest<Long, Rango> {
 
 	@Autowired
 	private RangoRepository cut;
 
 	@Override
-	public CrudRepository<Long, Rango> getRepository() {
+	public JpaRepository<Long, Rango> getRepository() {
 		return cut;
 	}
 

@@ -3,16 +3,16 @@ package maquina1995.hibernate.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2many.TecnicaKi;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2many.TecnicaKiRepository;
 
-public class TecnicaKiRepositoryTest extends CrudRepositoryImplTest<Long, TecnicaKi> {
+public class TecnicaKiRepositoryTest extends JpaRepositoryImplTest<Long, TecnicaKi> {
 
 	@Autowired
 	private TecnicaKiRepository cut;
 
 	@Override
-	public CrudRepository<Long, TecnicaKi> getRepository() {
+	public JpaRepository<Long, TecnicaKi> getRepository() {
 		return cut;
 	}
 

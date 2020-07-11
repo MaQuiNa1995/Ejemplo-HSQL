@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 
-public interface CrudRepository<K, T extends AbstractEntidadSimple<K>> {
+public interface JpaRepository<K, T extends AbstractEntidadSimple<K>> {
 
 	T persist(T nuevo);
 

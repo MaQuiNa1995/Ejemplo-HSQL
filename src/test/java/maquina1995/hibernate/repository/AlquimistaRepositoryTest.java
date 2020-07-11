@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2many.Alquimista;
 import maquina1995.hibernate.dominio.one2many.Pocion;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2many.AlquimistaRepository;
 
-public class AlquimistaRepositoryTest extends CrudRepositoryImplTest<Long, Alquimista> {
+public class AlquimistaRepositoryTest extends JpaRepositoryImplTest<Long, Alquimista> {
 
 	@Autowired
 	private AlquimistaRepository cut;
 
 	@Override
-	public CrudRepository<Long, Alquimista> getRepository() {
+	public JpaRepository<Long, Alquimista> getRepository() {
 		return cut;
 	}
 

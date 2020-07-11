@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import maquina1995.hibernate.configuration.HibernateConfig;
 
@@ -23,12 +24,12 @@ public class Main {
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				HibernateConfig.class)) {
 
-//			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class)
-//					.getObject()
-//					.createEntityManager();
-//
-//			ejecutarQueryNativa(entitymanager,
-//					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
+			EntityManager entitymanager = context.getBean(LocalContainerEntityManagerFactoryBean.class)
+					.getObject()
+					.createEntityManager();
+
+			ejecutarQueryNativa(entitymanager,
+					"SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME NOT LIKE 'SYSTEM_%'");
 		}
 
 	}

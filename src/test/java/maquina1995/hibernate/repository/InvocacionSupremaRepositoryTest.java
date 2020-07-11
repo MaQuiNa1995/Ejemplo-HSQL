@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2many.InvocacionSuprema;
 import maquina1995.hibernate.dominio.one2many.Invocador;
-import maquina1995.hibernate.repository.CrudRepository;
 import maquina1995.hibernate.repository.one2many.InvocacionSupremaRepository;
 
-public class InvocacionSupremaRepositoryTest extends CrudRepositoryImplTest<Long, InvocacionSuprema> {
+public class InvocacionSupremaRepositoryTest extends JpaRepositoryImplTest<Long, InvocacionSuprema> {
 
 	@Autowired
 	private InvocacionSupremaRepository cut;
 
 	@Override
-	public CrudRepository<Long, InvocacionSuprema> getRepository() {
+	public JpaRepository<Long, InvocacionSuprema> getRepository() {
 		return cut;
 	}
 
@@ -52,7 +51,8 @@ public class InvocacionSupremaRepositoryTest extends CrudRepositoryImplTest<Long
 	protected InvocacionSuprema getInstanceDeTParaModificar(Long id) {
 		InvocacionSuprema invocacionSuprema = super.getInstanceDeTParaModificar(id);
 
-		invocacionSuprema.getInvocador().setNombre("MaQui1995");
+		invocacionSuprema.getInvocador()
+				.setNombre("MaQui1995");
 
 		return invocacionSuprema;
 	}

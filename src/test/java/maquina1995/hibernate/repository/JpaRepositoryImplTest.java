@@ -18,7 +18,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import maquina1995.hibernate.configuration.HibernateConfig;
-import maquina1995.hibernate.constants.ConstantesTesting;
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -50,12 +49,12 @@ import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { HibernateConfig.class })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionalTestExecutionListener.class })
-public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
+public abstract class JpaRepositoryImplTest<K, T extends AbstractEntidadSimple<K>> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
 
-	protected abstract CrudRepository<K, T> getRepository();
+	protected abstract JpaRepository<K, T> getRepository();
 
 	protected abstract T getInstanceDeT();
 
@@ -66,7 +65,7 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 	protected T getInstanceDeTParaModificar(K id) {
 		T objetoModificar = this.getInstanceDeT();
 		objetoModificar.setId(id);
-		objetoModificar.setNombre(ConstantesTesting.CADENA_TEXTO);
+		objetoModificar.setNombre("MaKy1995");
 
 		return objetoModificar;
 	}

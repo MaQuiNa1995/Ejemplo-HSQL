@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import maquina1995.hibernate.dominio.one2many.Alquimista;
 import maquina1995.hibernate.dominio.one2many.Pocion;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2many.AlquimistaRepository;
 import maquina1995.hibernate.repository.one2many.PocionRepository;
 
-public class PocionRepositoryTest extends CrudRepositoryImplTest<Long, Pocion> {
+public class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 
 	@Autowired
 	private PocionRepository cut;
@@ -22,7 +22,7 @@ public class PocionRepositoryTest extends CrudRepositoryImplTest<Long, Pocion> {
 	private AlquimistaRepository alquimistaRepository;
 
 	@Override
-	public CrudRepository<Long, Pocion> getRepository() {
+	public JpaRepository<Long, Pocion> getRepository() {
 		return cut;
 	}
 

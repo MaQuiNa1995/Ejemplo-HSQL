@@ -18,7 +18,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import maquina1995.hibernate.configuration.HibernateConfig;
 import maquina1995.hibernate.dominio.Elementalista;
 import maquina1995.hibernate.dominio.ElementalistaPk;
-import maquina1995.hibernate.repository.ElementalistaRepository;
 
 /**
  * Para que haga rollback automático en los test el método debe ir con el
@@ -68,7 +67,7 @@ public class ElementalistaRepositoryTest {
 	public void readByPkTest() {
 		Assertions.assertNull(cut.findByPk(this.elementalista.getId()));
 
-		entityManager.persist(elementalista);
+		entityManager.persist(this.elementalista);
 
 		Assertions.assertEquals(cut.findByPk(this.elementalista.getId()), this.elementalista);
 
@@ -77,27 +76,28 @@ public class ElementalistaRepositoryTest {
 	@Test
 	@Transactional
 	public void findAllTest() {
-		entityManager.persist(elementalista);
+		entityManager.persist(this.elementalista);
 
-		Assertions.assertEquals(1, cut.findAll().size());
+		Assertions.assertEquals(1, cut.findAll()
+				.size());
 	}
 
 	@Test
 	@Transactional
 	public void updateTest() {
-		entityManager.persist(elementalista);
+		entityManager.persist(this.elementalista);
 
-		ElementalistaPk idAnterior = elementalista.getId();
+		ElementalistaPk idAnterior = this.elementalista.getId();
 
 		ElementalistaPk id = new ElementalistaPk();
 		id.setElemento("Agua");
 		id.setPoder(50L);
 
-		elementalista.setId(id);
+		this.elementalista.setId(id);
 
-		cut.update(elementalista);
+		cut.update(this.elementalista);
 
-		Assertions.assertNotEquals(elementalista.getId(), idAnterior);
+		Assertions.assertNotEquals(this.elementalista.getId(), idAnterior);
 
 	}
 
@@ -105,13 +105,15 @@ public class ElementalistaRepositoryTest {
 	@Transactional
 	public void deleteTest() {
 
-		entityManager.persist(elementalista);
+		entityManager.persist(this.elementalista);
 
-		Assertions.assertEquals(1, cut.findAll().size());
+		Assertions.assertEquals(1, cut.findAll()
+				.size());
 
-		cut.delete(elementalista);
+		cut.delete(this.elementalista);
 
-		Assertions.assertTrue(cut.findAll().isEmpty());
+		Assertions.assertTrue(cut.findAll()
+				.isEmpty());
 
 	}
 

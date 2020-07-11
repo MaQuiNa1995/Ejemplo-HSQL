@@ -5,16 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import maquina1995.hibernate.dominio.one2many.Alquimista;
 import maquina1995.hibernate.dominio.one2one.Oficio;
 import maquina1995.hibernate.dominio.one2one.Personaje;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2one.OficioRepository;
 
-public class OficioRepositoryTest extends CrudRepositoryImplTest<Long, Oficio> {
+public class OficioRepositoryTest extends JpaRepositoryImplTest<Long, Oficio> {
 
 	@Autowired
 	private OficioRepository cut;
 
 	@Override
-	public CrudRepository<Long, Oficio> getRepository() {
+	public JpaRepository<Long, Oficio> getRepository() {
 		return cut;
 	}
 

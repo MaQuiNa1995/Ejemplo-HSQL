@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
 
-public abstract class CrudRepositoryImpl<K, T extends AbstractEntidadSimple<K>> implements CrudRepository<K, T> {
+public abstract class JpaRepositoryImpl<K, T extends AbstractEntidadSimple<K>> implements JpaRepository<K, T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

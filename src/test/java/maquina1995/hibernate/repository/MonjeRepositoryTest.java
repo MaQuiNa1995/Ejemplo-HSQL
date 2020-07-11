@@ -3,16 +3,16 @@ package maquina1995.hibernate.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import maquina1995.hibernate.dominio.one2many.Monje;
-import maquina1995.hibernate.repository.CrudRepository;
+import maquina1995.hibernate.repository.JpaRepository;
 import maquina1995.hibernate.repository.one2many.MonjeRepository;
 
-public class MonjeRepositoryTest extends CrudRepositoryImplTest<Long, Monje> {
+public class MonjeRepositoryTest extends JpaRepositoryImplTest<Long, Monje> {
 
 	@Autowired
 	private MonjeRepository cut;
 
 	@Override
-	public CrudRepository<Long, Monje> getRepository() {
+	public JpaRepository<Long, Monje> getRepository() {
 		return cut;
 	}
 
