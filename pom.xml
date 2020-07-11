@@ -8,11 +8,11 @@
 
 	<groupId>maquina1995</groupId>
 	<artifactId>hibernate</artifactId>
-	<version>4.0.0-RELEASE</version>
+	<version>4.1.0-RELEASE</version>
 	<packaging>jar</packaging>
 
-	<name>Ejemplo-Jpa</name>
-	<description>Proyecto de ejemplo para ver todas las relaciones y posibilidades de creacion de una Bd en HibernateJpa</description>
+	<name>Ejemplo-Hibernate</name>
+	<description>Proyecto de ejemplo para ver todas las relaciones y posibilidades de creacion de una Bd en Hibernate</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,11 +72,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hibernate</groupId> -->
-<!-- 			<artifactId>hibernate-envers</artifactId> -->
-<!-- 			<version>${hibernate.version}</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>3.4.5</version>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.el</artifactId>

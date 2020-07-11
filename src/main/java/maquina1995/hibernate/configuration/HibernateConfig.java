@@ -115,6 +115,8 @@ public class HibernateConfig {
 		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		properties.setProperty("hibernate.physical_naming_strategy",
 				"maquina1995.hibernate.configuration.CustomPhysicalNamingStrategy");
+		properties.setProperty("hibernate.jdbc.batch_size", "50");
+
 		return properties;
 	}
 
@@ -132,10 +134,5 @@ public class HibernateConfig {
 		vendorAdapter.setDatabase(Database.HSQL);
 		return vendorAdapter;
 	}
-//
-//	@Bean
-//	public PhysicalNamingStrategy crearEstrategiaNombradoBd() {
-//		return new CustomPhysicalNamingStrategy();
-//	}
 
 }

@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import maquina1995.hibernate.configuration.HibernateConfig;
 import maquina1995.hibernate.constants.ConstantesTesting;
 import maquina1995.hibernate.dominio.AbstractEntidadSimple;
-import maquina1995.hibernate.repository.CrudRepository;
 
 /**
  * Clase de test genérica para hacer test al vuelo de método tipicos de un CRUD
@@ -70,7 +69,6 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		objetoModificar.setNombre(ConstantesTesting.CADENA_TEXTO);
 
 		return objetoModificar;
-
 	}
 
 	@Test
@@ -183,10 +181,17 @@ public abstract class CrudRepositoryImplTest<K, T extends AbstractEntidadSimple<
 		return instancia.getId();
 	}
 
+	/**
+	 * Se hace {@link EntityManager#flush()} para que cree los campos de
+	 * {@link maquina1995.hibernate.dominio.AbstractAuditable}
+	 * 
+	 * @return
+	 */
 	@Transactional
 	private UUID generaDatoLecturaNaturalId() {
 		T instancia = this.getInstanceDeT();
 		entityManager.persist(instancia);
+		entityManager.flush();
 		return instancia.getReferencia();
 	}
 

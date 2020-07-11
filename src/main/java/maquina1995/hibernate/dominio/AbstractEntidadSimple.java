@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -91,6 +92,18 @@ public abstract class AbstractEntidadSimple<K> extends AbstractAuditable {
 	@NotBlank(message = "El objeto debe tener siempre una referencia !!!")
 	@Column(unique = true)
 	private UUID referencia;
+
+	/**
+	 * Campo usado para usar el "optimistic locking mechanism" en el que tratamos
+	 * con seguridad multiples operaciones concurrentes de update y delete de una
+	 * entidad
+	 * <p>
+	 * <a href=
+	 * "https://vladmihalcea.com/jpa-entity-version-property-hibernate//">Mas Info
+	 * Aquí</a>
+	 */
+	@Version
+	private int version;
 
 	@NotBlank(message = "El nombre no puede estar vacío, ni ser nulo ni solo tener espacios !!!")
 	protected String nombre;
