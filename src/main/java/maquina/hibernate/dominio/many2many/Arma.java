@@ -33,7 +33,9 @@ public class Arma extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -6700596794802380718L;
 
 	/**
-	 * Esta clase es la parte dominante de la relación
+	 * Esta clase es la parte dominante de la relación (Recordemos que en las
+	 * relaciones {@link ManyToMany} la parte dominante es la que tiene el
+	 * {@link JoinTable} )
 	 * <p>
 	 * Usamos Set porque es mas eficiente , cuando se tratan con relaciones
 	 * many2many con listas las operaciones que se hacen al eliminar eliminan la
@@ -47,8 +49,10 @@ public class Arma extends AbstractEntidadSimple<Long> {
 	 * <li>FK_CALIDAD nombre de la columna de la tabla intermedia que referencia al
 	 * objeto {@link Calidad}</li>
 	 * 
-	 * <li>ID_ARMA nombre de la columna id de la tabla {@link Calidad}</li>
-	 * <li>ID_CALIDAD nombre de la columna id de la tabla {@link Calidad}</li>
+	 * <li>ID_ARMA nombre de la columna id de la tabla {@link Arma} No hace falta
+	 * ponerlo si lo quieres mapear a la primaryKey</li>
+	 * <li>ID_CALIDAD nombre de la columna id de la tabla {@link Calidad} No hace
+	 * falta ponerlo si lo quieres mapear a la primaryKey</li>
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "ARMAS_TIENEN_CALIDADES", joinColumns = @JoinColumn(name = "FK_ARMA", referencedColumnName = "ID_ARMA"), inverseJoinColumns = @JoinColumn(name = "FK_CALIDAD", referencedColumnName = "ID_CALIDAD"))

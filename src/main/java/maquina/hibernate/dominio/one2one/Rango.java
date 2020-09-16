@@ -24,9 +24,9 @@ public class Rango extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -8164571656516905569L;
 
 	/**
-	 * Aqui al ser la parte esclava de la relación en el {@link JoinColumn} se hace
-	 * referencia al nombre de la columna de esta clase {@link Rango} que contiene
-	 * la foreign key de {@link Tecnica}
+	 * Aqui al ser la parte dominante de la relación en el {@link JoinColumn} se
+	 * hace referencia al nombre de la columna de esta clase {@link Rango} que
+	 * contiene la foreign key de {@link Tecnica}
 	 * <p>
 	 * <b>Mas info de esto:</b> <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-one-bidirectional.html">Aquí</a>

@@ -24,6 +24,9 @@ import org.hibernate.annotations.NaturalIdCache;
  * <li>{@link AbstractEntidadSimple#getNombre()}</li>
  * <li>{@link AbstractEntidadSimple#getReferencia()}</li>
  * <p>
+ * Al estar anotada con {@link MappedSuperclass} todas las entidades hijas
+ * tendrán estos atributos anteriormente mencionados
+ * <p>
  * Extiende de esta para tener estos 3 atributos en tus entidades
  * <p>
  * {@link NaturalIdCache} Se usa para crear una cache donde guardar una especie

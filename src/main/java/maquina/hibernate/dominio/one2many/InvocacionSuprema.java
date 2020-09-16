@@ -3,8 +3,10 @@ package maquina.hibernate.dominio.one2many;
 import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
@@ -31,10 +33,11 @@ public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = 6844034658579212079L;
 
 	/**
-	 * Esta al ser la parte esclava de la relación debemos usar el {@link ManyToOne}
-	 * y tambien debemos usar el (insertable = false y updatable = false) para
-	 * evitar persistir la misma relacion en las 2 partes cuando estas propiedades
-	 * están a false no se incluyen en las sql generadas de INSERT o Update
+	 * Esta al ser la parte dominante de la relación debemos usar el
+	 * {@link ManyToOne} y el {@link JoinTable} y tambien debemos usar el
+	 * (insertable = false y updatable = false) para evitar persistir la misma
+	 * relacion en las 2 partes cuando estas propiedades están a false no se
+	 * incluyen en las sql generadas de INSERT o Update
 	 * 
 	 * <li>INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS - hace referencia a la tabla
 	 * intermedia que se genera</li>
@@ -42,9 +45,10 @@ public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 	 * referencia a esta clase {@link InvocacionSuprema}</li>
 	 * <li>ID_INVOCACION_SUPREMA - Hace referencia al nombre del id de esta clase
 	 * {@link InvocacionSuprema}</li>
-	 * <li>FK_INVOCADORhace referencia al nombre de la columna que referencia a
-	 * {@link Invocador}</li>
-	 * <li>ID_INVOCADOR - Hace referencia al nombre del id de {@link Invocador}</li>
+	 * <li>FK_INVOCADOR hace referencia al nombre de la columna que referencia a
+	 * {@link Invocador} No hace falta ponerlo si referencias a la primary key</li>
+	 * <li>ID_INVOCADOR - Hace referencia al nombre del id de {@link Invocador} No
+	 * hace falta ponerlo si referencias a la primary key</li>
 	 * <p>
 	 * <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-many-bidirectional-join-table.html">Mas
@@ -54,7 +58,7 @@ public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 	 * objeto dominante de la parte esclava es decir borrar el atributo personaje en
 	 * este caso
 	 */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS", joinColumns = {
 			@JoinColumn(name = "FK_INVOCACION_SUPREMA", insertable = false, updatable = false, referencedColumnName = "ID_INVOCACION_SUPREMA") }, inverseJoinColumns = {
 					@JoinColumn(name = "FK_INVOCADOR", insertable = false, updatable = false, referencedColumnName = "ID_INVOCADOR") })

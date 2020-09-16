@@ -34,7 +34,7 @@ public class Invocador extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * Esta al ser la parte dominante de la relacion debemos usar el
-	 * {@link OneToMany}
+	 * {@link OneToMany} y el {@link JoinTable}
 	 * 
 	 * <li>INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS - hace referencia a la tabla
 	 * intermedia que se genera</li>

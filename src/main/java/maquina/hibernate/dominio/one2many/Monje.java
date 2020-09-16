@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,7 @@ public class Monje extends AbstractEntidadSimple<Long> {
 	 * clase {@link Monje}
 	 * 
 	 */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_MONJE", referencedColumnName = "ID_MONJE")
 	private List<TecnicaKi> tecnicas;
 

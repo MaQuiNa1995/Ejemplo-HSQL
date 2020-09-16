@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -31,11 +30,11 @@ public class Alquimista extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -5371981248296997762L;
 
 	/**
-	 * Aqui al ser la parte dominante de la relación el mappedBy se debe poner el
+	 * Aqui al ser la parte esclava de la relación el mappedBy se debe poner el
 	 * objeto de {@link Pocion} que contiene la referencia a esta clase
 	 * {@link Alquimista}
 	 */
-	@OneToMany(mappedBy = "alquimista", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "alquimista")
 	private List<Pocion> pociones;
 
 	public List<Pocion> getPociones() {

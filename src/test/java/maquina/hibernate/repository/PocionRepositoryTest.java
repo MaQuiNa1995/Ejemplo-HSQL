@@ -98,7 +98,7 @@ class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 				.map(Pocion::getAlquimista)
 				.filter(e -> e.equals(alquimista))
 				.collect(Collectors.toList())
-				.isEmpty());
+				.isEmpty()); 
 
 		Assertions.assertFalse(alquimistaRepository.findAll()
 				.stream()

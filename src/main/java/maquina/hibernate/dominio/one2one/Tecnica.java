@@ -31,9 +31,9 @@ public class Tecnica extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = 3730614377227805429L;
 
 	/**
-	 * Al ser {@link Tecnica} la parte dominante de la relacion en el mappedBy se
-	 * hace referencia al nombre del objeto de {@link Rango} que hace referencia a
-	 * esta clase {@link Tecnica}
+	 * Al ser {@link Tecnica} la parte esclava de la relacion en el mappedBy se hace
+	 * referencia al nombre del objeto de {@link Rango} que hace referencia a esta
+	 * clase {@link Tecnica}
 	 * 
 	 * <b>Mas info de esto:</b> <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-one-bidirectional.html">Aquí</a>

@@ -24,47 +24,48 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @AttributeOverride(name = "id", column = @Column(name = "ID_CALIDAD"))
 public class Calidad extends AbstractEntidadSimple<Long> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8571421078317827105L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8571421078317827105L;
 
-	/**
-	 * Al ser la parte de la relación esclava el mapeo la tiene la parte dominante
-	 * en este caso {@link Arma} lo único que tienes que decir es que campo del
-	 * objeto dominante tiene el mapeo de este objeto en este caso
-	 * {@link Arma#getCalidades()}
-	 * 
-	 */
-	@ManyToMany(mappedBy = "calidades")
-	private List<Arma> armas;
+    /**
+     * Al ser la parte de la relación esclava el mapeo la tiene la parte dominante
+     * <p>
+     * En este caso {@link Arma} lo único que tienes que decir es que campo del
+     * objeto dominante tiene el mapeo de este objeto en este caso
+     * {@link Arma#getCalidades()}
+     * 
+     */
+    @ManyToMany(mappedBy = "calidades")
+    private List<Arma> armas;
 
-	public List<Arma> getArmas() {
-		return armas;
-	}
+    public List<Arma> getArmas() {
+	return armas;
+    }
 
-	public void setArmas(List<Arma> armas) {
-		this.armas = armas;
-	}
+    public void setArmas(List<Arma> armas) {
+	this.armas = armas;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(armas);
-		return result;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + Objects.hash(armas);
+	return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Calidad other = (Calidad) obj;
-		return Objects.equals(armas, other.armas);
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!super.equals(obj))
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Calidad other = (Calidad) obj;
+	return Objects.equals(armas, other.armas);
+    }
 
 }

@@ -4,8 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.tuple.ValueGenerator;
 
 /**
- * Implementación muy básica del logging de entidadepara saber quien modificó o
- * creó una entidad esto se suele usar con spring security pero de momento lo
+ * Implementación muy básica del logging de entidades para saber quien modificó
+ * o creó una entidad esto se suele usar con spring security pero de momento lo
  * dejo asi para una prueba de concepto
  * <p>
  * Siempre nos va a devolver el valor "MaQuiNa1995"

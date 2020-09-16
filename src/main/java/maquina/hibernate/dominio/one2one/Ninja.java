@@ -32,8 +32,12 @@ public class Ninja extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -8381958348888873920L;
 
 	/**
-	 * En el name del {@link JoinColumn} se hace referencia al nombre del campo de
-	 * la tabla de {@link Ninja} que tenga la foreign key de {@link Ninjutsu}
+	 * Al ser la parte dominante de la relación debemos usar {@link OneToOne} y
+	 * {@link JoinColumn}
+	 * <p>
+	 * Se hace referencia al campo del objeto de {@link Ninja} que va a tener la
+	 * relacion con {@link Ninjutsu} en base de datos se creará una columna con el
+	 * nombre que le digamos en el name
 	 */
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_NINJUTSU")

@@ -35,10 +35,11 @@ public class Oficio extends AbstractEntidadSimple<Long> {
 
 	/**
 	 * 
-	 * Esta al ser la parte esclava de la relación debemos usar el {@link ManyToOne}
-	 * y tambien debemos usar el (insertable = false y updatable = false) para
-	 * evitar persistir la misma relacion en las 2 partes cuando estas propiedades
-	 * están a false no se incluyen en las sql generadas de INSERT o Update
+	 * Esta al ser la parte dominante de la relación debemos usar el
+	 * {@link ManyToOne} y el {@link JoinTable} y tambien debemos usar el
+	 * (insertable = false y updatable = false) para evitar persistir la misma
+	 * relacion en las 2 partes cuando estas propiedades están a false no se
+	 * incluyen en las sql generadas de INSERT o Update
 	 * 
 	 * <li>PERSONAJE_TIENE_OFICIO - Nombre de la tabla intermedia</li>
 	 * <p>
@@ -59,8 +60,7 @@ public class Oficio extends AbstractEntidadSimple<Long> {
 	 * objeto dominante de la parte esclava es decir borrar el atributo personaje en
 	 * este caso
 	 */
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
 			@JoinColumn(name = "FK_OFICIO", insertable = false, updatable = false, referencedColumnName = "ID_OFICIO") }, inverseJoinColumns = {
 					@JoinColumn(name = "FK_PERSONAJE", insertable = false, updatable = false, referencedColumnName = "ID_PERSONAJE", unique = true) })

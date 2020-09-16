@@ -50,8 +50,7 @@ public class Personaje extends AbstractEntidadSimple<Long> {
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-one-join-table.html">Aquí</a>
 	 * 
 	 */
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
 			@JoinColumn(name = "FK_PERSONAJE", referencedColumnName = "ID_PERSONAJE") }, inverseJoinColumns = {
 					@JoinColumn(name = "FK_OFICIO", referencedColumnName = "ID_OFICIO", unique = true) })
