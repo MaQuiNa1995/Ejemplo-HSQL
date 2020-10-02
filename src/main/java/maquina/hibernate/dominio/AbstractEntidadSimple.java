@@ -1,7 +1,6 @@
 package maquina.hibernate.dominio;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -17,6 +16,10 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Clase base que tiene 3 atributos:
@@ -43,6 +46,9 @@ import org.hibernate.annotations.NaturalIdCache;
 @NaturalIdCache
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MappedSuperclass
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 public abstract class AbstractEntidadSimple<K extends Serializable> extends AbstractAuditable {
 
 	/**
@@ -92,7 +98,7 @@ public abstract class AbstractEntidadSimple<K extends Serializable> extends Abst
 	 */
 	@NaturalId(mutable = false)
 	@Column(unique = true)
-	private UUID referencia;
+	protected UUID referencia;
 
 	/**
 	 * Campo usado para usar el "optimistic locking mechanism" en el que tratamos
@@ -104,50 +110,11 @@ public abstract class AbstractEntidadSimple<K extends Serializable> extends Abst
 	 * Aquí</a>
 	 */
 	@Version
-	private int version;
-
+	protected int version;
 	protected String nombre;
-
-	public K getId() {
-		return id;
-	}
-
-	public void setId(K id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public UUID getReferencia() {
-		return referencia;
-	}
 
 	@PrePersist
 	private void createReferencia() {
 		this.referencia = UUID.randomUUID();
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(nombre);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AbstractEntidadSimple<K> other = (AbstractEntidadSimple<K>) obj;
-		return Objects.equals(nombre, other.nombre);
-	}
-
 }

@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Clase que extiende de {@link AbstractEntidadSimple} para obtener sus
  * atributos si queremos sobreescribir el nombre de algun campo de esta clase
@@ -15,6 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_PODER_NATURAL"))
 public class PoderNatural extends AbstractEntidadSimple<Long> {
 

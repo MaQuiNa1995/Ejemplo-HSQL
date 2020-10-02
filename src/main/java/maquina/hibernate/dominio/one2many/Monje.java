@@ -1,7 +1,6 @@
 package maquina.hibernate.dominio.one2many;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -11,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -23,6 +25,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_MONJE"))
 public class Monje extends AbstractEntidadSimple<Long> {
 
@@ -42,30 +47,5 @@ public class Monje extends AbstractEntidadSimple<Long> {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_MONJE", referencedColumnName = "ID_MONJE")
 	private List<TecnicaKi> tecnicas;
-
-	public List<TecnicaKi> getTecnicas() {
-		return tecnicas;
-	}
-
-	public void setTecnicas(List<TecnicaKi> tecnicas) {
-		this.tecnicas = tecnicas;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(nombre, tecnicas);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Monje other = (Monje) obj;
-		return Objects.equals(nombre, other.nombre) && Objects.equals(tecnicas, other.tecnicas);
-	}
 
 }

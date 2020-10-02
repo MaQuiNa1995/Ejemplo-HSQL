@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2one;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -22,6 +23,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_TECNICA"))
 public class Tecnica extends AbstractEntidadSimple<Long> {
 
@@ -41,33 +45,5 @@ public class Tecnica extends AbstractEntidadSimple<Long> {
 	 */
 	@OneToOne(mappedBy = "tecnica", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Rango rango;
-
-	public Rango getRango() {
-		return rango;
-	}
-
-	public void setRango(Rango rango) {
-		this.rango = rango;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(rango);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tecnica other = (Tecnica) obj;
-		return Objects.equals(rango, other.rango);
-	}
 
 }

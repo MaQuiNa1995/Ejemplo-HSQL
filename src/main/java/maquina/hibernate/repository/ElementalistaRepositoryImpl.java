@@ -39,10 +39,10 @@ public class ElementalistaRepositoryImpl implements ElementalistaRepository {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Elementalista> findAll() {
 		TypedQuery<Elementalista> queryElementalistaFindAll = entityManager.createNamedQuery(ELEMENTALISTA_FIND_ALL,
-				Elementalista.class);
+		        Elementalista.class);
 
 		return queryElementalistaFindAll.getResultList();
 

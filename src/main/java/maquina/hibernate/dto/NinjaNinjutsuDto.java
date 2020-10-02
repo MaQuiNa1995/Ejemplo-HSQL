@@ -1,34 +1,16 @@
 package maquina.hibernate.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class NinjaNinjutsuDto {
 
 	private String nombreNinja;
 	private String nombreNinjutsu;
-
-	public NinjaNinjutsuDto() {
-
-	}
-
-	public NinjaNinjutsuDto(String nombreNinja, String nombreNinjutsu) {
-		super();
-		this.nombreNinja = nombreNinja;
-		this.nombreNinjutsu = nombreNinjutsu;
-	}
-
-	public String getNombreNinja() {
-		return nombreNinja;
-	}
-
-	public void setNombreNinja(String nombreNinja) {
-		this.nombreNinja = nombreNinja;
-	}
-
-	public String getNombreNinjutsu() {
-		return nombreNinjutsu;
-	}
-
-	public void setNombreNinjutsu(String nombreNinjutsu) {
-		this.nombreNinjutsu = nombreNinjutsu;
-	}
-
 }

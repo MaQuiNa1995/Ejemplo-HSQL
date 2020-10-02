@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2one;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +25,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_PERSONAJE"))
 public class Personaje extends AbstractEntidadSimple<Long> {
 
@@ -52,36 +56,7 @@ public class Personaje extends AbstractEntidadSimple<Long> {
 	 */
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
-			@JoinColumn(name = "FK_PERSONAJE", referencedColumnName = "ID_PERSONAJE") }, inverseJoinColumns = {
-					@JoinColumn(name = "FK_OFICIO", referencedColumnName = "ID_OFICIO", unique = true) })
+	        @JoinColumn(name = "FK_PERSONAJE", referencedColumnName = "ID_PERSONAJE") }, inverseJoinColumns = {
+	                @JoinColumn(name = "FK_OFICIO", referencedColumnName = "ID_OFICIO", unique = true) })
 	private Oficio oficio;
-
-	public Oficio getOficio() {
-		return oficio;
-	}
-
-	public void setOficio(Oficio oficio) {
-		this.oficio = oficio;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(oficio);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Personaje other = (Personaje) obj;
-		return Objects.equals(oficio, other.oficio);
-	}
-
 }

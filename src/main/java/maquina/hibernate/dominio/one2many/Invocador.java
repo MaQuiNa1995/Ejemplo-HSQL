@@ -1,7 +1,6 @@
 package maquina.hibernate.dominio.one2many;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -12,6 +11,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +26,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_INVOCADOR"))
 public class Invocador extends AbstractEntidadSimple<Long> {
 
@@ -54,33 +59,8 @@ public class Invocador extends AbstractEntidadSimple<Long> {
 	 */
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS", joinColumns = {
-			@JoinColumn(name = "FK_INVOCADOR", referencedColumnName = "ID_INVOCADOR") }, inverseJoinColumns = {
-					@JoinColumn(name = "FK_INVOCACION_SUPREMA", referencedColumnName = "ID_INVOCACION_SUPREMA") })
+	        @JoinColumn(name = "FK_INVOCADOR", referencedColumnName = "ID_INVOCADOR") }, inverseJoinColumns = {
+	                @JoinColumn(name = "FK_INVOCACION_SUPREMA", referencedColumnName = "ID_INVOCACION_SUPREMA") })
 	private List<InvocacionSuprema> invocaciones;
-
-	public List<InvocacionSuprema> getInvocaciones() {
-		return invocaciones;
-	}
-
-	public void setInvocaciones(List<InvocacionSuprema> invocaciones) {
-		this.invocaciones = invocaciones;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(invocaciones, nombre);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Invocador other = (Invocador) obj;
-		return Objects.equals(invocaciones, other.invocaciones) && Objects.equals(nombre, other.nombre);
-	}
 
 }

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 public abstract class JpaRepositoryImpl<K extends Serializable, T extends AbstractEntidadSimple<K>>
-		implements JpaRepository<K, T> {
+        implements JpaRepository<K, T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
@@ -43,10 +43,7 @@ public abstract class JpaRepositoryImpl<K extends Serializable, T extends Abstra
 	@Override
 	@Transactional(readOnly = true)
 	public T readByNaturalId(UUID id) {
-
-		return entityManager.unwrap(Session.class)
-				.bySimpleNaturalId(this.getClassDeT())
-				.load(id);
+		return entityManager.unwrap(Session.class).bySimpleNaturalId(this.getClassDeT()).load(id);
 	}
 
 	@Override
@@ -58,17 +55,16 @@ public abstract class JpaRepositoryImpl<K extends Serializable, T extends Abstra
 	@Override
 	@Transactional(readOnly = true)
 	public List<T> findAll() {
+		Class<T> clazz = this.getClassDeT();
 
-		String query = String.format("Select entity FROM %s entity", getClassDeT().getName());
-
-		return entityManager.createQuery(query, getClassDeT())
-				.getResultList();
+		String query = String.format("Select entity FROM %s entity", clazz.getName());
+		return entityManager.createQuery(query, clazz).getResultList();
 	}
 
 	@Override
 	@Transactional
 	public void deleteByPk(K id) {
-		T entidadBorrar = entityManager.getReference(getClassDeT(), id);
+		T entidadBorrar = entityManager.getReference(this.getClassDeT(), id);
 		this.delete(entidadBorrar);
 	}
 

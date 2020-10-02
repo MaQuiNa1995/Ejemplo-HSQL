@@ -1,7 +1,6 @@
 package maquina.hibernate.dominio.one2many;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -9,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -21,6 +23,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_ALQUIMISTA"))
 public class Alquimista extends AbstractEntidadSimple<Long> {
 
@@ -36,33 +41,5 @@ public class Alquimista extends AbstractEntidadSimple<Long> {
 	 */
 	@OneToMany(mappedBy = "alquimista")
 	private List<Pocion> pociones;
-
-	public List<Pocion> getPociones() {
-		return pociones;
-	}
-
-	public void setPociones(List<Pocion> pociones) {
-		this.pociones = pociones;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(pociones);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Alquimista other = (Alquimista) obj;
-		return Objects.equals(pociones, other.pociones);
-	}
 
 }

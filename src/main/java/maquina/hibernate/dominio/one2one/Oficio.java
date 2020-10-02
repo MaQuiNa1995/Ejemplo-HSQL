@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2one;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -25,6 +26,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_OFICIO"))
 public class Oficio extends AbstractEntidadSimple<Long> {
 
@@ -62,36 +66,8 @@ public class Oficio extends AbstractEntidadSimple<Long> {
 	 */
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
-			@JoinColumn(name = "FK_OFICIO", insertable = false, updatable = false, referencedColumnName = "ID_OFICIO") }, inverseJoinColumns = {
-					@JoinColumn(name = "FK_PERSONAJE", insertable = false, updatable = false, referencedColumnName = "ID_PERSONAJE", unique = true) })
+	        @JoinColumn(name = "FK_OFICIO", insertable = false, updatable = false, referencedColumnName = "ID_OFICIO") }, inverseJoinColumns = {
+	                @JoinColumn(name = "FK_PERSONAJE", insertable = false, updatable = false, referencedColumnName = "ID_PERSONAJE", unique = true) })
 	private Personaje personaje;
-
-	public Personaje getPersonaje() {
-		return personaje;
-	}
-
-	public void setPersonaje(Personaje personaje) {
-		this.personaje = personaje;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(personaje);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Oficio other = (Oficio) obj;
-		return Objects.equals(personaje, other.personaje);
-	}
 
 }

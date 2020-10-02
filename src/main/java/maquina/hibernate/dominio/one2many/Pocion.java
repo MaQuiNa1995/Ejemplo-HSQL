@@ -1,17 +1,19 @@
 package maquina.hibernate.dominio.one2many;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +26,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_POCION"))
 public class Pocion extends AbstractEntidadSimple<Long> {
 
@@ -44,38 +49,22 @@ public class Pocion extends AbstractEntidadSimple<Long> {
 	 * última lo valida despues de hacer la query , la primera valida antes de
 	 * hacerla
 	 * <p>
+	 * Solo debemos usar el {@link CascadeType#MERGE} y el
+	 * {@link CascadeType#PERSIST} porque estamos en la misma tesitura que en las
+	 * {@link ManyToMany}
+	 * <p>
+	 * En este caso si tenemos el {@link CascadeType#REMOVE} de la que eliminemos 1
+	 * {@link Pocion} tambien eliminaremos el {@link Alquimista} por lo tanto si
+	 * este tiene mas de 1 {@link Pocion} las dejaremos huérfanas y habremos roto la
+	 * integridad de la base de datos
+	 * 
 	 * <a href="https://www.baeldung.com/hibernate-notnull-vs-nullable">Más info
-	 * aquí</a>
+	 * sobre el notnull vs nullable aquí</a>
 	 * 
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinColumn(name = "FK_ALQUIMISTA")
 	private Alquimista alquimista;
-
-	public Alquimista getAlquimista() {
-		return alquimista;
-	}
-
-	public void setAlquimista(Alquimista alquimista) {
-		this.alquimista = alquimista;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(alquimista, nombre);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pocion other = (Pocion) obj;
-		return Objects.equals(alquimista, other.alquimista) && Objects.equals(nombre, other.nombre);
-	}
 
 }

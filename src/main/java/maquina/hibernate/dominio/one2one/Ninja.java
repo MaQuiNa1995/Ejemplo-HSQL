@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2one;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -23,6 +24,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_NINJA"))
 public class Ninja extends AbstractEntidadSimple<Long> {
 
@@ -42,33 +46,5 @@ public class Ninja extends AbstractEntidadSimple<Long> {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_NINJUTSU")
 	private Ninjutsu ninjutsu;
-
-	public Ninjutsu getNinjutsu() {
-		return ninjutsu;
-	}
-
-	public void setNinjutsu(Ninjutsu ninjutsu) {
-		this.ninjutsu = ninjutsu;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(ninjutsu);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Ninja other = (Ninja) obj;
-		return Objects.equals(ninjutsu, other.ninjutsu);
-	}
 
 }

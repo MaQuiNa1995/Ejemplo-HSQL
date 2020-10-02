@@ -1,6 +1,5 @@
 package maquina.hibernate.dominio.many2many;
 
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -12,6 +11,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +26,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_ARMA"))
 public class Arma extends AbstractEntidadSimple<Long> {
 
@@ -57,36 +62,5 @@ public class Arma extends AbstractEntidadSimple<Long> {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "ARMAS_TIENEN_CALIDADES", joinColumns = @JoinColumn(name = "FK_ARMA", referencedColumnName = "ID_ARMA"), inverseJoinColumns = @JoinColumn(name = "FK_CALIDAD", referencedColumnName = "ID_CALIDAD"))
 	private Set<Calidad> calidades;
-
-	public Set<Calidad> getCalidades() {
-		return calidades;
-	}
-
-	public void setCalidades(Set<Calidad> calidades) {
-		this.calidades = calidades;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(calidades);
-		return result;
-	}
-
-	/**
-	 * FIXME revisar porque da false si tiene lo mismo
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Arma other = (Arma) obj;
-		return Objects.equals(calidades, other.calidades);
-	}
 
 }

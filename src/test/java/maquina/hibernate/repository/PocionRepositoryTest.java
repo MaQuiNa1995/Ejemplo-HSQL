@@ -64,8 +64,7 @@ class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 	protected Pocion getInstanceDeTParaModificar(Long id) {
 		Pocion personaje = super.getInstanceDeTParaModificar(id);
 
-		personaje.getAlquimista()
-				.setNombre("MaKy1995");
+		personaje.getAlquimista().setNombre("MaKy1995");
 
 		return personaje;
 	}
@@ -88,24 +87,26 @@ class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 		pocion2.setNombre("Ultrapoción");
 		pocion2.setAlquimista(alquimista);
 
-		// Se relacionan y se mete a la base de datos
+		// Se relaciona alquimista con sus pociones
 		alquimista.setPociones(Arrays.asList(pocion, pocion2));
-		entityManager.persist(alquimista);
+
+		// Se persiste
+		entityManager.persist(pocion);
+		entityManager.persist(pocion2);
 
 		// Comprobamos
 		Assertions.assertFalse(getRepository().findAll()
-				.stream()
-				.map(Pocion::getAlquimista)
-				.filter(e -> e.equals(alquimista))
-				.collect(Collectors.toList())
-				.isEmpty()); 
+		        .stream()
+		        .map(Pocion::getAlquimista)
+		        .filter(e -> e.equals(alquimista))
+		        .collect(Collectors.toList())
+		        .isEmpty());
 
 		Assertions.assertFalse(alquimistaRepository.findAll()
-				.stream()
-				.filter(e -> !e.getPociones()
-						.isEmpty())
-				.collect(Collectors.toList())
-				.isEmpty());
+		        .stream()
+		        .filter(e -> !e.getPociones().isEmpty())
+		        .collect(Collectors.toList())
+		        .isEmpty());
 
 	}
 

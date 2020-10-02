@@ -1,6 +1,5 @@
 package maquina.hibernate.dominio.many2many;
 
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -12,6 +11,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +26,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_DOMADOR"))
 public class Domador extends AbstractEntidadSimple<Long> {
 
@@ -55,36 +60,4 @@ public class Domador extends AbstractEntidadSimple<Long> {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "DOMADORES_TIENEN_BESTIAS", joinColumns = @JoinColumn(name = "FK_DOMADOR", referencedColumnName = "ID_DOMADOR"), inverseJoinColumns = @JoinColumn(name = "FK_BESTIA", referencedColumnName = "ID_BESTIA"))
 	private Set<Bestia> bestias;
-
-	public Set<Bestia> getBestias() {
-		return bestias;
-	}
-
-	public void setBestias(Set<Bestia> bestias) {
-		this.bestias = bestias;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(bestias);
-		return result;
-	}
-
-	/**
-	 * FIXME porque da false al comparar los Set si tienen lo mismo ?
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Domador other = (Domador) obj;
-		return bestias.equals(other.bestias);
-	}
-
 }

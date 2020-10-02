@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2many;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +25,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_INVOCACION_SUPREMA"))
 public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 
@@ -60,33 +64,8 @@ public class InvocacionSuprema extends AbstractEntidadSimple<Long> {
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS", joinColumns = {
-			@JoinColumn(name = "FK_INVOCACION_SUPREMA", insertable = false, updatable = false, referencedColumnName = "ID_INVOCACION_SUPREMA") }, inverseJoinColumns = {
-					@JoinColumn(name = "FK_INVOCADOR", insertable = false, updatable = false, referencedColumnName = "ID_INVOCADOR") })
+	        @JoinColumn(name = "FK_INVOCACION_SUPREMA", insertable = false, updatable = false, referencedColumnName = "ID_INVOCACION_SUPREMA") }, inverseJoinColumns = {
+	                @JoinColumn(name = "FK_INVOCADOR", insertable = false, updatable = false, referencedColumnName = "ID_INVOCADOR") })
 	private Invocador invocador;
-
-	public Invocador getInvocador() {
-		return invocador;
-	}
-
-	public void setInvocador(Invocador invocador) {
-		this.invocador = invocador;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(invocador, nombre);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InvocacionSuprema other = (InvocacionSuprema) obj;
-		return Objects.equals(invocador, other.invocador) && Objects.equals(nombre, other.nombre);
-	}
 
 }

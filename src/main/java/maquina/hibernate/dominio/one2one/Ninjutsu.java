@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -17,6 +18,7 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_NINJUTSU"))
 public class Ninjutsu extends AbstractEntidadSimple<Long> {
 

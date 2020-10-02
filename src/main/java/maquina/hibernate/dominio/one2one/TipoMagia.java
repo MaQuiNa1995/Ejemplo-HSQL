@@ -1,7 +1,5 @@
 package maquina.hibernate.dominio.one2one;
 
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +10,9 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
 /**
@@ -24,6 +25,9 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
  */
 @Entity
 @Table
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id", column = @Column(name = "ID_TIPO_MAGIA"))
 public class TipoMagia extends AbstractEntidadSimple<Long> {
 
@@ -48,33 +52,4 @@ public class TipoMagia extends AbstractEntidadSimple<Long> {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_MAGO")
 	private Mago mago;
-
-	public Mago getMago() {
-		return mago;
-	}
-
-	public void setMago(Mago mago) {
-		this.mago = mago;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(mago);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TipoMagia other = (TipoMagia) obj;
-		return Objects.equals(mago, other.mago);
-	}
-
 }

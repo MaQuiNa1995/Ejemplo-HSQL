@@ -10,6 +10,9 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import maquina.hibernate.audit.AuditManager;
 
 /**
@@ -26,6 +29,9 @@ import maquina.hibernate.audit.AuditManager;
  * @author MaQuiNa1995
  *
  */
+@Getter
+@Setter
+@EqualsAndHashCode
 @MappedSuperclass
 public abstract class AbstractAuditable implements Serializable {
 
@@ -40,7 +46,7 @@ public abstract class AbstractAuditable implements Serializable {
 	 * que ha tocado la entidad
 	 */
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.INSERT)
-	private String creadoPor;
+	protected String creadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -51,7 +57,7 @@ public abstract class AbstractAuditable implements Serializable {
 	 * Info</a>
 	 */
 	@CreationTimestamp
-	private LocalDateTime fechaCreacion;
+	protected LocalDateTime fechaCreacion;
 
 	/**
 	 * Marcamos la columna para que cada vez que se haga cualquier operación
@@ -60,7 +66,7 @@ public abstract class AbstractAuditable implements Serializable {
 	 * 
 	 */
 	@GeneratorType(type = AuditManager.class, when = GenerationTime.ALWAYS)
-	private String modificadoPor;
+	protected String modificadoPor;
 
 	/**
 	 * Marcamos la columna para que salga el log de la fecha y hora en la que se
@@ -71,22 +77,5 @@ public abstract class AbstractAuditable implements Serializable {
 	 * Info</a>
 	 */
 	@UpdateTimestamp
-	private LocalDateTime fechaModificacion;
-
-	public String getCreadoPor() {
-		return creadoPor;
-	}
-
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public String getModificadoPor() {
-		return modificadoPor;
-	}
-
-	public LocalDateTime getFechaModificacion() {
-		return fechaModificacion;
-	}
-
+	protected LocalDateTime fechaModificacion;
 }
