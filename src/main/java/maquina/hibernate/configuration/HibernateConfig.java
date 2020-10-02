@@ -46,7 +46,7 @@ public class HibernateConfig {
 	public DataSource dataSource() {
 
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("org.hsqldb.jdbcDriver");
+		hikariConfig.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
 		hikariConfig.setMaximumPoolSize(5);
 		hikariConfig.setPoolName("MaQuina1995-HikariCP");
 
@@ -114,7 +114,7 @@ public class HibernateConfig {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		properties.setProperty("hibernate.physical_naming_strategy",
-				"maquina.hibernate.configuration.CustomPhysicalNamingStrategy");
+		        "maquina.hibernate.configuration.CustomPhysicalNamingStrategy");
 		properties.setProperty("hibernate.jdbc.batch_size", "50");
 
 		return properties;
