@@ -19,7 +19,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_RANGO"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_RANGO"))
 public class Rango extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -28,14 +29,16 @@ public class Rango extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -8164571656516905569L;
 
 	/**
-	 * Aqui al ser la parte dominante de la relación en el {@link JoinColumn} se
-	 * hace referencia al nombre de la columna de esta clase {@link Rango} que
-	 * contiene la foreign key de {@link Tecnica}
+	 * Parte Dominante
+	 * <p>
+	 * en name debemos hacer referncia a la columna de base de datos que contendrá
+	 * la referencia a {@link Tecnica}
 	 * <p>
 	 * <b>Mas info de esto:</b> <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-one-bidirectional.html">Aquí</a>
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,
+	        cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_TECNICA")
 	private Tecnica tecnica;
 

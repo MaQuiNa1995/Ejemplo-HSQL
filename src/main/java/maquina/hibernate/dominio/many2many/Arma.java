@@ -29,7 +29,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_ARMA"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_ARMA"))
 public class Arma extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -60,7 +61,11 @@ public class Arma extends AbstractEntidadSimple<Long> {
 	 * falta ponerlo si lo quieres mapear a la primaryKey</li>
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "ARMAS_TIENEN_CALIDADES", joinColumns = @JoinColumn(name = "FK_ARMA", referencedColumnName = "ID_ARMA"), inverseJoinColumns = @JoinColumn(name = "FK_CALIDAD", referencedColumnName = "ID_CALIDAD"))
+	@JoinTable(name = "ARMAS_TIENEN_CALIDADES",
+	        joinColumns = @JoinColumn(name = "FK_ARMA",
+	                referencedColumnName = "ID_ARMA"),
+	        inverseJoinColumns = @JoinColumn(name = "FK_CALIDAD",
+	                referencedColumnName = "ID_CALIDAD"))
 	private Set<Calidad> calidades;
 
 }

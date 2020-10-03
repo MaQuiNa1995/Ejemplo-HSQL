@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,7 +28,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_OFICIO"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_OFICIO"))
 public class Oficio extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -38,12 +38,9 @@ public class Oficio extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -4465939889127597689L;
 
 	/**
-	 * 
-	 * Esta al ser la parte dominante de la relación debemos usar el
-	 * {@link ManyToOne} y el {@link JoinTable} y tambien debemos usar el
-	 * (insertable = false y updatable = false) para evitar persistir la misma
-	 * relacion en las 2 partes cuando estas propiedades están a false no se
-	 * incluyen en las sql generadas de INSERT o Update
+	 * Debemos usar el (insertable = false y updatable = false) para evitar
+	 * persistir la misma relacion en las 2 partes cuando estas propiedades están a
+	 * false no se incluyen en las sql generadas de INSERT o Update
 	 * 
 	 * <li>PERSONAJE_TIENE_OFICIO - Nombre de la tabla intermedia</li>
 	 * <p>
@@ -64,10 +61,18 @@ public class Oficio extends AbstractEntidadSimple<Long> {
 	 * objeto dominante de la parte esclava es decir borrar el atributo personaje en
 	 * este caso
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
-	        @JoinColumn(name = "FK_OFICIO", insertable = false, updatable = false, referencedColumnName = "ID_OFICIO") }, inverseJoinColumns = {
-	                @JoinColumn(name = "FK_PERSONAJE", insertable = false, updatable = false, referencedColumnName = "ID_PERSONAJE", unique = true) })
+	@OneToOne(fetch = FetchType.LAZY,
+	        cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "PERSONAJE_TIENE_OFICIO",
+	        joinColumns = { @JoinColumn(name = "FK_OFICIO",
+	                insertable = false,
+	                updatable = false,
+	                referencedColumnName = "ID_OFICIO") },
+	        inverseJoinColumns = { @JoinColumn(name = "FK_PERSONAJE",
+	                insertable = false,
+	                updatable = false,
+	                referencedColumnName = "ID_PERSONAJE",
+	                unique = true) })
 	private Personaje personaje;
 
 }

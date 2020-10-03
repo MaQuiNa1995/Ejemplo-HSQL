@@ -29,7 +29,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_DOMADOR"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_DOMADOR"))
 public class Domador extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -58,6 +59,10 @@ public class Domador extends AbstractEntidadSimple<Long> {
 	 * <li>ID_BESTIA nombre de la columna id de la tabla {@link Bestia}</li>
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "DOMADORES_TIENEN_BESTIAS", joinColumns = @JoinColumn(name = "FK_DOMADOR", referencedColumnName = "ID_DOMADOR"), inverseJoinColumns = @JoinColumn(name = "FK_BESTIA", referencedColumnName = "ID_BESTIA"))
+	@JoinTable(name = "DOMADORES_TIENEN_BESTIAS",
+	        joinColumns = @JoinColumn(name = "FK_DOMADOR",
+	                referencedColumnName = "ID_DOMADOR"),
+	        inverseJoinColumns = @JoinColumn(name = "FK_BESTIA",
+	                referencedColumnName = "ID_BESTIA"))
 	private Set<Bestia> bestias;
 }

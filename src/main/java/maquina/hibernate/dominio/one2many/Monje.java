@@ -28,7 +28,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_MONJE"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_MONJE"))
 public class Monje extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -37,15 +38,21 @@ public class Monje extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = 2382819739532578885L;
 
 	/**
-	 * Como esta es la parte dominante de la relacion debemos en el name decirle el
-	 * nombre de la columna de esta tabla que tiene referencia a esta clase
-	 * {@link Monje} pero que se insertará como nueva columna en {@link TecnicaKi}
-	 * de la misma forma en referencedColumnName debemos poner el campo ID de esta
-	 * clase {@link Monje}
-	 * 
+	 * Parte Dominante
+	 * <p>
+	 * name = columna en base de datos que hará referencia a {@link TecnicaKi}
+	 * <p>
+	 * referencedColumnName = campo en base de datos de la primary key de
+	 * {@link TecnicaKi}
+	 * <p>
+	 * orphanRemoval = se debe establecer a true para que las entidades que pierdan
+	 * la relación (es decir se queden huérfanas) puedan ser borradas
+	 * automáticamente
 	 */
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_MONJE", referencedColumnName = "ID_MONJE")
+	@OneToMany(cascade = CascadeType.ALL,
+	        orphanRemoval = true)
+	@JoinColumn(name = "FK_MONJE",
+	        referencedColumnName = "ID_MONJE")
 	private List<TecnicaKi> tecnicas;
 
 }

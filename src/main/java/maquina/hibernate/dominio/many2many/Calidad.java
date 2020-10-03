@@ -26,7 +26,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_CALIDAD"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_CALIDAD"))
 public class Calidad extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -35,11 +36,10 @@ public class Calidad extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -8571421078317827105L;
 
 	/**
-	 * Al ser la parte de la relación esclava el mapeo la tiene la parte dominante
+	 * Parte Esclava
 	 * <p>
-	 * En este caso {@link Arma} lo único que tienes que decir es que campo del
-	 * objeto dominante tiene el mapeo de este objeto en este caso
-	 * {@link Arma#getCalidades()}
+	 * mappedBy = nombre del campo de la entidad {@link Arma} que hace referencia a
+	 * {@link Calidad}
 	 * 
 	 */
 	@ManyToMany(mappedBy = "calidades")

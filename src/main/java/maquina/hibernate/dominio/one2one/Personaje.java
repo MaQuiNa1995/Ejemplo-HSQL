@@ -28,7 +28,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_PERSONAJE"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_PERSONAJE"))
 public class Personaje extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -52,11 +53,14 @@ public class Personaje extends AbstractEntidadSimple<Long> {
 	 * <p>
 	 * <b>Mas info de esto:</b> <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-one-join-table.html">Aquí</a>
-	 * 
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "PERSONAJE_TIENE_OFICIO", joinColumns = {
-	        @JoinColumn(name = "FK_PERSONAJE", referencedColumnName = "ID_PERSONAJE") }, inverseJoinColumns = {
-	                @JoinColumn(name = "FK_OFICIO", referencedColumnName = "ID_OFICIO", unique = true) })
+	@OneToOne(fetch = FetchType.LAZY,
+	        cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "PERSONAJE_TIENE_OFICIO",
+	        joinColumns = { @JoinColumn(name = "FK_PERSONAJE",
+	                referencedColumnName = "ID_PERSONAJE") },
+	        inverseJoinColumns = { @JoinColumn(name = "FK_OFICIO",
+	                referencedColumnName = "ID_OFICIO",
+	                unique = true) })
 	private Oficio oficio;
 }

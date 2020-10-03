@@ -10,7 +10,6 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import maquina.hibernate.audit.AuditManager;
@@ -31,7 +30,6 @@ import maquina.hibernate.audit.AuditManager;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
 @MappedSuperclass
 public abstract class AbstractAuditable implements Serializable {
 
@@ -45,7 +43,8 @@ public abstract class AbstractAuditable implements Serializable {
 	 * {@link GenerationTime#INSERT} vaya a {@link AuditManager} y meta el usuario
 	 * que ha tocado la entidad
 	 */
-	@GeneratorType(type = AuditManager.class, when = GenerationTime.INSERT)
+	@GeneratorType(type = AuditManager.class,
+	        when = GenerationTime.INSERT)
 	protected String creadoPor;
 
 	/**
@@ -65,7 +64,8 @@ public abstract class AbstractAuditable implements Serializable {
 	 * que ha tocado la entidad
 	 * 
 	 */
-	@GeneratorType(type = AuditManager.class, when = GenerationTime.ALWAYS)
+	@GeneratorType(type = AuditManager.class,
+	        when = GenerationTime.ALWAYS)
 	protected String modificadoPor;
 
 	/**

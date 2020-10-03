@@ -91,8 +91,7 @@ class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 		alquimista.setPociones(Arrays.asList(pocion, pocion2));
 
 		// Se persiste
-		entityManager.persist(pocion);
-		entityManager.persist(pocion2);
+		entityManager.persist(alquimista);
 
 		// Comprobamos
 		Assertions.assertFalse(getRepository().findAll()

@@ -29,11 +29,12 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_INVOCADOR"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_INVOCADOR"))
 public class Invocador extends AbstractEntidadSimple<Long> {
 
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = 4011086919749892365L;
 
@@ -54,13 +55,13 @@ public class Invocador extends AbstractEntidadSimple<Long> {
 	 * <a href=
 	 * "https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/one-to-many-bidirectional-join-table.html">Mas
 	 * Info</a>
-	 * 
-	 * 
 	 */
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS", joinColumns = {
-	        @JoinColumn(name = "FK_INVOCADOR", referencedColumnName = "ID_INVOCADOR") }, inverseJoinColumns = {
-	                @JoinColumn(name = "FK_INVOCACION_SUPREMA", referencedColumnName = "ID_INVOCACION_SUPREMA") })
+	@JoinTable(name = "INVOCADORES_TIENEN_INVOCACIONES_SUPREMAS",
+	        joinColumns = { @JoinColumn(name = "FK_INVOCADOR",
+	                referencedColumnName = "ID_INVOCADOR") },
+	        inverseJoinColumns = { @JoinColumn(name = "FK_INVOCACION_SUPREMA",
+	                referencedColumnName = "ID_INVOCACION_SUPREMA") })
 	private List<InvocacionSuprema> invocaciones;
 
 }

@@ -27,7 +27,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_NINJA"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_NINJA"))
 public class Ninja extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -36,14 +37,12 @@ public class Ninja extends AbstractEntidadSimple<Long> {
 	private static final long serialVersionUID = -8381958348888873920L;
 
 	/**
-	 * Al ser la parte dominante de la relación debemos usar {@link OneToOne} y
-	 * {@link JoinColumn}
+	 * Parte dominante
 	 * <p>
-	 * Se hace referencia al campo del objeto de {@link Ninja} que va a tener la
-	 * relacion con {@link Ninjutsu} en base de datos se creará una columna con el
-	 * nombre que le digamos en el name
+	 * name columna en base de datos que hará referencia a {@link Ninjutsu}
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,
+	        cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_NINJUTSU")
 	private Ninjutsu ninjutsu;
 

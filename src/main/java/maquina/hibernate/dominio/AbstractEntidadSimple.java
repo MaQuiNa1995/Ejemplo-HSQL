@@ -17,15 +17,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Clase base que tiene 3 atributos:
- * <li>{@link AbstractEntidadSimple#getId()}</li>
- * <li>{@link AbstractEntidadSimple#getNombre()}</li>
- * <li>{@link AbstractEntidadSimple#getReferencia()}</li>
+ * <li>Id</li>
+ * <li>Nombre</li>
+ * <li>Referencia</li>
  * <p>
  * Al estar anotada con {@link MappedSuperclass} todas las entidades hijas
  * tendrán estos atributos anteriormente mencionados
@@ -48,7 +47,6 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
 public abstract class AbstractEntidadSimple<K extends Serializable> extends AbstractAuditable {
 
 	/**
@@ -74,8 +72,10 @@ public abstract class AbstractEntidadSimple<K extends Serializable> extends Abst
 	 * 
 	 */
 	@Id
-	@GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sequence", allocationSize = 1)
+	@GeneratedValue(generator = "sequence",
+	        strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "sequence",
+	        allocationSize = 1)
 	protected K id;
 
 	/**
@@ -111,6 +111,7 @@ public abstract class AbstractEntidadSimple<K extends Serializable> extends Abst
 	 */
 	@Version
 	protected int version;
+
 	protected String nombre;
 
 	@PrePersist

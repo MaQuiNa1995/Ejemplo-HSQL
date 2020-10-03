@@ -28,7 +28,8 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@AttributeOverride(name = "id", column = @Column(name = "ID_TIPO_MAGIA"))
+@AttributeOverride(name = "id",
+        column = @Column(name = "ID_TIPO_MAGIA"))
 public class TipoMagia extends AbstractEntidadSimple<Long> {
 
 	/**
@@ -45,11 +46,14 @@ public class TipoMagia extends AbstractEntidadSimple<Long> {
 	 * entidad que en este caso es la esclava tenemos el Id de la dominante
 	 * {@link Mago}
 	 * <p>
-	 * * <b>Mas info de esto:</b> <a href=
+	 * Por defecto es {@link FetchType#EAGER}
+	 * <p>
+	 * <b>Mas info de esto:</b> <a href=
 	 * "https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/">Aquí</a>
 	 */
 	@MapsId
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,
+	        cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_MAGO")
 	private Mago mago;
 }
