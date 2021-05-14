@@ -34,11 +34,6 @@ import maquina.hibernate.audit.AuditManager;
 public abstract class AbstractAuditable implements Serializable {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2680594333158867645L;
-
-	/**
 	 * Marcamos la columna para que cada vez que se haga
 	 * {@link GenerationTime#INSERT} vaya a {@link AuditManager} y meta el usuario
 	 * que ha tocado la entidad

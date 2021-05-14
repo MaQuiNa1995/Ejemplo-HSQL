@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.NamedQuery;
 
@@ -21,11 +20,11 @@ import maquina.hibernate.repository.ElementalistaRepositoryImpl;
  *
  */
 @Entity
-@Table
 @Getter
 @Setter
 @EqualsAndHashCode
-@NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL, query = "select elementalista from Elementalista elementalista")
+@NamedQuery(name = ElementalistaRepositoryImpl.ELEMENTALISTA_FIND_ALL,
+        query = "select elementalista from Elementalista elementalista")
 public class Elementalista implements Serializable {
 
 	/**

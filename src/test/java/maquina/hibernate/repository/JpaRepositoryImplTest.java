@@ -61,7 +61,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 	@PersistenceContext
 	protected EntityManager entityManager;
 
-	protected abstract JpaRepository<K, T> getRepository();
+	protected abstract CustomGenericRepository<K, T> getRepository();
 
 	protected abstract T getInstanceDeT();
 
@@ -83,7 +83,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		T instancia = this.getInstanceDeT();
 		Assertions.assertNull(instancia.getId());
 		instancia = this.getRepository()
-				.persist(instancia);
+		        .persist(instancia);
 		Assertions.assertNotNull(instancia.getId());
 	}
 
@@ -93,7 +93,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		K clavePrimaria = this.generaDatoLectura();
 
 		T resultado = this.getRepository()
-				.readByPk(clavePrimaria);
+		        .readByPk(clavePrimaria);
 
 		Assertions.assertNotNull(resultado);
 		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeT(), resultado));
@@ -105,7 +105,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		UUID idNatural = this.generaDatoLecturaNaturalId();
 
 		T resultado = this.getRepository()
-				.readByNaturalId(idNatural);
+		        .readByNaturalId(idNatural);
 
 		Assertions.assertNotNull(resultado);
 		Assertions.assertTrue(this.sonDatosIguales(this.getInstanceDeT(), resultado));
@@ -117,7 +117,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		K clavePrimaria = this.getClavePrimariaNoExistente();
 
 		Assertions.assertNull(this.getRepository()
-				.readByPk(clavePrimaria));
+		        .readByPk(clavePrimaria));
 
 	}
 
@@ -126,15 +126,15 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 	void findAllTest() {
 
 		Assertions.assertTrue(this.getRepository()
-				.findAll()
-				.isEmpty());
+		        .findAll()
+		        .isEmpty());
 
 		for (int i = 0; i < 3; i++) {
 			this.generaDatoLectura();
 		}
 
 		List<T> resultado = this.getRepository()
-				.findAll();
+		        .findAll();
 
 		Assertions.assertEquals(3, resultado.size());
 	}
@@ -147,7 +147,7 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		T objetoUpdate = this.getInstanceDeTParaModificar(clavePrimaria);
 
 		this.getRepository()
-				.merge(objetoUpdate);
+		        .merge(objetoUpdate);
 
 		T enBBDD = this.entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 
@@ -160,11 +160,11 @@ abstract class JpaRepositoryImplTest<K extends Serializable, T extends AbstractE
 		K clavePrimaria = this.generaDatoLectura();
 
 		Assertions.assertFalse(this.getRepository()
-				.findAll()
-				.isEmpty());
+		        .findAll()
+		        .isEmpty());
 
 		this.getRepository()
-				.deleteByPk(clavePrimaria);
+		        .deleteByPk(clavePrimaria);
 
 		AbstractEntidadSimple<K> objetoBd = this.entityManager.find(getRepository().getClassDeT(), clavePrimaria);
 

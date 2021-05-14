@@ -12,7 +12,7 @@ public class InvocacionSupremaRepositoryTest extends JpaRepositoryImplTest<Long,
 	private InvocacionSupremaRepository cut;
 
 	@Override
-	public JpaRepository<Long, InvocacionSuprema> getRepository() {
+	public CustomGenericRepository<Long, InvocacionSuprema> getRepository() {
 		return cut;
 	}
 

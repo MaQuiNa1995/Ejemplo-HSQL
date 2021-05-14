@@ -11,7 +11,7 @@ public class InvocadorRepositoryTest extends JpaRepositoryImplTest<Long, Invocad
 	private InvocadorRepository cut;
 
 	@Override
-	public JpaRepository<Long, Invocador> getRepository() {
+	public CustomGenericRepository<Long, Invocador> getRepository() {
 		return cut;
 	}
 

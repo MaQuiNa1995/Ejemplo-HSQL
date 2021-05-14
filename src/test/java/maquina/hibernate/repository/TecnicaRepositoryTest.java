@@ -12,7 +12,7 @@ public class TecnicaRepositoryTest extends JpaRepositoryImplTest<Long, Tecnica> 
 	private TecnicaRepository cut;
 
 	@Override
-	public JpaRepository<Long, Tecnica> getRepository() {
+	public CustomGenericRepository<Long, Tecnica> getRepository() {
 		return cut;
 	}
 

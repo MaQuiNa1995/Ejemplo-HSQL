@@ -12,7 +12,7 @@ public class AlquimistaRepositoryTest extends JpaRepositoryImplTest<Long, Alquim
 	private AlquimistaRepository cut;
 
 	@Override
-	public JpaRepository<Long, Alquimista> getRepository() {
+	public CustomGenericRepository<Long, Alquimista> getRepository() {
 		return cut;
 	}
 

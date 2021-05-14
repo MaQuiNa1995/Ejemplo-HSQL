@@ -12,7 +12,7 @@ public class RangoRepositoryTest extends JpaRepositoryImplTest<Long, Rango> {
 	private RangoRepository cut;
 
 	@Override
-	public JpaRepository<Long, Rango> getRepository() {
+	public CustomGenericRepository<Long, Rango> getRepository() {
 		return cut;
 	}
 

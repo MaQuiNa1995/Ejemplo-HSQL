@@ -11,7 +11,7 @@ public class TecnicaKiRepositoryTest extends JpaRepositoryImplTest<Long, Tecnica
 	private TecnicaKiRepository cut;
 
 	@Override
-	public JpaRepository<Long, TecnicaKi> getRepository() {
+	public CustomGenericRepository<Long, TecnicaKi> getRepository() {
 		return cut;
 	}
 

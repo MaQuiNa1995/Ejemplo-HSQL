@@ -12,7 +12,7 @@ public class PersonajeRepositoryTest extends JpaRepositoryImplTest<Long, Persona
 	private PersonajeRepository cut;
 
 	@Override
-	public JpaRepository<Long, Personaje> getRepository() {
+	public CustomGenericRepository<Long, Personaje> getRepository() {
 		return cut;
 	}
 

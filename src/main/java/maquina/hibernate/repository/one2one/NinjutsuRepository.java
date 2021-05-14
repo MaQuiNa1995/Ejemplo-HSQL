@@ -1,9 +1,9 @@
 package maquina.hibernate.repository.one2one;
 
 import maquina.hibernate.dominio.one2one.Ninjutsu;
-import maquina.hibernate.repository.JpaRepository;
+import maquina.hibernate.repository.CustomGenericRepository;
 
-public interface NinjutsuRepository extends JpaRepository<Long, Ninjutsu> {
+public interface NinjutsuRepository extends CustomGenericRepository<Long, Ninjutsu> {
 
 	@Override
 	Class<Ninjutsu> getClassDeT();

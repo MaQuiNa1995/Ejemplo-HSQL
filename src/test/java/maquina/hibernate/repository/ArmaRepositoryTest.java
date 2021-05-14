@@ -15,7 +15,7 @@ public class ArmaRepositoryTest extends JpaRepositoryImplTest<Long, Arma> {
 	private ArmaRepository cut;
 
 	@Override
-	public JpaRepository<Long, Arma> getRepository() {
+	public CustomGenericRepository<Long, Arma> getRepository() {
 		return cut;
 	}
 

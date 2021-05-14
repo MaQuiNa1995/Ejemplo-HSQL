@@ -11,7 +11,7 @@ public class MagoRepositoryTest extends JpaRepositoryImplTest<Long, Mago> {
 	private MagoRepository cut;
 
 	@Override
-	public JpaRepository<Long, Mago> getRepository() {
+	public CustomGenericRepository<Long, Mago> getRepository() {
 		return cut;
 	}
 

@@ -14,7 +14,7 @@ public class CalidadRepositoryTest extends JpaRepositoryImplTest<Long, Calidad> 
 	private CalidadRepository cut;
 
 	@Override
-	public JpaRepository<Long, Calidad> getRepository() {
+	public CustomGenericRepository<Long, Calidad> getRepository() {
 		return cut;
 	}
 

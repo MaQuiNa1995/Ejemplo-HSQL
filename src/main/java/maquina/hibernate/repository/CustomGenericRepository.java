@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
-public interface JpaRepository<K extends Serializable, T extends AbstractEntidadSimple<K>> {
+public interface CustomGenericRepository<K extends Serializable, T extends AbstractEntidadSimple<K>> {
 
 	T persist(T nuevo);
 

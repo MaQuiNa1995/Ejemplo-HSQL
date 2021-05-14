@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
@@ -28,6 +29,7 @@ import maquina.hibernate.dominio.AbstractEntidadSimple;
 @Table
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @AttributeOverride(name = "id",
         column = @Column(name = "ID_ARMA"))

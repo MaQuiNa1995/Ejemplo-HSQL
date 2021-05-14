@@ -15,7 +15,7 @@ public class DomadorRepositoryTest extends JpaRepositoryImplTest<Long, Domador> 
 	private DomadorRepository cut;
 
 	@Override
-	public JpaRepository<Long, Domador> getRepository() {
+	public CustomGenericRepository<Long, Domador> getRepository() {
 		return cut;
 	}
 

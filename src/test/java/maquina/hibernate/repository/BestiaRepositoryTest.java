@@ -11,7 +11,7 @@ public class BestiaRepositoryTest extends JpaRepositoryImplTest<Long, Bestia> {
 	private BestiaRepository cut;
 
 	@Override
-	public JpaRepository<Long, Bestia> getRepository() {
+	public CustomGenericRepository<Long, Bestia> getRepository() {
 		return cut;
 	}
 

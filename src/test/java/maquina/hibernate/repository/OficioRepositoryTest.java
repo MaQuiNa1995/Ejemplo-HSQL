@@ -13,7 +13,7 @@ public class OficioRepositoryTest extends JpaRepositoryImplTest<Long, Oficio> {
 	private OficioRepository cut;
 
 	@Override
-	public JpaRepository<Long, Oficio> getRepository() {
+	public CustomGenericRepository<Long, Oficio> getRepository() {
 		return cut;
 	}
 

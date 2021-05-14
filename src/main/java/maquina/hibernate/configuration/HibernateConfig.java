@@ -32,7 +32,10 @@ import com.zaxxer.hikari.HikariDataSource;
  *
  */
 @EnableTransactionManagement
-@ComponentScan(basePackages = "maquina.hibernate.", useDefaultFilters = true, includeFilters = @Filter(type = FilterType.REGEX, pattern = "(repository)$"))
+@ComponentScan(basePackages = "maquina.hibernate.",
+        useDefaultFilters = true,
+        includeFilters = @Filter(type = FilterType.REGEX,
+                pattern = "(repository)$"))
 public class HibernateConfig {
 
 	private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "maquina.hibernate.dominio";
@@ -99,7 +102,7 @@ public class HibernateConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
 
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter());
+		entityManagerFactoryBean.setJpaVendorAdapter(this.jpaProperties());
 		entityManagerFactoryBean.setJpaProperties(this.createAditionalProperties());
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPersistenceUnitName("MaQuiNaPersistenceUnit");
@@ -116,7 +119,8 @@ public class HibernateConfig {
 		properties.setProperty("hibernate.physical_naming_strategy",
 		        "maquina.hibernate.configuration.CustomPhysicalNamingStrategy");
 		properties.setProperty("hibernate.jdbc.batch_size", "50");
-
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.format_sql", "true");
 		return properties;
 	}
 
@@ -126,11 +130,9 @@ public class HibernateConfig {
 	 * @return {@link HibernateJpaVendorAdapter} Objeto que contiene las propieades
 	 *         adicionales que podemos usar en jpa/hibernate
 	 */
-	private HibernateJpaVendorAdapter vendorAdapter() {
+	@Bean
+	public HibernateJpaVendorAdapter jpaProperties() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		// Indicamos si en el log nos saldrán las sentencias que se vayan
-		// ejecutando (En entornos de producción esto debería de estar a FALSE)
-		vendorAdapter.setShowSql(Boolean.TRUE);
 		vendorAdapter.setDatabase(Database.HSQL);
 		return vendorAdapter;
 	}

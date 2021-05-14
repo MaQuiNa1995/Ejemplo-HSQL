@@ -11,7 +11,7 @@ public class NinjutsuRepositoryTest extends JpaRepositoryImplTest<Long, Ninjutsu
 	private NinjutsuRepository cut;
 
 	@Override
-	public JpaRepository<Long, Ninjutsu> getRepository() {
+	public CustomGenericRepository<Long, Ninjutsu> getRepository() {
 		return cut;
 	}
 

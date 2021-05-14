@@ -1,10 +1,10 @@
 package maquina.hibernate.repository.one2one;
 
 import maquina.hibernate.dominio.one2one.Tecnica;
-import maquina.hibernate.repository.JpaRepository;
+import maquina.hibernate.repository.CustomGenericRepository;
 
 public interface TecnicaRepository
-		extends JpaRepository < Long, Tecnica >
+		extends CustomGenericRepository < Long, Tecnica >
 {
 
 }

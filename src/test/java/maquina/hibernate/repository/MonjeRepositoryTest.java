@@ -11,7 +11,7 @@ public class MonjeRepositoryTest extends JpaRepositoryImplTest<Long, Monje> {
 	private MonjeRepository cut;
 
 	@Override
-	public JpaRepository<Long, Monje> getRepository() {
+	public CustomGenericRepository<Long, Monje> getRepository() {
 		return cut;
 	}
 

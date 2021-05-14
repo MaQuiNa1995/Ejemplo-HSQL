@@ -1,9 +1,9 @@
 package maquina.hibernate.repository.one2one;
 
 import maquina.hibernate.dominio.one2one.Oficio;
-import maquina.hibernate.repository.JpaRepository;
+import maquina.hibernate.repository.CustomGenericRepository;
 
-public interface OficioRepository extends JpaRepository<Long, Oficio> {
+public interface OficioRepository extends CustomGenericRepository<Long, Oficio> {
 
 	@Override
 	Class<Oficio> getClassDeT();

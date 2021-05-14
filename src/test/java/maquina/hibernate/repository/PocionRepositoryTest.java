@@ -21,7 +21,7 @@ class PocionRepositoryTest extends JpaRepositoryImplTest<Long, Pocion> {
 	private AlquimistaRepository alquimistaRepository;
 
 	@Override
-	public JpaRepository<Long, Pocion> getRepository() {
+	public CustomGenericRepository<Long, Pocion> getRepository() {
 		return cut;
 	}
 

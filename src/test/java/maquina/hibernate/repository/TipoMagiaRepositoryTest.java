@@ -12,7 +12,7 @@ public class TipoMagiaRepositoryTest extends JpaRepositoryImplTest<Long, TipoMag
 	private TipoMagiaRepository cut;
 
 	@Override
-	public JpaRepository<Long, TipoMagia> getRepository() {
+	public CustomGenericRepository<Long, TipoMagia> getRepository() {
 		return cut;
 	}
 

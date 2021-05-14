@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import maquina.hibernate.dominio.AbstractEntidadSimple;
 
-public abstract class JpaRepositoryImpl<K extends Serializable, T extends AbstractEntidadSimple<K>>
-        implements JpaRepository<K, T> {
+public abstract class CustomGenericRepositoryImpl<K extends Serializable, T extends AbstractEntidadSimple<K>>
+        implements CustomGenericRepository<K, T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

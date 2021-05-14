@@ -16,7 +16,7 @@ class NinjaRepositoryTest extends JpaRepositoryImplTest<Long, Ninja> {
 	private NinjaRepository cut;
 
 	@Override
-	public JpaRepository<Long, Ninja> getRepository() {
+	public CustomGenericRepository<Long, Ninja> getRepository() {
 		return cut;
 	}
 

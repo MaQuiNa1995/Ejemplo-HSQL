@@ -1,10 +1,10 @@
 package maquina.hibernate.repository.one2one;
 
 import maquina.hibernate.dominio.one2one.Mago;
-import maquina.hibernate.repository.JpaRepository;
+import maquina.hibernate.repository.CustomGenericRepository;
 
 public interface MagoRepository
-		extends JpaRepository < Long, Mago >
+		extends CustomGenericRepository < Long, Mago >
 {
 
 }
