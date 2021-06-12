@@ -44,7 +44,7 @@ public class RangoRepositoryTest extends JpaRepositoryImplTest<Long, Rango> {
 		Rango rango = super.getInstanceDeTParaModificar(clave);
 
 		rango.getTecnica()
-				.setNombre("Lluvia De Puños");
+		        .setNombre("Lluvia De Puños");
 
 		return rango;
 	}
